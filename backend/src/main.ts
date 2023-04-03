@@ -8,6 +8,7 @@ async function bootstrap() {
   app.use(helmet());
   app.enableCors({
     origin: "*",
+    methods: "GET,HEAD,PATCH,POST,DELETE",
     credentials: true,
   });
   app.setGlobalPrefix("api");
