@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import validator from "validator";
+import bcrypt from "bcryptjs";
 
 @Schema({
   timestamps: true,
@@ -78,9 +79,46 @@ export class User {
 
   @Prop()
   passwordChangedAt: Date;
+
+  async comparePassword(password: string, hash: string) {
+    return await bcrypt.compare(password, hash);
+  }
+
+  generateConfirmationToken() {
+    const token = crypto.randomUUID().toString();
+    this.confirmationToken = token;
+    const date = new Date();
+    // get tomorrow / expire date is 1 day.
+    date.setDate(date.getDate() + 1);
+    this.confirmationTokenExpires = date;
+    return token;
+  }
+  generatePasswordRestToken() {
+    const token = crypto.randomUUID().toString();
+    this.passwordResetToken = token;
+    const date = new Date();
+    // get tomorrow / expire date is 1 day.
+    date.setDate(date.getDate() + 1);
+    this.passwordResetExpires = date;
+    return token;
+  }
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
+
+// make password hased for security
+UserSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    return next();
+  }
+  const password = this.password;
+  const hashPassword = await bcrypt.hash(password, 16);
+  this.password = hashPassword;
+  this.passwordChangedAt = new Date();
+  this.passwordResetToken = undefined;
+  this.passwordResetExpires = undefined;
+  next();
+});
 
 // create TTL index for invalid user
 UserSchema.index({ confirmationTokenExpires: 1 }, { expireAfterSeconds: 0 });
