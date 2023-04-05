@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { ForbiddenException, Injectable, UnauthorizedException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { User } from "./schemas/user.schema";
 import * as bcrypt from "bcryptjs";
@@ -33,6 +33,7 @@ export class AuthService {
 
     return token;
   }
+
   async login(loginDto: LoginDto): Promise<string> {
     const { email, password } = loginDto;
     const user = await this.userModel.findOne<User>({ email });
@@ -44,6 +45,40 @@ export class AuthService {
       throw new UnauthorizedException("Invalid email or password");
     }
     const token = this.jwtService.sign({ id: user._id });
+    return token;
+  }
+
+  async resendConfirmationToken(email: string): Promise<string> {
+    const token = crypto.randomUUID().toString();
+    const user = await this.userModel.findOne({ email });
+    if (user.status !== "deactive") {
+      throw new ForbiddenException("You can't perform this action");
+    }
+    user.confirmationToken = token;
+    const date = new Date();
+    // get tomorrow / expire date is 1 day.
+    date.setDate(date.getDate() + 1);
+    user.confirmationTokenExpires = date;
+    const updatedUser = await user.save({ validateBeforeSave: false });
+    // mail sending functionality
+    const template = confirmMailTemp(updatedUser);
+    return token;
+  }
+
+  async resetPasswordToken(email: string): Promise<string> {
+    const token = crypto.randomUUID().toString();
+    const user = await this.userModel.findOne({ email });
+    if (user.status === "block") {
+      throw new ForbiddenException("You can't perform this action");
+    }
+    user.passwordResetToken = token;
+    const date = new Date();
+    // get tomorrow / expire date is 1 day.
+    date.setDate(date.getDate() + 1);
+    user.passwordResetExpires = date;
+    const updatedUser = await user.save({ validateBeforeSave: false });
+    // mail sending functionality
+    const template = confirmMailTemp(updatedUser);
     return token;
   }
 }

@@ -1,4 +1,11 @@
-import { BadRequestException, Body, Controller, Post } from "@nestjs/common";
+import {
+  BadRequestException,
+  Body,
+  Controller,
+  Get,
+  Post,
+  Query,
+} from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { SignUpDto } from "./dto/signup.dto";
 import { LoginDto } from "./dto/login.dto";
@@ -27,6 +34,26 @@ export class AuthController {
         token,
         message: "Successfully Login",
       };
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
+  }
+
+  @Get("resend_confirmation_token")
+  async resendConfirmationToken(@Query("email") email: string) {
+    try {
+      const token = await this.authService.resendConfirmationToken(email);
+      return { token };
+    } catch (error) {
+      throw new BadRequestException(error.message);
+    }
+  }
+
+  @Get("reset_password_token")
+  async resetPasswordToken(@Query("email") email: string) {
+    try {
+      const token = await this.authService.resetPasswordToken(email);
+      return { token };
     } catch (error) {
       throw new BadRequestException(error.message);
     }

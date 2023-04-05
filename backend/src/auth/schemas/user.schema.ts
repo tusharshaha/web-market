@@ -56,7 +56,7 @@ export class User extends Document {
   role: string;
 
   @Prop({
-    enum: ["active", "block"],
+    enum: ["active", "deactive", "block"],
     default: "active",
   })
   status: string;
@@ -75,16 +75,6 @@ export class User extends Document {
 
   @Prop()
   passwordChangedAt: Date;
-
-  // generatePasswordRestToken() {
-  //   const token = crypto.randomUUID().toString();
-  //   this.passwordResetToken = token;
-  //   const date = new Date();
-  //   // get tomorrow / expire date is 1 day.
-  //   date.setDate(date.getDate() + 1);
-  //   this.passwordResetExpires = date;
-  //   return token;
-  // }
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
