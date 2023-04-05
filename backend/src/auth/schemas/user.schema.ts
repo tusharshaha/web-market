@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import validator from "validator";
+import * as bcrypt from "bcryptjs";
 
 @Schema({
   timestamps: true,
@@ -26,13 +27,8 @@ export class User {
     required: [true, "Password can't be empty!"],
     validate: {
       validator: (value: string) => {
-        return validator.isStrongPassword(value, {
-          minLength: 8,
-          minSymbols: 1,
-          minUppercase: 1,
-          minNumbers: 1,
-          minLowercase: 1,
-        });
+        const regex = /^(?=.*[a-z])(?=.*\d).{8,}$/;
+        return regex.test(value);
       },
       message: "{VALUE} is not strong enough.",
     },
@@ -83,15 +79,6 @@ export class User {
   //   return await bcrypt.compare(password, hash);
   // }
 
-  // generateConfirmationToken() {
-  //   const token = crypto.randomUUID().toString();
-  //   this.confirmationToken = token;
-  //   const date = new Date();
-  //   // get tomorrow / expire date is 1 day.
-  //   date.setDate(date.getDate() + 1);
-  //   this.confirmationTokenExpires = date;
-  //   return token;
-  // }
   // generatePasswordRestToken() {
   //   const token = crypto.randomUUID().toString();
   //   this.passwordResetToken = token;
@@ -104,6 +91,18 @@ export class User {
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);
+UserSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    return next();
+  }
+  const password = this.password;
+  const hashPassword = await bcrypt.hash(password, 16);
+  this.password = hashPassword;
+  this.passwordChangedAt = new Date();
+  this.passwordResetToken = undefined;
+  this.passwordResetExpires = undefined;
+  next();
+});
 
 // create TTL index for invalid user
 UserSchema.index({ confirmationTokenExpires: 1 }, { expireAfterSeconds: 0 });

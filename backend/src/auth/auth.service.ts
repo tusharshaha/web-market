@@ -1,11 +1,12 @@
-import { Injectable } from "@nestjs/common";
+import { Injectable, UnauthorizedException } from "@nestjs/common";
 import { InjectModel } from "@nestjs/mongoose";
 import { User } from "./schemas/user.schema";
 import * as bcrypt from "bcryptjs";
 import { Model } from "mongoose";
-import confirmMailTemp from "./emailTemplate/confirm.temp";
+import confirmMailTemp from "./utils/confirm.temp";
 import { JwtService } from "@nestjs/jwt";
 import { SignUpDto } from "./dto/signup.dto";
+import { LoginDto } from "./dto/login.dto";
 
 @Injectable({})
 export class AuthService {
@@ -26,13 +27,17 @@ export class AuthService {
     date.setDate(date.getDate() + 1);
     user.confirmationTokenExpires = date;
     const token = this.jwtService.sign({ id: user._id });
-    const hashPassword = await bcrypt.hash(password, 16);
-    user.password = hashPassword;
-    user.passwordChangedAt = new Date();
-    const updatedUser = await user.save({ validateBeforeSave: false });
+    const updatedUser = await user.save({ validateBeforeSave: true });
     // mail sending functionality
     const template = confirmMailTemp(updatedUser);
 
     return token;
+  }
+  async login(loginDto: LoginDto) {
+    const { email, password } = loginDto;
+    const user = await this.userModel.findOne<User>({ email });
+    if (!user) {
+      throw new UnauthorizedException("Invalid email or password");
+    }
   }
 }
