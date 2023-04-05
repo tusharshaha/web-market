@@ -1,11 +1,12 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 import validator from "validator";
 import * as bcrypt from "bcryptjs";
+import { Document } from "mongoose";
 
 @Schema({
   timestamps: true,
 })
-export class User {
+export class User extends Document {
   @Prop({
     required: [true, "Please provide a first name"],
     trim: true,
@@ -74,10 +75,6 @@ export class User {
 
   @Prop()
   passwordChangedAt: Date;
-
-  // async comparePassword(password: string, hash: string) {
-  //   return await bcrypt.compare(password, hash);
-  // }
 
   // generatePasswordRestToken() {
   //   const token = crypto.randomUUID().toString();
