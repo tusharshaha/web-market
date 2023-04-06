@@ -1,8 +1,9 @@
-import { Body, Controller, Get, Post, Query } from "@nestjs/common";
+import { Body, Controller, Get, Post, Query, Res } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { SignUpDto } from "./dto/signup.dto";
 import { LoginDto } from "./dto/login.dto";
 import { handleError } from "src/utils/errorHandler";
+import { Response } from "express";
 
 @Controller("auth")
 export class AuthController {
@@ -30,6 +31,23 @@ export class AuthController {
       };
     } catch (error) {
       return handleError(error);
+    }
+  }
+
+  @Get("confirm_email")
+  async confirmEmail(@Query("token") token: string, @Res() res: Response) {
+    try {
+      return await this.authService.confirmEmail(token, res);
+    } catch (error) {
+      res.send(`
+            <html>
+                <body>
+                    <div style="text-align:center">
+                        <h1>Something went wrong! try again.</h1>
+                    </div>
+                </body>
+            </html>
+        `);
     }
   }
 

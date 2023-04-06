@@ -11,6 +11,7 @@ import confirmMailTemp from "../utils/confirm.temp";
 import { JwtService } from "@nestjs/jwt";
 import { SignUpDto } from "./dto/signup.dto";
 import { LoginDto } from "./dto/login.dto";
+import { Response } from "express";
 
 @Injectable({})
 export class AuthService {
@@ -50,6 +51,24 @@ export class AuthService {
     }
     const token = this.jwtService.sign({ id: user._id });
     return token;
+  }
+
+  async confirmEmail(token: string, res: Response) {
+    const user = await this.userModel.findOne({ confirmationToken: token });
+    if (!user) {
+      return res.send(`
+                    <html>
+                        <body>
+                            <h1 style="text-align:center">Invalid Token!</h1>
+                        </body>
+                    </html>
+                `);
+    }
+    user.status = "active";
+    user.confirmationToken = undefined;
+    user.confirmationTokenExpires = undefined;
+    user.save({ validateBeforeSave: true });
+    res.redirect("https://github.com/tusharshaha");
   }
 
   async resendConfirmationToken(email: string): Promise<string> {
