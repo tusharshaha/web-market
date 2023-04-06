@@ -1,4 +1,4 @@
-import { User } from "../schemas/user.schema";
+import { User } from "../auth/schemas/user.schema";
 
 const confirmMailTemp = (user: User) => {
   return `

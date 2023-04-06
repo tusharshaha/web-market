@@ -1,14 +1,8 @@
-import {
-  BadRequestException,
-  Body,
-  Controller,
-  Get,
-  Post,
-  Query,
-} from "@nestjs/common";
+import { Body, Controller, Get, Post, Query } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { SignUpDto } from "./dto/signup.dto";
 import { LoginDto } from "./dto/login.dto";
+import { handleError } from "src/utils/errorHandler";
 
 @Controller("auth")
 export class AuthController {
@@ -22,7 +16,7 @@ export class AuthController {
         message: "Successfully Signup",
       };
     } catch (error) {
-      throw new BadRequestException(error.message);
+      return handleError(error);
     }
   }
 
@@ -35,7 +29,7 @@ export class AuthController {
         message: "Successfully Login",
       };
     } catch (error) {
-      throw new BadRequestException(error.message);
+      return handleError(error);
     }
   }
 
@@ -45,7 +39,7 @@ export class AuthController {
       const token = await this.authService.resendConfirmationToken(email);
       return { token };
     } catch (error) {
-      throw new BadRequestException(error.message);
+      return handleError(error);
     }
   }
 
@@ -55,7 +49,7 @@ export class AuthController {
       const token = await this.authService.resetPasswordToken(email);
       return { token };
     } catch (error) {
-      throw new BadRequestException(error.message);
+      return handleError(error);
     }
   }
 }

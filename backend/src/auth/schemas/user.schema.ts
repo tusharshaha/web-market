@@ -8,7 +8,7 @@ import { Document } from "mongoose";
 })
 export class User extends Document {
   @Prop({
-    required: [true, "Please provide a first name"],
+    required: [true, "Please give your name"],
     trim: true,
     minLength: [2, "Name must be at least 3 characters."],
     maxLength: [100, "Name is too large"],
@@ -18,8 +18,13 @@ export class User extends Document {
   @Prop({
     unique: true,
     required: [true, "Email must is required!"],
-    validate: [validator.isEmail, "Please provide a valid Email"],
-    lowercase: true,
+    validate: {
+      validator: (value: string) => {
+        const regex = /^[a-zA-Z0-9._+-]+@(?:gmail|yahoo|hotmail|outlook)\.com$/;
+        return regex.test(value);
+      },
+      message: "Please provide a valid email",
+    },
     trim: true,
   })
   email: string;
@@ -41,12 +46,12 @@ export class User extends Document {
       validator: (value: string) => {
         return validator.isMobilePhone(value, "any", { strictMode: true });
       },
-      message: "Please provide a valid contact number",
+      message: "Please provide a valid contact number.",
     },
   })
   contactNumber: string;
 
-  @Prop()
+  @Prop({ validate: [validator.isURL, "Please provide a valid image url."] })
   userImage: string;
 
   @Prop({

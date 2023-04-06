@@ -7,7 +7,7 @@ import { InjectModel } from "@nestjs/mongoose";
 import { User } from "./schemas/user.schema";
 import * as bcrypt from "bcryptjs";
 import { Model } from "mongoose";
-import confirmMailTemp from "./utils/confirm.temp";
+import confirmMailTemp from "../utils/confirm.temp";
 import { JwtService } from "@nestjs/jwt";
 import { SignUpDto } from "./dto/signup.dto";
 import { LoginDto } from "./dto/login.dto";
@@ -21,8 +21,8 @@ export class AuthService {
   ) {}
 
   async signUp(signUpDto: SignUpDto): Promise<string> {
-    const { name, email, password, contactNumber, userImage } = signUpDto;
-    const userBody = { name, email, password, contactNumber, userImage };
+    const { name, email, password, role, contactNumber, userImage } = signUpDto;
+    const userBody = { name, email, password, contactNumber, userImage, role };
     const user = new this.userModel(userBody);
     const confToken = crypto.randomUUID().toString();
     user.confirmationToken = confToken;
@@ -66,6 +66,7 @@ export class AuthService {
     const updatedUser = await user.save({ validateBeforeSave: false });
     // mail sending functionality
     const template = confirmMailTemp(updatedUser);
+
     return token;
   }
 
@@ -83,6 +84,7 @@ export class AuthService {
     const updatedUser = await user.save({ validateBeforeSave: false });
     // mail sending functionality
     const template = confirmMailTemp(updatedUser);
+
     return token;
   }
 }
