@@ -74,6 +74,13 @@ export class AuthService {
     res.redirect("https://github.com/tusharshaha");
   }
 
+  async getAllUsers(role: string): Promise<User[]> {
+    if (role !== "admin") {
+      throw new UnauthorizedException("You can't perform this action");
+    }
+    return await this.userModel.find({});
+  }
+
   async resendConfirmationToken(email: string): Promise<string> {
     const token = crypto.randomUUID().toString();
     const user = await this.userModel.findOne({ email });

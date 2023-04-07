@@ -1,9 +1,20 @@
-import { Body, Controller, Get, Post, Query, Res } from "@nestjs/common";
+import {
+  Body,
+  Controller,
+  Get,
+  Post,
+  Query,
+  Req,
+  Res,
+  UseGuards,
+} from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { SignUpDto } from "./dto/signup.dto";
 import { LoginDto } from "./dto/login.dto";
 import { handleError } from "src/utils/errorHandler";
 import { Response } from "express";
+import { AuthGuard } from "@nestjs/passport";
+import { AuthenticatedRequest } from "src/utils/types";
 
 @Controller("auth")
 export class AuthController {
@@ -51,9 +62,22 @@ export class AuthController {
     }
   }
 
-  @Get("resend_confirmation_token")
-  async resendConfirmationToken(@Query("email") email: string) {
+  @Get("users")
+  @UseGuards(AuthGuard())
+  async getAllUser(@Req() req: AuthenticatedRequest) {
     try {
+      const { role } = req.user;
+      return await this.authService.getAllUsers(role);
+    } catch (error) {
+      return handleError(error);
+    }
+  }
+
+  @Get("resend_confirmation_token")
+  @UseGuards(AuthGuard())
+  async resendConfirmationToken(@Req() req: AuthenticatedRequest) {
+    try {
+      const { email } = req.user;
       const token = await this.authService.resendConfirmationToken(email);
       return { token };
     } catch (error) {
@@ -61,9 +85,11 @@ export class AuthController {
     }
   }
 
-  @Get("reset_password_token")
-  async resetPasswordToken(@Query("email") email: string) {
+  @Get("password_reset_token")
+  @UseGuards(AuthGuard())
+  async resetPasswordToken(@Req() req: AuthenticatedRequest) {
     try {
+      const { email } = req.user;
       const token = await this.authService.resetPasswordToken(email);
       return { token };
     } catch (error) {
