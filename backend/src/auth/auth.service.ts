@@ -23,6 +23,9 @@ export class AuthService {
 
   async signUp(signUpDto: SignUpDto): Promise<string> {
     const { name, email, password, role, contactNumber, userImage } = signUpDto;
+    if (role === "admin") {
+      throw new UnauthorizedException("You can't perform this action");
+    }
     const userBody = { name, email, password, contactNumber, userImage, role };
     const user = new this.userModel(userBody);
     const confToken = crypto.randomUUID().toString();

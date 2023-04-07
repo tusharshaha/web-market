@@ -20,7 +20,7 @@ export class User extends Document {
     required: [true, "Email must is required!"],
     validate: {
       validator: (value: string) => {
-        const regex = /^[a-zA-Z0-9._+-]+@(?:gmail|yahoo|hotmail|outlook)\.com$/;
+        const regex = /^[a-zA-Z0-9._-]+@(?:gmail|yahoo|hotmail|outlook)\.com$/;
         return regex.test(value);
       },
       message: "Please provide a valid email",
@@ -62,7 +62,7 @@ export class User extends Document {
 
   @Prop({
     enum: ["active", "deactive", "block"],
-    default: "active",
+    default: "deactive",
   })
   status: string;
 
