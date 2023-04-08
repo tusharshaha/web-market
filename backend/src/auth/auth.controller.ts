@@ -13,8 +13,8 @@ import { SignUpDto } from "./dto/signup.dto";
 import { LoginDto } from "./dto/login.dto";
 import { handleError } from "src/utils/errorHandler";
 import { Response } from "express";
-import { AuthGuard } from "@nestjs/passport";
 import { AuthenticatedRequest } from "src/utils/types";
+import { JwtAuthGuard } from "./guards/jwt-auth.guard";
 
 @Controller("auth")
 export class AuthController {
@@ -63,22 +63,22 @@ export class AuthController {
   }
 
   @Get("users")
-  @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   async getAllUser(@Req() req: AuthenticatedRequest) {
     try {
-      const { role } = req.user;
-      return await this.authService.getAllUsers(role);
+      const { userId } = req.user;
+      return await this.authService.getAllUsers(userId);
     } catch (error) {
       return handleError(error);
     }
   }
 
   @Get("resend_confirmation_token")
-  @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   async resendConfirmationToken(@Req() req: AuthenticatedRequest) {
     try {
-      const { email } = req.user;
-      const token = await this.authService.resendConfirmationToken(email);
+      const { userId } = req.user;
+      const token = await this.authService.resendConfirmationToken(userId);
       return { token };
     } catch (error) {
       return handleError(error);
@@ -86,11 +86,11 @@ export class AuthController {
   }
 
   @Get("password_reset_token")
-  @UseGuards(AuthGuard())
+  @UseGuards(JwtAuthGuard)
   async resetPasswordToken(@Req() req: AuthenticatedRequest) {
     try {
-      const { email } = req.user;
-      const token = await this.authService.resetPasswordToken(email);
+      const { userId } = req.user;
+      const token = await this.authService.resetPasswordToken(userId);
       return { token };
     } catch (error) {
       return handleError(error);

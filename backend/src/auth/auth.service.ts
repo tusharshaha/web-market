@@ -22,11 +22,11 @@ export class AuthService {
   ) {}
 
   async signUp(signUpDto: SignUpDto): Promise<string> {
-    const { name, email, password, role, contactNumber, userImage } = signUpDto;
+    const { name, email, password, role, contactNumber } = signUpDto;
     if (role === "admin") {
       throw new UnauthorizedException("You can't perform this action");
     }
-    const userBody = { name, email, password, contactNumber, userImage, role };
+    const userBody = { name, email, password, contactNumber, role };
     const user = new this.userModel(userBody);
     const confToken = crypto.randomUUID().toString();
     user.confirmationToken = confToken;
@@ -44,9 +44,12 @@ export class AuthService {
 
   async login(loginDto: LoginDto): Promise<string> {
     const { email, password } = loginDto;
-    const user = await this.userModel.findOne<User>({ email });
+    const user = await this.userModel.findOne({ email });
     if (!user) {
       throw new UnauthorizedException("Invalid email or password");
+    }
+    if (user.status === "block") {
+      throw new UnauthorizedException("You can't perform this action");
     }
     const isPasswordMatch = await bcrypt.compare(password, user.password);
     if (!isPasswordMatch) {
@@ -74,16 +77,17 @@ export class AuthService {
     res.redirect("https://github.com/tusharshaha");
   }
 
-  async getAllUsers(role: string): Promise<User[]> {
-    if (role !== "admin") {
+  async getAllUsers(userId: string): Promise<User[]> {
+    const user = await this.userModel.findById(userId);
+    if (user.role !== "admin") {
       throw new UnauthorizedException("You can't perform this action");
     }
     return await this.userModel.find({});
   }
 
-  async resendConfirmationToken(email: string): Promise<string> {
+  async resendConfirmationToken(userId: string): Promise<string> {
     const token = crypto.randomUUID().toString();
-    const user = await this.userModel.findOne({ email });
+    const user = await this.userModel.findById(userId);
     if (user.status !== "deactive") {
       throw new ForbiddenException("You can't perform this action");
     }
@@ -99,9 +103,9 @@ export class AuthService {
     return token;
   }
 
-  async resetPasswordToken(email: string): Promise<string> {
+  async resetPasswordToken(userId: string): Promise<string> {
     const token = crypto.randomUUID().toString();
-    const user = await this.userModel.findOne({ email });
+    const user = await this.userModel.findById(userId);
     if (user.status === "block") {
       throw new ForbiddenException("You can't perform this action");
     }
