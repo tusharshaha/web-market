@@ -66,6 +66,12 @@ export class User extends Document {
   })
   status: string;
 
+  @Prop({
+    enum: ["email", "google", "linkedin"],
+    default: "email",
+  })
+  provider: string;
+
   @Prop()
   confirmationToken: string;
 

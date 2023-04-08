@@ -12,6 +12,7 @@ import { JwtService } from "@nestjs/jwt";
 import { SignUpDto } from "./dto/signup.dto";
 import { LoginDto } from "./dto/login.dto";
 import { Response } from "express";
+import { UserDetails } from "src/utils/types";
 
 @Injectable({})
 export class AuthService {
@@ -57,6 +58,17 @@ export class AuthService {
     }
     const token = this.jwtService.sign({ id: user._id });
     return token;
+  }
+
+  async loginWithGoogle(details: UserDetails) {
+    const { email, userImage, name } = details;
+    const user = await this.userModel.findOne({ email });
+    if (user) return user;
+    user.email = email;
+    user.userImage = userImage;
+    user.name = name;
+    user.provider = "google";
+    return await user.save({ validateBeforeSave: false });
   }
 
   async confirmEmail(token: string, res: Response) {

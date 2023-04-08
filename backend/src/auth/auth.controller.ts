@@ -15,10 +15,11 @@ import { handleError } from "src/utils/errorHandler";
 import { Response } from "express";
 import { AuthenticatedRequest } from "src/utils/types";
 import { JwtAuthGuard } from "./guards/jwt-auth.guard";
+import { GoogleAuthGuard } from "./guards/google-auth.guard";
 
 @Controller("auth")
 export class AuthController {
-  constructor(private authService: AuthService) {}
+  constructor(private readonly authService: AuthService) {}
   @Post("signup")
   async signup(@Body() signUpDto: SignUpDto) {
     try {
@@ -40,6 +41,24 @@ export class AuthController {
         token,
         message: "Successfully Login",
       };
+    } catch (error) {
+      return handleError(error);
+    }
+  }
+  @Get("login/google")
+  @UseGuards(GoogleAuthGuard)
+  async loginWithGoogle() {
+    try {
+      return { message: "google auth" };
+    } catch (error) {
+      return handleError(error);
+    }
+  }
+  @Get("/google/redirect")
+  @UseGuards(GoogleAuthGuard)
+  async googleRedirect() {
+    try {
+      return { message: "google auth" };
     } catch (error) {
       return handleError(error);
     }
