@@ -58,7 +58,7 @@ export class AuthController {
   @UseGuards(GoogleAuthGuard)
   async googleRedirect() {
     try {
-      return { message: "google auth" };
+      return { message: "google auth completed" };
     } catch (error) {
       return handleError(error);
     }

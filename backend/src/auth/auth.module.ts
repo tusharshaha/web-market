@@ -26,6 +26,6 @@ import { SessionSerializer } from "src/utils/session.serializer";
   ],
   controllers: [AuthController],
   providers: [SessionSerializer, AuthService, JwtStrategy, GoogleStrategy],
-  exports: [JwtStrategy, GoogleStrategy, PassportModule],
+  exports: [JwtStrategy, GoogleStrategy],
 })
 export class AuthModule {}

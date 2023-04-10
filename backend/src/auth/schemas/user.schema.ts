@@ -73,6 +73,9 @@ export class User extends Document {
   provider: string;
 
   @Prop()
+  providerId: string;
+
+  @Prop()
   confirmationToken: string;
 
   @Prop()

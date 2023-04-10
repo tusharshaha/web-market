@@ -15,11 +15,12 @@ export class GoogleStrategy extends PassportStrategy(Strategy, "google") {
   }
 
   async validate(accessToken: string, refreshToken: string, profile: Profile) {
-    const { displayName, emails, photos } = profile;
+    const { displayName, emails, photos, id } = profile;
     const details = {
       email: emails[0].value,
       name: displayName,
       userImage: photos[0].value,
+      providerId: id,
     };
     const user = await this.authService.loginWithGoogle(details);
     return user || null;

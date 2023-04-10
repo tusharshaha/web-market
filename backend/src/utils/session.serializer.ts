@@ -1,24 +1,23 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { Injectable } from "@nestjs/common";
-import { InjectModel } from "@nestjs/mongoose";
 import { PassportSerializer } from "@nestjs/passport";
-import { Model } from "mongoose";
 import { User } from "src/auth/schemas/user.schema";
 
 @Injectable()
 export class SessionSerializer extends PassportSerializer {
-  constructor(
-    @InjectModel(User.name)
-    private readonly userModel: Model<User>,
-  ) {
+  constructor() {
     super();
   }
-  // eslint-disable-next-line @typescript-eslint/ban-types
+
   serializeUser(user: User, done: Function) {
+    console.log("Serializer User");
+    console.log(user);
     done(null, user);
   }
-  // eslint-disable-next-line @typescript-eslint/ban-types
+
   async deserializeUser(payload: User, done: Function) {
-    const user = await this.userModel.findById(payload.id);
-    return user ? done(null, user) : done(null, null);
+    console.log("Deserialize User");
+    console.log(payload);
+    return payload ? done(null, payload) : done(null, null);
   }
 }

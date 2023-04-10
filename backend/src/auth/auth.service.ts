@@ -22,6 +22,16 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
+  async generateConfirmationToken(user: User): Promise<string> {
+    const confToken = crypto.randomUUID().toString();
+    user.confirmationToken = confToken;
+    const date = new Date();
+    // get tomorrow / expire date is 1 day.
+    date.setDate(date.getDate() + 1);
+    user.confirmationTokenExpires = date;
+    return confToken;
+  }
+
   async signUp(signUpDto: SignUpDto): Promise<string> {
     const { name, email, password, role, contactNumber } = signUpDto;
     if (role === "admin") {
@@ -29,14 +39,9 @@ export class AuthService {
     }
     const userBody = { name, email, password, contactNumber, role };
     const user = new this.userModel(userBody);
-    const confToken = crypto.randomUUID().toString();
-    user.confirmationToken = confToken;
-    const date = new Date();
-    // get tomorrow / expire date is 1 day.
-    date.setDate(date.getDate() + 1);
-    user.confirmationTokenExpires = date;
-    const token = this.jwtService.sign({ id: user._id });
+    this.generateConfirmationToken(user);
     const updatedUser = await user.save({ validateBeforeSave: true });
+    const token = this.jwtService.sign({ id: user._id });
     // mail sending functionality
     const template = confirmMailTemp(updatedUser);
 
@@ -61,14 +66,23 @@ export class AuthService {
   }
 
   async loginWithGoogle(details: UserDetails) {
-    const { email, userImage, name } = details;
-    const user = await this.userModel.findOne({ email });
-    if (user) return user;
-    user.email = email;
+    const { email, userImage, name, providerId } = details;
+    const user =
+      (await this.userModel.findOne({ email })) || new this.userModel();
     user.userImage = userImage;
     user.name = name;
+    user.status = "active";
+    user.confirmationToken = undefined;
+    user.confirmationTokenExpires = undefined;
+    if (user.email) {
+      const updatedUser = await user.save({ validateBeforeSave: true });
+      return this.jwtService.sign({ id: updatedUser._id });
+    }
+    user.email = email;
     user.provider = "google";
-    return await user.save({ validateBeforeSave: false });
+    user.providerId = providerId;
+    const updatedUser = await user.save({ validateBeforeSave: false });
+    return this.jwtService.sign({ id: updatedUser._id });
   }
 
   async confirmEmail(token: string, res: Response) {
@@ -91,23 +105,18 @@ export class AuthService {
 
   async getAllUsers(userId: string): Promise<User[]> {
     const user = await this.userModel.findById(userId);
-    if (user.role !== "admin") {
+    if (!user || user.role !== "admin") {
       throw new UnauthorizedException("You can't perform this action");
     }
     return await this.userModel.find({});
   }
 
   async resendConfirmationToken(userId: string): Promise<string> {
-    const token = crypto.randomUUID().toString();
     const user = await this.userModel.findById(userId);
     if (user.status !== "deactive") {
       throw new ForbiddenException("You can't perform this action");
     }
-    user.confirmationToken = token;
-    const date = new Date();
-    // get tomorrow / expire date is 1 day.
-    date.setDate(date.getDate() + 1);
-    user.confirmationTokenExpires = date;
+    const token = await this.generateConfirmationToken(user);
     const updatedUser = await user.save({ validateBeforeSave: false });
     // mail sending functionality
     const template = confirmMailTemp(updatedUser);

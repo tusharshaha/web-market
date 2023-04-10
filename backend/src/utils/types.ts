@@ -8,4 +8,5 @@ export interface UserDetails {
   email: string;
   name: string;
   userImage: string;
+  providerId: string;
 }
