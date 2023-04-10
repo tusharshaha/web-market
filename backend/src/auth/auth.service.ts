@@ -13,6 +13,7 @@ import { SignUpDto } from "./dto/signup.dto";
 import { LoginDto } from "./dto/login.dto";
 import { Response } from "express";
 import { UserDetails } from "src/utils/types";
+import { flexibleQuery } from "src/utils/flexibleQuery";
 
 @Injectable({})
 export class AuthService {
@@ -103,12 +104,18 @@ export class AuthService {
     res.redirect("https://github.com/tusharshaha");
   }
 
-  async getAllUsers(userId: string): Promise<User[]> {
+  async getAllUsers(userId: string, query: any): Promise<User[]> {
     const user = await this.userModel.findById(userId);
     if (!user || user.role !== "admin") {
       throw new UnauthorizedException("You can't perform this action");
     }
-    return await this.userModel.find({});
+    const { search } = flexibleQuery(query);
+    return await this.userModel
+      .find({})
+      .skip(search.skip)
+      .limit(search.limit)
+      .select("-password -__v -updatedAt -passwordChangedAt -provider")
+      .sort(search.sortBy);
   }
 
   async resendConfirmationToken(userId: string): Promise<string> {

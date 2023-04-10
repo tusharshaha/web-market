@@ -47,13 +47,9 @@ export class AuthController {
   }
   @Get("login/google")
   @UseGuards(GoogleAuthGuard)
-  async loginWithGoogle() {
-    try {
-      return { message: "google auth" };
-    } catch (error) {
-      return handleError(error);
-    }
-  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  async loginWithGoogle() {}
+
   @Get("/google/redirect")
   @UseGuards(GoogleAuthGuard)
   async googleRedirect() {
@@ -83,10 +79,10 @@ export class AuthController {
 
   @Get("users")
   @UseGuards(JwtAuthGuard)
-  async getAllUser(@Req() req: AuthenticatedRequest) {
+  async getAllUser(@Req() req: AuthenticatedRequest, @Query() query: any) {
     try {
       const { userId } = req.user;
-      return await this.authService.getAllUsers(userId);
+      return await this.authService.getAllUsers(userId, query);
     } catch (error) {
       return handleError(error);
     }
