@@ -76,7 +76,7 @@ export class AuthService {
     user.confirmationToken = undefined;
     user.confirmationTokenExpires = undefined;
     if (user.email) {
-      const updatedUser = await user.save({ validateBeforeSave: true });
+      const updatedUser = await user.save({ validateBeforeSave: false });
       return this.jwtService.sign({ id: updatedUser._id });
     }
     user.email = email;

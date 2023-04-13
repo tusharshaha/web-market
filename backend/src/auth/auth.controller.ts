@@ -52,9 +52,10 @@ export class AuthController {
 
   @Get("/google/redirect")
   @UseGuards(GoogleAuthGuard)
-  async googleRedirect() {
+  async googleRedirect(@Req() req: any, @Res() res: Response) {
     try {
-      return { message: "google auth completed" };
+      const token = req.user;
+      res.redirect("http://localhost:3000?token=" + token);
     } catch (error) {
       return handleError(error);
     }
