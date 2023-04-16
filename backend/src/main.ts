@@ -12,17 +12,19 @@ async function bootstrap() {
   app.setGlobalPrefix("api");
   app.use(helmet());
   app.enableCors({
-    origin: "http://localhost:3000",
+    origin: process.env.FRONTEND_URL,
     methods: "GET,HEAD,PATCH,POST,DELETE",
     credentials: true,
   });
+  // store the user session to mongoDB
   const mongoStore = MongoStore.create({
     mongoUrl: process.env.MONGO_URI,
-    collectionName: "user_sessions", // Optional. Defaults to "sessions".
+    collectionName: "user_sessions",
     autoRemove: "native",
   });
   app.use(
     session({
+      name: "LOGIN_INFO",
       secret: process.env.JWT_SECRET,
       resave: false,
       saveUninitialized: false,

@@ -8,7 +8,7 @@ const confirmMailTemp = (user: User) => {
 
                 <p>Your email address has been registered with <b>Hotel Booking</b>. Please confirm your account by clicking the link below:</p>
 
-                <a href="${process.env.PROJECT_URL}/api/auth/signup/confirm_email?token=${user.confirmationToken}" target="_blank">
+                <a href="${process.env.BACKEND_URL}/api/auth/signup/confirm_email?token=${user.confirmationToken}" target="_blank">
                     Verify your account
                 </a>
 
