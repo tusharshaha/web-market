@@ -7,6 +7,11 @@ import * as passport from "passport";
 const MongoStore = require("connect-mongo");
 import helmet from "helmet";
 
+type Cookie = {
+  maxAge: number;
+  secure?: true;
+};
+
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
   app.setGlobalPrefix("api");
@@ -22,6 +27,12 @@ async function bootstrap() {
     collectionName: "user_sessions",
     autoRemove: "native",
   });
+  const cookie: Cookie = { maxAge: 60000 * 60 * 24 * 7 };
+
+  if (process.env.NODE_ENV === "production") {
+    app.set("trust proxy", 1); // trust first proxy
+    cookie.secure = true; // serve secure cookies
+  }
   app.use(
     session({
       name: "LOGIN_INFO",
@@ -29,9 +40,7 @@ async function bootstrap() {
       resave: false,
       saveUninitialized: false,
       store: mongoStore,
-      cookie: {
-        maxAge: 60000 * 60 * 24 * 7,
-      },
+      cookie,
     }),
   );
   app.use(passport.initialize());

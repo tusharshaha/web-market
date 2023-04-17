@@ -20,6 +20,7 @@ import { GoogleAuthGuard } from "./guards/google-auth.guard";
 @Controller("auth")
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
+
   @Post("signup")
   async signup(@Body() signUpDto: SignUpDto) {
     try {
@@ -45,10 +46,33 @@ export class AuthController {
       return handleError(error);
     }
   }
+
   @Get("login/google")
   @UseGuards(GoogleAuthGuard)
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   async loginWithGoogle() {}
+
+  @Get("logout")
+  async logoutUser(@Req() req: any, @Res() res: Response) {
+    try {
+      req.session.destroy((err: any) => {
+        if (err) {
+          res.status(500).json({
+            status: 500,
+            message: "Failed to logout.",
+          });
+        } else {
+          res.clearCookie("LOGIN_INFO");
+          res.json({
+            status: 200,
+            message: "Successfully logged out.",
+          });
+        }
+      });
+    } catch (error) {
+      return handleError(error);
+    }
+  }
 
   @Get("/google/redirect")
   @UseGuards(GoogleAuthGuard)
