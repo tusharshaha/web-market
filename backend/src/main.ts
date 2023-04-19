@@ -29,6 +29,7 @@ async function bootstrap() {
   });
   const cookie: Cookie = { maxAge: 60000 * 60 * 24 * 7 };
 
+  // set cookie security on  production
   if (process.env.NODE_ENV === "production") {
     app.set("trust proxy", 1); // trust first proxy
     cookie.secure = true; // serve secure cookies
@@ -36,7 +37,8 @@ async function bootstrap() {
   app.use(
     session({
       name: "LOGIN_INFO",
-      secret: process.env.JWT_SECRET,
+      genid: () => crypto.randomUUID() + Date.now(),
+      secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: false,
       store: mongoStore,

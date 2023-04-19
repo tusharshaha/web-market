@@ -24,7 +24,7 @@ export class AuthService {
   ) {}
 
   async generateConfirmationToken(user: User): Promise<string> {
-    const confToken = crypto.randomUUID().toString();
+    const confToken = crypto.randomUUID();
     user.confirmationToken = confToken;
     const date = new Date();
     // get tomorrow / expire date is 1 day.
@@ -132,7 +132,7 @@ export class AuthService {
   }
 
   async resetPasswordToken(userId: string): Promise<string> {
-    const token = crypto.randomUUID().toString();
+    const token = crypto.randomUUID();
     const user = await this.userModel.findById(userId);
     if (user.status === "block") {
       throw new ForbiddenException("You can't perform this action");
