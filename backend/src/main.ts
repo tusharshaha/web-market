@@ -6,6 +6,7 @@ import * as passport from "passport";
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const MongoStore = require("connect-mongo");
 import helmet from "helmet";
+import { ValidationPipe } from "@nestjs/common";
 
 type Cookie = {
   maxAge: number;
@@ -47,6 +48,7 @@ async function bootstrap() {
   );
   app.use(passport.initialize());
   app.use(passport.session());
+  app.useGlobalPipes(new ValidationPipe());
   await app.listen(5000);
 }
 bootstrap();

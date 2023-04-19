@@ -1,7 +1,12 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
-import validator from "validator";
 import * as bcrypt from "bcryptjs";
 import { Document } from "mongoose";
+
+export enum Role {
+  DEVELOPER = "developer",
+  CLIENT = "client",
+  ADMIN = "admin",
+}
 
 @Schema({
   timestamps: true,
@@ -10,14 +15,14 @@ export class User extends Document {
   @Prop({
     required: [true, "Please give your name"],
     trim: true,
-    minLength: [2, "Name must be at least 3 characters."],
+    minLength: [3, "Name must be at least 3 characters."],
     maxLength: [100, "Name is too large"],
   })
   name: string;
 
   @Prop({
     unique: true,
-    required: [true, "Email must is required!"],
+    required: [true, "Email can't be empty!"],
     validate: {
       validator: (value: string) => {
         const regex = /^[a-zA-Z0-9._-]+@(?:gmail|yahoo|hotmail|outlook)\.com$/;
@@ -36,29 +41,21 @@ export class User extends Document {
         const regex = /^(?=.*[a-z])(?=.*\d).{8,}$/;
         return regex.test(value);
       },
-      message: "{VALUE} is not strong enough.",
+      message: "password {VALUE} is not strong enough.",
     },
   })
   password: string;
 
-  @Prop({
-    validate: {
-      validator: (value: string) => {
-        return validator.isMobilePhone(value, "any", { strictMode: true });
-      },
-      message: "Please provide a valid contact number.",
-    },
-  })
+  @Prop()
   contactNumber: string;
 
-  @Prop({ validate: [validator.isURL, "Please provide a valid image url."] })
+  @Prop()
   userImage: string;
 
   @Prop({
-    enum: ["developer", "client", "admin"],
     default: "developer",
   })
-  role: string;
+  role: Role;
 
   @Prop({
     enum: ["active", "deactive", "block"],
