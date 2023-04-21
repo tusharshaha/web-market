@@ -23,14 +23,13 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  async generateConfirmationToken(user: User): Promise<string> {
+  async generateConfirmationToken(user: User) {
     const confToken = crypto.randomUUID();
     user.confirmationToken = confToken;
     const date = new Date();
     // get tomorrow / expire date is 1 day.
     date.setDate(date.getDate() + 1);
     user.confirmationTokenExpires = date;
-    return confToken;
   }
 
   async signUp(signUpDto: SignUpDto): Promise<string> {
@@ -101,7 +100,7 @@ export class AuthService {
     user.confirmationToken = undefined;
     user.confirmationTokenExpires = undefined;
     user.save({ validateBeforeSave: true });
-    res.redirect("https://github.com/tusharshaha");
+    res.redirect(process.env.FRONTEND_URL);
   }
 
   async getAllUsers(userId: string, query: any): Promise<User[]> {
@@ -118,20 +117,20 @@ export class AuthService {
       .sort(search.sortBy);
   }
 
-  async resendConfirmationToken(userId: string): Promise<string> {
+  async resendConfirmationToken(userId: string): Promise<{ message: string }> {
     const user = await this.userModel.findById(userId);
     if (user.status !== "deactive") {
       throw new ForbiddenException("You can't perform this action");
     }
-    const token = await this.generateConfirmationToken(user);
-    const updatedUser = await user.save({ validateBeforeSave: false });
+    await this.generateConfirmationToken(user);
+    const updatedUser = await user.save({ validateBeforeSave: true });
     // mail sending functionality
     const template = confirmMailTemp(updatedUser);
 
-    return token;
+    return { message: "Token have sent to your mail" };
   }
 
-  async resetPasswordToken(userId: string): Promise<string> {
+  async resetPasswordToken(userId: string): Promise<{ message: string }> {
     const token = crypto.randomUUID();
     const user = await this.userModel.findById(userId);
     if (user.status === "block") {
@@ -142,10 +141,10 @@ export class AuthService {
     // get tomorrow / expire date is 1 day.
     date.setDate(date.getDate() + 1);
     user.passwordResetExpires = date;
-    const updatedUser = await user.save({ validateBeforeSave: false });
+    const updatedUser = await user.save({ validateBeforeSave: true });
     // mail sending functionality
     const template = confirmMailTemp(updatedUser);
 
-    return token;
+    return { message: "Token have sent to your mail" };
   }
 }

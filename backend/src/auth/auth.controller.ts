@@ -17,6 +17,7 @@ import { Response } from "express";
 import { AuthenticatedRequest } from "src/utils/types";
 import { JwtAuthGuard } from "./guards/jwt-auth.guard";
 import { GoogleAuthGuard } from "./guards/google-auth.guard";
+import { Throttle, ThrottlerGuard } from "@nestjs/throttler";
 
 @Controller("auth")
 export class AuthController {
@@ -85,16 +86,16 @@ export class AuthController {
   }
 
   @Get("confirm_email")
+  @UseGuards(ThrottlerGuard)
+  @Throttle(5, 60)
   async confirmEmail(@Query("token") token: string, @Res() res: Response) {
     try {
       return await this.authService.confirmEmail(token, res);
     } catch (error) {
       res.send(`
             <html>
-                <body>
-                    <div style="text-align:center">
-                        <h1>Something went wrong! try again.</h1>
-                    </div>
+                <body style="text-align:center">
+                  <h1>Something went wrong! try again.</h1>
                 </body>
             </html>
         `);
@@ -117,8 +118,7 @@ export class AuthController {
   async resendConfirmationToken(@Req() req: AuthenticatedRequest) {
     try {
       const { userId } = req.user;
-      const token = await this.authService.resendConfirmationToken(userId);
-      return { token };
+      return await this.authService.resendConfirmationToken(userId);
     } catch (error) {
       return handleError(error);
     }
@@ -129,8 +129,7 @@ export class AuthController {
   async resetPasswordToken(@Req() req: AuthenticatedRequest) {
     try {
       const { userId } = req.user;
-      const token = await this.authService.resetPasswordToken(userId);
-      return { token };
+      return await this.authService.resetPasswordToken(userId);
     } catch (error) {
       return handleError(error);
     }

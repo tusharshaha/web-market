@@ -7,6 +7,7 @@ import * as passport from "passport";
 const MongoStore = require("connect-mongo");
 import helmet from "helmet";
 import { ValidationPipe } from "@nestjs/common";
+import { ThrottlerExceptionFilter } from "./utils/throtller-exception.filter";
 
 type Cookie = {
   maxAge: number;
@@ -49,6 +50,7 @@ async function bootstrap() {
   app.use(passport.initialize());
   app.use(passport.session());
   app.useGlobalPipes(new ValidationPipe());
+  app.useGlobalFilters(new ThrottlerExceptionFilter());
   await app.listen(5000);
 }
 bootstrap();
