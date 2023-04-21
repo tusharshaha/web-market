@@ -17,7 +17,7 @@ export class JwtAuthGuard extends AuthGuard("jwt") {
 
   handleRequest(err: Error, user: any) {
     if (err || !user) {
-      throw err || new UnauthorizedException("Invalid Token");
+      throw err || new UnauthorizedException();
     }
     return user;
   }

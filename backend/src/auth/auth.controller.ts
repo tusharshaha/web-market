@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   Body,
   Controller,
   Get,
@@ -53,14 +54,12 @@ export class AuthController {
   async loginWithGoogle() {}
 
   @Get("logout")
+  @UseGuards(JwtAuthGuard)
   async logoutUser(@Req() req: any, @Res() res: Response) {
     try {
       req.session.destroy((err: any) => {
         if (err) {
-          res.status(500).json({
-            status: 500,
-            message: "Failed to logout.",
-          });
+          throw new BadRequestException("Failed to logout");
         } else {
           res.clearCookie("LOGIN_INFO");
           res.json({
