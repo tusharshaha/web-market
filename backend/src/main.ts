@@ -11,7 +11,9 @@ import { ThrottlerExceptionFilter } from "./utils/throtller-exception.filter";
 
 type Cookie = {
   maxAge: number;
-  secure?: true;
+  httpOnly?: boolean;
+  secure?: boolean;
+  sameSite?: boolean;
 };
 
 async function bootstrap() {
@@ -34,6 +36,8 @@ async function bootstrap() {
   // set cookie security on  production
   if (process.env.NODE_ENV === "production") {
     app.set("trust proxy", 1); // trust first proxy
+    cookie.httpOnly = true;
+    cookie.sameSite = true;
     cookie.secure = true; // serve secure cookies
   }
   app.use(
