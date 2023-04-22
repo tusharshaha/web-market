@@ -32,7 +32,7 @@ export class AuthService {
     user.confirmationTokenExpires = date;
   }
 
-  async signUp(signUpDto: SignUpDto): Promise<string> {
+  async signUp(signUpDto: SignUpDto) {
     const { name, email, password, role, contactNumber } = signUpDto;
     if (role === "admin") {
       throw new UnauthorizedException("You can't perform this action");
@@ -45,10 +45,10 @@ export class AuthService {
     // mail sending functionality
     const template = confirmMailTemp(updatedUser);
 
-    return token;
+    return { name, email, contactNumber, token };
   }
 
-  async login(loginDto: LoginDto): Promise<string> {
+  async login(loginDto: LoginDto) {
     const { email, password } = loginDto;
     const user = await this.userModel.findOne({ email });
     if (!user) {
@@ -62,7 +62,15 @@ export class AuthService {
       throw new UnauthorizedException("Invalid email or password");
     }
     const token = this.jwtService.sign({ id: user._id });
-    return token;
+    const { name, userImage, contactNumber, passwordChangedAt } = user;
+    return {
+      name,
+      email,
+      userImage,
+      contactNumber,
+      passwordChangedAt,
+      token,
+    };
   }
 
   async loginWithGoogle(details: UserDetails) {

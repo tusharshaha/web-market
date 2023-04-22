@@ -24,26 +24,22 @@ export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
   @Post("signup")
-  async signup(@Body() signUpDto: SignUpDto) {
+  async signup(@Req() req: any, @Body() signUpDto: SignUpDto) {
     try {
-      const token = await this.authService.signUp(signUpDto);
-      return {
-        token,
-        message: "Successfully Signup",
-      };
+      const { token, ...user } = await this.authService.signUp(signUpDto);
+      req.session.passport = { user: token };
+      return { user, message: "Successfully Signup" };
     } catch (error) {
       return handleError(error);
     }
   }
 
   @Post("login")
-  async login(@Body() loginDto: LoginDto) {
+  async login(@Req() req: any, @Body() loginDto: LoginDto) {
     try {
-      const token = await this.authService.login(loginDto);
-      return {
-        token,
-        message: "Successfully Login",
-      };
+      const { token, ...user } = await this.authService.login(loginDto);
+      req.session.passport = { user: token };
+      return { user, message: "Successfully login" };
     } catch (error) {
       return handleError(error);
     }
