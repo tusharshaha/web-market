@@ -72,10 +72,9 @@ export class AuthController {
 
   @Get("/google/redirect")
   @UseGuards(GoogleAuthGuard)
-  async googleRedirect(@Req() req: any, @Res() res: Response) {
+  async googleRedirect(@Res() res: Response) {
     try {
-      const token = req.user;
-      res.redirect("http://localhost:3000?token=" + token);
+      res.redirect(`${process.env.FRONTEND_URL}/`);
     } catch (error) {
       return handleError(error);
     }
