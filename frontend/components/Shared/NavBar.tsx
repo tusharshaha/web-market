@@ -10,7 +10,7 @@ const NavBar: React.FC = () => {
                 <ul className="flex gap-2">
                     <li><a>Find Jobs</a></li>
                     <li><a>Hire Developer</a></li>
-                    <li><a>Post </a></li>
+                    <li><a>Post Jobs</a></li>
                     <li><a>Login</a></li>
                     <li><a>Sign Up</a></li>
                 </ul>
