@@ -32,7 +32,7 @@
 }
 
 .hero-bg {
-  @apply bg-[url('/images/hero-bg.png')] bg-no-repeat bg-right-bottom pt-[80px] pb-[210px] bg-cover h-[850px];
+  @apply bg-[url('/images/hero-bg.png')] bg-no-repeat bg-right-bottom pt-[80px] pb-[210px] bg-cover h-[850px] overflow-hidden;
 }
 
 .hero-btn {

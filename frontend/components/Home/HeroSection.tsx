@@ -15,7 +15,7 @@ const HeroSection: React.FC = () => {
                         </div>
                     </div>
                 </div>
-                <div className='mr-[-50px]'>
+                <div className='mr-[-40px]'>
                     <Image src='/images/hero-img.png' height={680} width={680} alt="hero img" />
                 </div>
             </div>
