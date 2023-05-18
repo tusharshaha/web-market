@@ -27,14 +27,24 @@
   }
 
   p {
-    @apply text-lg;
+    @apply text-base;
   }
 }
 
-@layer component {
-  .hero-bg {
-    @apply bg-[url('/images/hero-bg.png')] bg-no-repeat bg-right-bottom pt-[80px] pb-[210px] bg-cover h-[850px];
-  }
+.hero-bg {
+  @apply bg-[url('/images/hero-bg.png')] bg-no-repeat bg-right-bottom pt-[80px] pb-[210px] bg-cover h-[850px];
+}
+
+.hero-btn {
+  @apply bg-gradient-to-r from-red-500 to-pink-600 py-4 px-10 rounded-full hover:from-pink-500 hover:to-red-600 transition duration-300;
+}
+
+.hero-btn2 {
+  @apply transition duration-300 border hover:border-blue-600 hover:bg-blue-500 py-4 px-10 rounded-full;
+}
+
+.cus-container {
+  @apply container mx-auto px-10
 }
 
 :root {
