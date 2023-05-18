@@ -8,11 +8,11 @@ const HeroSection: React.FC = () => {
                 <div className='flex items-center px-6'>
                     <div>
                         <h1 className='font-bold mb-4'>The Manage Web Development Services</h1>
-                        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sapiente, architecto!</p>
+                        <p className='font-medium pr-14'>Touch the success! Domain and Secure Web Hosting from <span className='text-error'>$4.99 per month</span></p>
                     </div>
                 </div>
-                <div>
-                    <Image className='mr-[-50px]' src='/images/hero-img.png' height={650} width={650} alt="hero img" />
+                <div className='mr-[-50px]'>
+                    <Image src='/images/hero-img.png' height={680} width={680} alt="hero img" />
                 </div>
             </div>
         </div>

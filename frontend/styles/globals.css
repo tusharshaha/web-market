@@ -27,7 +27,7 @@
   }
 
   p {
-    @apply text-base;
+    @apply text-lg;
   }
 }
 
