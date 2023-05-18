@@ -7,27 +7,27 @@
 /* tailwind base layer  */
 @layer base {
   h1 {
-    @apply text-[3.6rem];
+    @apply text-[3.4rem] leading-[70px];
   }
 
   h2 {
-    @apply text-5xl;
+    @apply text-5xl leading-[70px];
   }
 
   h3 {
-    @apply text-4xl;
+    @apply text-4xl leading-[70px];
   }
 
   h4 {
-    @apply text-3xl;
+    @apply text-3xl leading-[70px];
   }
 
   h5 {
-    @apply text-2xl;
+    @apply text-2xl leading-[70px];
   }
 
   p {
-    @apply text-lg
+    @apply text-base;
   }
 }
 
