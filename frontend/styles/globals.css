@@ -7,31 +7,32 @@
 /* tailwind base layer  */
 @layer base {
   h1 {
-    @apply text-6xl font-sans;
+    @apply text-[3.6rem];
   }
 
   h2 {
-    @apply text-5xl font-sans;
+    @apply text-5xl;
   }
 
   h3 {
-    @apply text-4xl font-sans;
+    @apply text-4xl;
   }
 
   h4 {
-    @apply text-3xl font-sans;
+    @apply text-3xl;
   }
 
   h5 {
-    @apply text-2xl font-sans;
+    @apply text-2xl;
+  }
+
+  p {
+    @apply text-lg
   }
 }
 
 @layer component {
-  .cus-container{
-    @apply container mx-auto px-4;
-  }
-  .hero-bg{
+  .hero-bg {
     @apply bg-[url('/images/hero-bg.png')] bg-no-repeat bg-right-bottom pt-[80px] pb-[210px] bg-cover h-[850px];
   }
 }
