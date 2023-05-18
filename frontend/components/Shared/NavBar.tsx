@@ -2,7 +2,7 @@ import Link from "next/link";
 
 const NavBar: React.FC = () => {
     return (
-        <div className="navbar glass fixed top-0">
+        <div className="navbar bg-white-200 text-white font-semibold fixed top-0">
             <div className="flex-1">
                 <Link href="/" className="btn btn-ghost normal-case text-xl">daisyUI</Link>
             </div>

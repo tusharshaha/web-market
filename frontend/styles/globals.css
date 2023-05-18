@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -24,6 +24,15 @@
 
   h5 {
     @apply text-2xl font-sans;
+  }
+}
+
+@layer component {
+  .cus-container{
+    @apply container mx-auto px-4;
+  }
+  .hero-bg{
+    @apply bg-[url('/images/hero-bg.png')] bg-no-repeat bg-right-bottom pt-[80px] pb-[210px] bg-cover h-[850px];
   }
 }
 
@@ -107,7 +116,7 @@ body {
 body {
   background-color: #ffff;
   color: black;
-  font-family: 'Poppins', sans-serif;
+  font-family: 'Urbanist', sans-serif;
 }
 
 a {
