@@ -6,16 +6,20 @@
 
 /* tailwind base layer  */
 @layer base {
+  body {
+    @apply font-medium
+  }
+  
   h1 {
     @apply text-[3.4rem] leading-[70px];
   }
 
   h2 {
-    @apply text-5xl leading-[70px];
+    @apply text-[2.55rem] leading-[55px];
   }
 
   h3 {
-    @apply text-4xl leading-[70px];
+    @apply text-4xl leading-[50px];
   }
 
   h4 {
