@@ -43,6 +43,10 @@
   @apply bg-[url('/images/hero-bg.png')] bg-no-repeat bg-right-bottom pt-[80px] pb-[210px] bg-cover h-[850px] overflow-hidden;
 }
 
+.wcu-bg {
+  @apply bg-[url('/images/wcu-bg.jpg')] bg-no-repeat bg-cover h-[800px] overflow-hidden;
+}
+
 .hero-btn {
   @apply bg-gradient-to-r from-red-500 to-pink-600 py-4 px-10 rounded-full hover:from-pink-500 hover:to-red-600 transition-all delay-150 duration-300;
 }
