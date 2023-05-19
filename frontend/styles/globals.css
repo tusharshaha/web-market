@@ -7,7 +7,7 @@
 /* tailwind base layer  */
 @layer base {
   body {
-    @apply font-medium
+    @apply font-medium;
   }
   
   h1 {
@@ -15,11 +15,11 @@
   }
 
   h2 {
-    @apply text-[2.55rem] leading-[55px];
+    @apply text-[2.40rem] leading-[55px];
   }
 
   h3 {
-    @apply text-4xl leading-[50px];
+    @apply text-[1.65rem] leading-[40px];
   }
 
   h4 {
@@ -144,6 +144,31 @@ a {
   text-decoration: none;
 }
 
+.cus-card {
+  padding: 25px 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  border-radius: 10px;
+}
+
+.fs-icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  font-size: 20px;
+  transition: all 0.5s;
+  @apply border border-blue-500 text-blue-500;
+}
+
+.fs-icon2{
+  @apply text-blue-500 text-4xl;
+}
+
+.cus-card:hover .fs-icon {
+  @apply bg-blue-500 text-white
+}
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
