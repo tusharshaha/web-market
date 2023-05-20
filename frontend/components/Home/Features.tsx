@@ -32,7 +32,7 @@ const Features: React.FC = () => {
       {/* cards  */}
       <div className='grid grid-cols-4 gap-4 mt-20'>
         {
-          features.map((ele, i) => <div key={i} className='cus-card text-slate-600'>
+          features.map((ele, i) => <div key={i} className='cus-card px-4 py-6 text-slate-600'>
             <span className='fs-icon mb-6'>{ele.icons}</span>
             <h3 className='font-semibold'>{ele.t1}</h3>
             <h3 className='font-semibold'>{ele.t2}</h3>
