@@ -44,7 +44,7 @@
 }
 
 .wcu-bg {
-  @apply bg-[url('/images/wcu-bg.jpg')] bg-no-repeat bg-cover h-[800px] overflow-hidden;
+  @apply bg-[url('/images/wcu-bg.jpg')] bg-no-repeat bg-center bg-cover h-[1000px] overflow-hidden;
 }
 
 .hero-btn {
