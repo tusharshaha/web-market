@@ -18,7 +18,7 @@ const WhyChooseUs: React.FC = () => {
   return (
     <div className='wcu-bg mt-36 flex items-center'>
       <div className="cus-container">
-        <div className="grid grid-cols-2">
+        <div className="grid grid-cols-2 gap-20">
           <div className='grid grid-cols-2 gap-6'>
             {
               points.map((ele, i) => <div key={i} className={`${ele.class} px-8 p-12 cus-card bg-white text-slate-600`}>
@@ -28,8 +28,23 @@ const WhyChooseUs: React.FC = () => {
               </div>)
             }
           </div>
-          <div>
-
+          <div className='flex items-center'>
+            <div>
+              <h4 className='text-blue-400 font-semibold mb-2'>WHY CHOOSE US</h4>
+              <h2 className='text-white font-semibold mb-4'>Crafting Exceptional Websites, Tailored and Delivered to You</h2>
+              <div className="flex items-center">
+                <Image src="/images/check-icon.png" height={30} width={30} alt="icon" />
+                <span className='text-white ml-4'>Expertise and Experience: Our experienced team stays up-to-date with the latest web technologies to deliver cutting-edge solutions.</span>
+              </div>
+              <div className="flex items-center my-4">
+                <Image src="/images/check-icon.png" height={30} width={30} alt="icon" />
+                <span className='text-white ml-4'>Customized Solutions: We create tailored websites that reflect your unique brand identity and goals.</span>
+              </div>
+              <div className="flex items-center">
+                <Image src="/images/check-icon.png" height={30} width={30} alt="icon" />
+                <span className='text-white ml-4'>Seamless Delivery: We efficiently manage projects, communicate effectively, and ensure timely website delivery.</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>

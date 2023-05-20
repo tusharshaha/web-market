@@ -23,7 +23,7 @@
   }
 
   h4 {
-    @apply text-3xl leading-[70px];
+    @apply text-[1.35rem] leading-[20px];
   }
 
   h5 {
