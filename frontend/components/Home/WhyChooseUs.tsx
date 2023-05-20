@@ -44,6 +44,7 @@ const WhyChooseUs: React.FC = () => {
                 <Image src="/images/check-icon.png" height={30} width={30} alt="icon" />
                 <span className='text-white ml-4'>Seamless Delivery: We efficiently manage projects, communicate effectively, and ensure timely website delivery.</span>
               </div>
+              <button className='mt-10 border rounded-full text-[14px] px-6 py-3 text-blue-900 bg-white font-bold hover:bg-transparent hover:text-white transition duration-300'>DISCOVER MORE</button>
             </div>
           </div>
         </div>

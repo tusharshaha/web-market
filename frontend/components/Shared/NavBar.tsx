@@ -16,7 +16,7 @@ const NavBar: React.FC = () => {
         return () => window.removeEventListener('scroll', changeColor);
     }, [])
     return (
-        <div className={`navbar ${color ? "bg-blue-800" : ''} border-b-2 border-blue-800 bg-white-200 text-white font-semibold fixed top-0 transition duration-300 z-10`}>
+        <div className={`navbar ${color ? "bg-blue-800" : ''} border-b-2 border-blue-800 bg-white-100 text-white font-semibold fixed top-0 transition duration-300 z-10`}>
             <div className="container mx-auto px-10">
                 <div className="flex-1">
                     <Link href="/" className="btn btn-ghost normal-case text-xl">daisyUI</Link>
