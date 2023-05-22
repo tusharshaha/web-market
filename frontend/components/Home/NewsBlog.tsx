@@ -24,7 +24,7 @@ const NewsBlog: React.FC = () => {
         <Swiper
           slidesPerView={3}
           loop={true}
-          spaceBetween={30}
+          
           pagination={{
             clickable: true,
           }}
@@ -33,13 +33,14 @@ const NewsBlog: React.FC = () => {
         >
           {
             news.map((ele, i) => <SwiperSlide key={i}>
-              <div className="cus-card overflow-hidden mb-16">
+              <div className="cus-card overflow-hidden mb-16 mx-4 capitalize">
                 <div className='relative'>
                   <Image src={ele.img} layout='responsive' height={60} width={100} alt='blog image' />
-                  <span className='abosolute left-5 bottom-0 bg-slate-500 rounded-full text-white'>{ele.cat}</span>
+                  <span className='absolute left-5 bottom-[-12px] bg-black rounded-full text-white px-4 py-1'>{ele.cat}</span>
                 </div>
-                <div className='px-4 py-8'>
-
+                <div className='px-6 py-12'>
+                  <h4>{ele.title}</h4>
+                  <p className='my-4 text-slate-500'>{ele.des}</p>
                 </div>
               </div>
             </SwiperSlide>)
