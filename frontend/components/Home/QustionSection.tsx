@@ -5,7 +5,7 @@ import React from 'react';
 const QustionSection: React.FC = () => {
   return (
     <div className='cus-container my-28'>
-      <div className="grid grid-cols-2 gap-4 text-slate-600 cus-card p-10">
+      <div className="grid grid-cols-2 gap-4 text-slate-500 cus-card p-10">
         <div className='flex items-center'>
           <div>
             <h2 className='font-semibold'>Questions about Development</h2>
