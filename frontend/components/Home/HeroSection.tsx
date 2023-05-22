@@ -8,7 +8,7 @@ const HeroSection: React.FC = () => {
                 <div className='flex items-center px-6 capitalize'>
                     <div>
                         <h1 className='font-bold mb-4'>The Manage Web Development Services</h1>
-                        <p className='font-medium '>Build your dream website with our <span className='text-error'>web development</span> services. We offer a wide range of services to help you create a website that meets your needs.</p>
+                        <p className='font-medium'>Build your dream website with our <span className='text-error'>web development</span> services. We offer a wide range of services to help you create a website that meets your needs.</p>
                         <div className='flex mt-8 font-semibold'>
                             <button className='me-8 hero-btn'>View Jobs</button>
                             <button className='hero-btn2'>Hire Developer</button>

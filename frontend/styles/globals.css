@@ -15,15 +15,15 @@
   }
 
   h2 {
-    @apply text-[2.40rem] leading-[55px];
+    @apply text-[2.40rem] leading-[55px] font-semibold;
   }
 
   h3 {
-    @apply text-[1.65rem] leading-[35px];
+    @apply text-[1.65rem] leading-[35px] font-semibold;
   }
 
   h4 {
-    @apply text-[1.35rem] leading-[20px];
+    @apply text-[1.35rem] leading-[20px] font-semibold;
   }
 
   h5 {

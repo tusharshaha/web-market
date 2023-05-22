@@ -21,7 +21,7 @@ const Features: React.FC = () => {
     <div className='mt-28 cus-container'>
       <div className='grid grid-cols-2'>
         <div>
-          <h2 className='font-semibold'><span className='bg-gradient-to-r from-blue-500 to-indigo-900 text-transparent bg-clip-text'>Discover</span> all Our <br />
+          <h2><span className='bg-gradient-to-r from-blue-500 to-indigo-900 text-transparent bg-clip-text'>Discover</span> all Our <br />
             Web Development Features</h2>
         </div>
         <div className='ml-20'>
@@ -34,7 +34,7 @@ const Features: React.FC = () => {
         {
           features.map((ele, i) => <div key={i} className='cus-card px-4 py-6 text-slate-600'>
             <span className='fs-icon mb-6'>{ele.icons}</span>
-            <h3 className='font-semibold'>{ele.t1}</h3>
+            <h3>{ele.t1}</h3>
             <h3 className='font-semibold'>{ele.t2}</h3>
             <p className='mt-4 font-normal'>{ele.message}</p>
 

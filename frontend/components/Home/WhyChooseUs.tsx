@@ -23,15 +23,15 @@ const WhyChooseUs: React.FC = () => {
             {
               points.map((ele, i) => <div key={i} className={`${ele.class} px-8 p-12 cus-card bg-white text-slate-600`}>
                 <Image src={ele.icons} height={100} width={100} alt='icons' />
-                <h3 className='font-semibold my-2'>{ele.title}</h3>
+                <h3 className='my-2'>{ele.title}</h3>
                 <p>{ele.message}</p>
               </div>)
             }
           </div>
           <div className='flex items-center'>
             <div>
-              <h4 className='text-blue-400 font-semibold mb-2'>WHY CHOOSE US</h4>
-              <h2 className='text-white font-semibold mb-4'>Crafting Exceptional Websites, Tailored and Delivered to You</h2>
+              <h4 className='text-blue-400 mb-2'>WHY CHOOSE US</h4>
+              <h2 className='text-white mb-4'>Crafting Exceptional Websites, Tailored and Delivered to You</h2>
               <div className="flex items-center">
                 <Image src="/images/check-icon.png" height={30} width={30} alt="icon" />
                 <span className='text-white ml-4'>Expertise and Experience: Our experienced team stays up-to-date with the latest web technologies to deliver cutting-edge solutions.</span>
