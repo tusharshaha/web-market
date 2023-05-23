@@ -38,7 +38,7 @@ const NewsBlog: React.FC = () => {
                   <span className='absolute left-5 bottom-[-12px] bg-black rounded-full text-white px-4 py-1'>{ele.cat}</span>
                 </div>
                 <div className='px-6 pt-12'>
-                  <h4>{ele.title}</h4>
+                  <h4 className='bg-gradient-to-r from-blue-500 to-indigo-900 text-transparent bg-clip-text'>{ele.title}</h4>
                   <p className='mt-4 mb-6 text-slate-500'>{ele.des}</p>
                   <hr />
                 </div>
