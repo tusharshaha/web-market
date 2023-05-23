@@ -38,7 +38,7 @@ const NewsBlog: React.FC = () => {
                   <Image src={ele.img} layout='responsive' height={60} width={100} alt='blog image' />
                   <span className='absolute left-5 bottom-[-12px] bg-black rounded-full text-white px-4 py-1'>{ele.cat}</span>
                 </div>
-                <div className='px-6 py-12'>
+                <div className='px-6 py-12 0'>
                   <h4>{ele.title}</h4>
                   <p className='my-4 text-slate-500'>{ele.des}</p>
                 </div>

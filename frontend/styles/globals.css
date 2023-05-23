@@ -23,7 +23,7 @@
   }
 
   h4 {
-    @apply text-[1.35rem] leading-[20px] font-semibold;
+    @apply text-[1.35rem] leading-[30px] font-semibold;
   }
 
   h5 {
