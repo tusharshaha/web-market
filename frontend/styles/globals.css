@@ -7,7 +7,7 @@
 /* tailwind base layer  */
 @layer base {
   body {
-    @apply font-medium;
+    @apply font-medium overflow-hidden;
   }
   
   h1 {

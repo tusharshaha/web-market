@@ -16,7 +16,7 @@ const WhyChooseUs: React.FC = () => {
     { icons: "/images/wcu-icon4.png", title: "Leverage Data Analytics", message: "Harness the power of data analytics to gain insights and drive informed decisions.", class: "mt-[40px] mb-[-40px]" },
   ];
   return (
-    <div className='wcu-bg mt-36 flex items-center'>
+    <div className='wcu-bg mt-52 flex items-center'>
       <div className="cus-container">
         <div className="grid grid-cols-2 gap-20">
           <div className='grid grid-cols-2 gap-6'>
