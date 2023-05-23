@@ -16,7 +16,7 @@ const NewsBlog: React.FC = () => {
   ]
   return (
     <div className='cus-container my-28'>
-      <div className='text-center mb-16'>
+      <div className='text-center mb-20'>
         <h2 className=''>Our Latest News & Blog</h2>
         <p className='text-slate-500'>Stay Informed and Explore Our Latest Insights and Articles on Web Development</p>
       </div>
@@ -24,7 +24,6 @@ const NewsBlog: React.FC = () => {
         <Swiper
           slidesPerView={3}
           loop={true}
-          
           pagination={{
             clickable: true,
           }}
@@ -38,9 +37,17 @@ const NewsBlog: React.FC = () => {
                   <Image src={ele.img} layout='responsive' height={60} width={100} alt='blog image' />
                   <span className='absolute left-5 bottom-[-12px] bg-black rounded-full text-white px-4 py-1'>{ele.cat}</span>
                 </div>
-                <div className='px-6 py-12 0'>
+                <div className='px-6 pt-12'>
                   <h4>{ele.title}</h4>
-                  <p className='my-4 text-slate-500'>{ele.des}</p>
+                  <p className='mt-4 mb-6 text-slate-500'>{ele.des}</p>
+                  <hr />
+                </div>
+                <div className='px-6 pt-4 pb-8 flex items-center justify-between'>
+                  <div className="flex gap-2 items-center">
+                    <Image className='rounded-full' src={ele.avatar} height={40} width={40} alt='avatar' />
+                    <span className='font-semibold'>{ele.authName}</span>
+                  </div>
+                  <span className='text-slate-500'>{ele.date}</span>
                 </div>
               </div>
             </SwiperSlide>)
