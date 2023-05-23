@@ -12,6 +12,7 @@ const NewsBlog: React.FC = () => {
     { img: blog1, cat: "App Development", title: "Improving your web performance with web service", des: "Many desktop publishing packages & will uncover many web sites.", avatar: avatar, authName: "Jani Moylanen", date: "2 days ago" },
     { img: blog1, cat: "App Development", title: "Improving your web performance with web service", des: "Many desktop publishing packages & will uncover many web sites.", avatar: avatar, authName: "Jani Moylanen", date: "2 days ago" },
     { img: blog1, cat: "App Development", title: "Improving your web performance with web service", des: "Many desktop publishing packages & will uncover many web sites.", avatar: avatar, authName: "Jani Moylanen", date: "2 days ago" },
+    { img: blog1, cat: "App Development", title: "Improving your web performance with web service", des: "Many desktop publishing packages & will uncover many web sites.", avatar: avatar, authName: "Jani Moylanen", date: "2 days ago" },
     { img: blog1, cat: "App Development", title: "Improving your web performance with web service", des: "Many desktop publishing packages & will uncover many web sites.", avatar: avatar, authName: "Jani Moylanen", date: "2 days ago" }
   ]
   return (
@@ -23,6 +24,7 @@ const NewsBlog: React.FC = () => {
       <div>
         <Swiper
           slidesPerView={3}
+          slidesPerGroup={2}
           loop={true}
           pagination={{
             clickable: true,
