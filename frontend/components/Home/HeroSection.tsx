@@ -6,8 +6,8 @@ const HeroSection = () => {
             <div className='w-full h-[calc(100vh-80px)]  flex justify-center items-center'>
                 <div className='p-5 md:p-0'>
                     <div className='text-center'>
-                        <h2 className='text-3xl md:text-5xl font-bold my-5'><span className='text-primary'>3,500+</span> job available</h2>
-                        <h2 className='text-3xl  md:text-5xl  font-bold my-5'> You can choose your dream job</h2>
+                        <h2 className='font-bold my-5'><span className='text-primary'>3,500+</span> job available</h2>
+                        <h2 className='font-bold my-5'> You can choose your dream job</h2>
                         <h2 className='text-xl my-5'>   Find great job for build your bright career. Have many job in this plactform.</h2>
 
                     </div>

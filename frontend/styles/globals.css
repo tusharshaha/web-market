@@ -1,26 +1,26 @@
-@import url('https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
 
 * {
   margin: 0;
   padding: 0;
 }
 
+body{
+  font-family: 'Jost', sans-serif;
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* tailwind base layer  */
-/* @layer base {
-  body {
-    @apply font-medium overflow-hidden;
-  }
+@layer base {
   
   h1 {
     @apply text-[3.4rem] leading-[70px];
   }
 
   h2 {
-    @apply text-[2.40rem] leading-[55px] font-semibold;
+    @apply text-3xl md:text-5xl;
   }
 
   h3 {
@@ -38,28 +38,9 @@
   p {
     @apply text-base;
   }
-} */
+}
 
 .cus-container {
   @apply container mx-auto px-5
 }
 
-.hero-bg {
-  @apply bg-[url('/images/hero-bg.png')] bg-no-repeat bg-right-bottom pt-[80px] pb-[210px] bg-cover h-[850px] overflow-hidden;
-}
-
-.wcu-bg {
-  @apply bg-[url('/images/wcu-bg.jpg')] bg-no-repeat bg-center bg-cover h-[1000px] overflow-hidden;
-}
-
-.hero-btn {
-  @apply bg-gradient-to-r from-red-500 to-pink-600 py-4 px-10 rounded-full hover:from-pink-500 hover:to-red-600 transition-all delay-150 duration-300;
-}
-
-.hero-btn2 {
-  @apply transition-all duration-300 border hover:border-blue-600 hover:bg-blue-500 py-4 px-10 rounded-full;
-}
-
-.mark {
-  @apply before:content-['']  before:text-red-500 before:left-[0px] before:h-1 before:w-[65px] before:bottom-1 before:bg-gradient-to-r before:from-blue-500 before:to-indigo-500 before:absolute relative block pl-20
-}

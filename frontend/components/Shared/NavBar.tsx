@@ -25,7 +25,7 @@ const NavBar: React.FC = () => {
             <div className="cus-container">
                 <div className="flex justify-between h-[80px] items-center px-3 md:px-0">
                     <div>
-                        <h2>Logo</h2>
+                        <h4>Logo</h4>
                     </div>
                     <div className="hidden md:block ">
                         <ul className=" flex justify-center items-center gap-5">
