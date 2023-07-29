@@ -7,6 +7,7 @@ import QustionSection from "@/components/Home/QustionSection";
 import NewsBlog from "@/components/Home/NewsBlog";
 import Category from "@/components/Home/Category";
 import JobCirculars from "@/components/Home/JobCirculars";
+import HowItWork from "@/components/Home/HowItWork";
 
 const Home: React.FC = () => {
 
@@ -15,6 +16,7 @@ const Home: React.FC = () => {
       <HeroSection></HeroSection>
       <Category></Category>
       <JobCirculars></JobCirculars>
+      <HowItWork></HowItWork>
       <Features></Features>
       <WhyChooseUs></WhyChooseUs>
       <NewsBlog></NewsBlog>
