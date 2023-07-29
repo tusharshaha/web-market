@@ -1,6 +1,7 @@
 import Head from "next/head"
 import NavBar from "./Shared/NavBar"
 import Footer from "./Shared/Footer"
+import HomeHeader from "./Home/HomeHeader"
 
 type props = {
     title?: string,
@@ -17,9 +18,8 @@ const Layout: React.FC<props> = ({ title, keywords, description, children }) => 
                 <meta name="description" content={description} />
                 <meta name="keywords" content={keywords} />
                 <link rel="icon" href="/favicon.ico" />
-
             </Head>
-            <NavBar />
+           <HomeHeader></HomeHeader>
             {children}
             <Footer />
         </div>
