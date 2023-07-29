@@ -4,6 +4,7 @@ import React from 'react';
 const HeroSection: React.FC = () => {
     return (
         <div className="hero-bg">
+            <div>tushar kumar shaha</div>
             <div className='cus-container pt-[80px] pb-[210px] text-white grid grid-cols-2'>
                 <div className='flex items-center px-6 capitalize'>
                     <div>
