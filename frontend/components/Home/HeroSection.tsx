@@ -56,6 +56,7 @@ const HeroSection = () => {
 
                 <div>
                     {/* mijan  push 1 st  */}
+                    {/* mijan  push 2 st  */}
                 </div>
             </div>
         </div >
