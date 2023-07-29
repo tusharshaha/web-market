@@ -63,3 +63,11 @@
 .mark {
   @apply before:content-['']  before:text-red-500 before:left-[0px] before:h-1 before:w-[65px] before:bottom-1 before:bg-gradient-to-r before:from-blue-500 before:to-indigo-500 before:absolute relative block pl-20
 }
+
+
+.web-btn{
+  @apply bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary transition-all duration-300
+}
+.web-btn2{
+  @apply bg-white border hover:border-transparent px-3 py-2 rounded-md text-primary border-primary  hover:bg-primary hover:text-white transition-all duration-300
+}

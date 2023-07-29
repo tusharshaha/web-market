@@ -6,6 +6,7 @@ import JobCirculars from "@/components/Home/JobCirculars";
 import HowItWork from "@/components/Home/HowItWork";
 import HeroSection from "@/components/Home/HeroSection";
 import DownloadApp from "@/components/Home/DownloadApp";
+import BestCandidate from "@/components/Home/BestCandidate";
 
 const Home: React.FC = () => {
 
@@ -15,6 +16,7 @@ const Home: React.FC = () => {
       <JobCirculars></JobCirculars>
       <HowItWork></HowItWork>
       <DownloadApp></DownloadApp>
+      <BestCandidate></BestCandidate>
     </Layout>
   );
 };

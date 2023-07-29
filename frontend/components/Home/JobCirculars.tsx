@@ -23,7 +23,7 @@ const JobCirculars: React.FC = () => {
                         <p className='my-2'>CSS3, HTML5, Javascript, Bootstrap, Jquery</p>
                         <div className='flex justify-between my-8'>
                             <p><span className='text-xl font-bold'>$5000</span> /monthly</p>
-                            <button className='bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary transition-all duration-300'>Apply Now</button>
+                            <button className='web-btn'>Apply Now</button>
 
                         </div>
 
@@ -42,7 +42,7 @@ const JobCirculars: React.FC = () => {
                         <p className='my-2'>CSS3, HTML5, Javascript, Bootstrap, Jquery</p>
                         <div className='flex justify-between my-8'>
                             <p><span className='text-xl font-bold'>$5000</span> /monthly</p>
-                            <button className='bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary transition-all duration-300'>Apply Now</button>
+                            <button className='web-btn'>Apply Now</button>
 
                         </div>
 
@@ -61,7 +61,7 @@ const JobCirculars: React.FC = () => {
                         <p className='my-2'>CSS3, HTML5, Javascript, Bootstrap, Jquery</p>
                         <div className='flex justify-between my-8'>
                             <p><span className='text-xl font-bold'>$5000</span> /monthly</p>
-                            <button className='bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary transition-all duration-300'>Apply Now</button>
+                            <button className='web-btn'>Apply Now</button>
 
                         </div>
 
@@ -80,7 +80,7 @@ const JobCirculars: React.FC = () => {
                         <p className='my-2'>CSS3, HTML5, Javascript, Bootstrap, Jquery</p>
                         <div className='flex justify-between my-8'>
                             <p><span className='text-xl font-bold'>$5000</span> /monthly</p>
-                            <button className='bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary transition-all duration-300'>Apply Now</button>
+                            <button className='web-btn'>Apply Now</button>
 
                         </div>
 
@@ -99,7 +99,7 @@ const JobCirculars: React.FC = () => {
                         <p className='my-2'>CSS3, HTML5, Javascript, Bootstrap, Jquery</p>
                         <div className='flex justify-between my-8'>
                             <p><span className='text-xl font-bold'>$5000</span> /monthly</p>
-                            <button className='bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary transition-all duration-300'>Apply Now</button>
+                            <button className='web-btn'>Apply Now</button>
 
                         </div>
 
@@ -118,7 +118,7 @@ const JobCirculars: React.FC = () => {
                         <p className='my-2'>CSS3, HTML5, Javascript, Bootstrap, Jquery</p>
                         <div className='flex justify-between my-8'>
                             <p><span className='text-xl font-bold'>$5000</span> /monthly</p>
-                            <button className='bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary transition-all duration-300'>Apply Now</button>
+                            <button className='web-btn'>Apply Now</button>
 
                         </div>
 
