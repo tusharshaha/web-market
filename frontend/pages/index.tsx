@@ -5,12 +5,16 @@ import Features from "@/components/Home/Features";
 import WhyChooseUs from "@/components/Home/WhyChooseUs";
 import QustionSection from "@/components/Home/QustionSection";
 import NewsBlog from "@/components/Home/NewsBlog";
+import Category from "@/components/Home/Category";
+import JobCirculars from "@/components/Home/JobCirculars";
 
 const Home: React.FC = () => {
 
   return (
     <Layout>
       <HeroSection></HeroSection>
+      <Category></Category>
+      <JobCirculars></JobCirculars>
       <Features></Features>
       <WhyChooseUs></WhyChooseUs>
       <NewsBlog></NewsBlog>
