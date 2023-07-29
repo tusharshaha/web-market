@@ -19,7 +19,7 @@ const Layout: React.FC<props> = ({ title, keywords, description, children }) => 
                 <meta name="keywords" content={keywords} />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-           <HomeHeader></HomeHeader>
+
             {children}
             <Footer />
         </div>

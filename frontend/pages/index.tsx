@@ -10,11 +10,11 @@ const Home: React.FC = () => {
 
   return (
     <Layout>
-        <HeroSection></HeroSection>
-        <Features></Features>
-        <WhyChooseUs></WhyChooseUs>
-        <NewsBlog></NewsBlog>
-        <QustionSection></QustionSection>
+      <HeroSection></HeroSection>
+      <Features></Features>
+      <WhyChooseUs></WhyChooseUs>
+      <NewsBlog></NewsBlog>
+      <QustionSection></QustionSection>
     </Layout>
   );
 };
