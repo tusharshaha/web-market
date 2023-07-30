@@ -12,19 +12,19 @@ const JobCirculars: React.FC = () => {
                 <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pb-5'>
                     {
                         circulars.map((ele, i) => <div key={i} className='p-10 bg-white rounded-lg'>
-                            <div className='flex '>
-                                <Image className='mr-5' width={80} height={80} alt='' src='/images/company.webp'></Image>
+                            <div className='flex items-center gap-6 mb-5'>
+                                <Image width={80} height={80} alt='' src='/images/company.webp'></Image>
                                 <div>
-                                    <Link className='text-2xl font-bold mb-2' href='#'>Darkento Ltd.</Link>
-                                    <p>New York, USA</p>
+                                    <Link className='text-xl font-bold mb-2' href='#'>Darkento Ltd.</Link>
+                                    <p className='text-slate-500'>New York, USA</p>
                                 </div>
 
                             </div>
-                            <h2 className='text-3xl font-bold my-5'>Front-end Developer</h2>
-                            <h3 className='text-primary'>Full-time</h3>
+                            <h2 className='text-2xl font-bold mb-2'>Front-end Developer</h2>
+                            <h3 className='text-primary text-base font-bold'>Full-time</h3>
                             <p className='my-2'>CSS3, HTML5, Javascript, Bootstrap, Jquery</p>
-                            <div className='flex justify-between my-8'>
-                                <p><span className='text-xl font-bold'>$5000</span> /monthly</p>
+                            <div className='flex items-center justify-between my-8'>
+                                <p><span className='text-xl font-bold'>$5000</span><span className='text-slate-500'>/monthly</span></p>
                                 <button className='web-btn'>Apply Now</button>
                             </div>
                         </div>)
