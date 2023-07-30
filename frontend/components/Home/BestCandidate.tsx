@@ -20,7 +20,7 @@ const BestCandidate: React.FC = () => {
                         </div>
                         <div className='text-center my-3'>
                             <Link className='text-xl font-bold my-3' href=''>Lauran Benitez</Link>
-                            <h4 className='my-3'>Web Designer</h4>
+                            <h4 className='text-base text-primary my-3'>Web Designer</h4>
                             <div>
                                 <h4>rating</h4>
                             </div>
