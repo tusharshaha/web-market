@@ -5,7 +5,7 @@ import React from 'react';
 const Category: React.FC = () => {
     const categories = new Array(12).fill(0);
     return (
-        <div className='container mx-auto mt-20 p-5 md:p-0 mb-20'>
+        <div className='cus-container my-20'>
             <SectionTitle title='Popular Category' subTitle='Many desktop publishing packages and web page editors' />
             <div className='grid grid-cols-2 md:grid-cols-4 gap-3 mt-10'>
                 {
