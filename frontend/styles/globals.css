@@ -3,6 +3,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body{
@@ -16,7 +17,7 @@ body{
 @layer base {
   
   h1 {
-    @apply text-[3.4rem] leading-[70px];
+    @apply text-[3.4rem];
   }
 
   h2 {
@@ -24,15 +25,11 @@ body{
   }
 
   h3 {
-    @apply text-[1.65rem] leading-[35px] font-semibold;
+    @apply text-xl;
   }
 
   h4 {
-    @apply text-[1.35rem] leading-[30px] font-semibold;
-  }
-
-  h5 {
-    @apply text-2xl leading-[70px];
+    @apply text-2xl;
   }
 
   p {
@@ -44,3 +41,9 @@ body{
   @apply container mx-auto px-5
 }
 
+.web-btn{
+  @apply bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary transition-all duration-300
+}
+.web-btn2{
+  @apply bg-white border hover:border-transparent px-3 py-2 rounded-md text-primary border-primary  hover:bg-primary hover:text-white transition-all duration-300
+}

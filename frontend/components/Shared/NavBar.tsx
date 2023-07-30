@@ -1,7 +1,8 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FiMenu } from 'react-icons/Fi';
-import { AiOutlineArrowLeft, AiOutlinePlus } from "react-icons/ai";
+import { FaAngleLeft } from 'react-icons/fa';
+import { AiOutlinePlus } from "react-icons/ai";
 
 
 const NavBar: React.FC = () => {
@@ -12,11 +13,15 @@ const NavBar: React.FC = () => {
     };
 
     const navItem = <>
-        <li> <Link href='/'>Home</Link> </li>
-        <li> <Link href='/jobs'>Find Jobs</Link> </li>
-        <li> <Link href='#'>Post Jobs</Link> </li>
-        <li> <Link href='#'>Hire Developer</Link> </li>
-        <li> <Link href='#'>Blogs</Link> </li>
+        <li onClick={handleToggle} className="bg-primary p-2 text-white flex items-center justify-between">
+            <span>Menu</span>
+            <FaAngleLeft />
+        </li>
+        <li className="p-2 border-y"> <Link href='/'>Home</Link> </li>
+        <li className="p-2 border-y"> <Link href='/jobs'>Find Jobs</Link> </li>
+        <li className="p-2 border-y"> <Link href='#'>Post Jobs</Link> </li>
+        <li className="p-2 border-y"> <Link href='#'>Hire Developer</Link> </li>
+        <li className="p-2 border-y"> <Link href='#'>Blogs</Link> </li>
     </>
 
 
@@ -39,11 +44,10 @@ const NavBar: React.FC = () => {
 
                 </div>
             </div>
-            <div className={`slider ${isOpen ? 'translate-x-0' : '-translate-x-full'} fixed z-30 top-0 left-0`}>
+            <div className={`slider ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition duration-300 fixed z-30 top-0 left-0`}>
                 <div className="slider-content bg-[#00000080]  h-[100vh] w-[100vw] text-gray-700">
                     <div className="h-[100vh]  w-[300px] bg-white border-r-2 ">
-                        <button onClick={handleToggle} className="btn w-full btn-primary"> <AiOutlineArrowLeft className="text-lg font-bold mr-3"></AiOutlineArrowLeft> Slider Close </button>
-                        <ul className="border-y-2 my-2 mobileManu">
+                        <ul className="mobileManu font-bold">
                             {navItem}
                         </ul>
                     </div>
