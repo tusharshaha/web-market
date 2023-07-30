@@ -28,7 +28,7 @@ const NavBar: React.FC = () => {
     return (
         <div className="border-b">
             <div className="cus-container">
-                <div className="flex justify-between h-[80px] items-center px-3 md:px-0">
+                <div className="flex justify-between h-[80px] items-center">
                     <div>
                         <h4>Logo</h4>
                     </div>
