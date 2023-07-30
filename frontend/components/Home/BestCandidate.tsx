@@ -11,7 +11,6 @@ const BestCandidate: React.FC = () => {
         <div className='container mx-auto p-5 pb-10'>
             <SectionTitle title='Best Candidate' subTitle='Many desktop publishing packages and web page editors' />
 
-
             <div className='mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3'>
                 <div className='p-10 rounded-lg relative bg-gray-100 border-2 border-transparent hover:bg-white hover:border-gray-200 duration-300'>
                     <div className='flex justify-center items-center'>

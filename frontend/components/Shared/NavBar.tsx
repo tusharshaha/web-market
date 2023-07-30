@@ -13,15 +13,15 @@ const NavBar: React.FC = () => {
     };
 
     const navItem = <>
-        <li onClick={handleToggle} className="bg-primary p-2 text-white flex items-center justify-between">
+        <li onClick={handleToggle} className="bg-primary p-2 text-white flex md:hidden items-center justify-between">
             <span>Menu</span>
             <FaAngleLeft />
         </li>
-        <li className="p-2 border-y"> <Link href='/'>Home</Link> </li>
-        <li className="p-2 border-y"> <Link href='/jobs'>Find Jobs</Link> </li>
-        <li className="p-2 border-y"> <Link href='#'>Post Jobs</Link> </li>
-        <li className="p-2 border-y"> <Link href='#'>Hire Developer</Link> </li>
-        <li className="p-2 border-y"> <Link href='#'>Blogs</Link> </li>
+        <li className="p-2 border-y md:border-0 md:p-0"> <Link href='/'>Home</Link> </li>
+        <li className="p-2 border-y md:border-0 md:p-0"> <Link href='/jobs'>Find Jobs</Link> </li>
+        <li className="p-2 border-y md:border-0 md:p-0"> <Link href='#'>Post Jobs</Link> </li>
+        <li className="p-2 border-y md:border-0 md:p-0"> <Link href='#'>Hire Developer</Link> </li>
+        <li className="p-2 border-y md:border-0 md:p-0"> <Link href='#'>Blogs</Link> </li>
     </>
 
 
@@ -33,12 +33,12 @@ const NavBar: React.FC = () => {
                         <h4>Logo</h4>
                     </div>
                     <div className="hidden md:block ">
-                        <ul className=" flex justify-center items-center gap-5">
+                        <ul className="flex justify-center items-center gap-5">
                             {navItem}
                         </ul>
                     </div>
                     <div className="flex justify-center items-center">
-                        <button className="btn btn-primary text-white btn-sm md:btn-md"> <AiOutlinePlus className=" font-bold mr-2"></AiOutlinePlus> Register</button>
+                        <button className="btn btn-primary text-white btn-sm md:btn-md"> <AiOutlinePlus className=" font-bold mr-2" /> Register</button>
                         <button onClick={handleToggle} className="btn btn-sm btn-primary ml-2 md:hidden"><FiMenu className="font-bold" /></button>
                     </div>
 
