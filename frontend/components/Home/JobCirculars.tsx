@@ -23,7 +23,7 @@ const JobCirculars: React.FC = () => {
                             <h2 className='text-2xl font-bold mb-2'>Front-end Developer</h2>
                             <h3 className='text-primary text-base font-bold'>Full-time</h3>
                             <p className='my-2'>CSS3, HTML5, Javascript, Bootstrap, Jquery</p>
-                            <div className='flex items-center justify-between my-8'>
+                            <div className='flex items-center justify-between mt-8'>
                                 <p><span className='text-xl font-bold'>$5000</span><span className='text-slate-500'>/monthly</span></p>
                                 <button className='web-btn'>Apply Now</button>
                             </div>
