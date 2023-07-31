@@ -1,6 +1,7 @@
 import SectionTitle from '@/components/Shared/SectionTitle';
 import Image from 'next/image';
 import Link from 'next/link';
+import ReactStars from "react-rating-stars-component";
 import React from 'react';
 import { BiSolidStarHalf } from 'react-icons/Bi';
 import { BsFillBookmarkDashFill } from 'react-icons/Bs';
@@ -11,7 +12,6 @@ const BestCandidate: React.FC = () => {
     return (
         <div className='cus-container pb-10'>
             <SectionTitle title='Best Candidate' subTitle='Many desktop publishing packages and web page editors' />
-
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3'>
                 {
                     candidates.map((ele, i) => <div key={i} className='p-10 rounded-lg relative bg-gray-100 border-2 border-transparent hover:bg-white hover:border-gray-200 duration-300'>
@@ -21,8 +21,16 @@ const BestCandidate: React.FC = () => {
                         <div className='text-center my-3'>
                             <Link className='text-xl font-bold my-3' href=''>Lauran Benitez</Link>
                             <h4 className='text-base text-primary my-3'>Web Designer</h4>
-                            <div>
-                                <h4>rating</h4>
+                            <div className='flex justify-center'>
+                                <ReactStars
+                                    count={5}
+                                    size={24}
+                                    isHalf={true}
+                                    emptyIcon={<AiOutlineStar/>}
+                                    halfIcon={<BiSolidStarHalf/>}
+                                    fullIcon={<AiFillStar/>}
+                                    activeColor="#ffd700"
+                                />
                             </div>
                             <p className='my-3'>CSS3, HTML5, Javascript Bootstrap, Jquery</p>
                         </div>

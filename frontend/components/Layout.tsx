@@ -22,6 +22,7 @@ const Layout: React.FC<props> = ({ title, keywords, description, children }) => 
         {path: '/job', pathName: "Jobs"},
     ]
     const pathname = pathnames.find(ele => ele.path === path);
+    
     return (
         <div>
             <Head>

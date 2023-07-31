@@ -3,11 +3,10 @@ import Layout from "@/components/Layout";
 import Category from "@/components/Home/Category";
 import JobCirculars from "@/components/Home/JobCirculars";
 import HowItWork from "@/components/Home/HowItWork";
-import BestCandidate from "@/components/Home/BestCandidate";
 import DownloadApp from "@/components/Home/DownloadApp";
+import BestCandidate from "@/components/Home/BestCandidate";
 
 const Home: React.FC = () => {
-
   return (
     <Layout>
       <Category></Category>
