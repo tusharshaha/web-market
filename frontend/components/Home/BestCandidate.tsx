@@ -20,21 +20,23 @@ const BestCandidate: React.FC = () => {
                         </div>
                         <div className='text-center my-3'>
                             <Link className='text-xl font-bold my-3' href=''>Lauran Benitez</Link>
-                            <h4 className='text-base text-primary my-3'>Web Designer</h4>
+                            <h4 className='text-base text-primary my-2'>Web Designer</h4>
                             <div className='flex justify-center'>
                                 <ReactStars
                                     count={5}
-                                    size={24}
+                                    value={4.5}
+                                    size={20}
+                                    edit={false}
                                     isHalf={true}
                                     emptyIcon={<AiOutlineStar/>}
                                     halfIcon={<BiSolidStarHalf/>}
                                     fullIcon={<AiFillStar/>}
-                                    activeColor="#ffd700"
+                                    activeColor="#ff9600"
                                 />
                             </div>
-                            <p className='my-3'>CSS3, HTML5, Javascript Bootstrap, Jquery</p>
+                            <p className='my-2'>CSS3, HTML5, Javascript Bootstrap, Jquery</p>
                         </div>
-                        <div className='flex justify-center items-center my-5'>
+                        <div className='flex justify-center items-center mt-5'>
                             <button className='web-btn2'>View Profile</button>
                         </div>
 
