@@ -25,11 +25,19 @@ body{
   }
 
   h3 {
-    @apply text-xl;
+    @apply text-2xl;
   }
 
   h4 {
-    @apply text-2xl;
+    @apply text-xl;
+  }
+  
+  h5 {
+    @apply text-lg
+  }
+
+  h6 {
+    @apply text-sm
   }
 
   p {

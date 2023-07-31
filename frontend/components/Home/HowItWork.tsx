@@ -29,8 +29,8 @@ const HowItWork: React.FC = () => {
                             </span>
                         </div>
                         <div className='text-center my-5'>
-                            <h5 className='my-3 text-xl font-bold '>{ele.title}</h5>
-                            <p>It is long established fact reader distracted readable content</p>
+                            <h4 className='my-3 font-bold '>{ele.title}</h4>
+                            <p className='text-slate-500'>It is long established fact reader distracted readable content</p>
                         </div>
                     </div>)
                     }
