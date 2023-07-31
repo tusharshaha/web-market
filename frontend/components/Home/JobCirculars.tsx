@@ -13,7 +13,7 @@ const JobCirculars: React.FC = () => {
                     {
                         circulars.map((ele, i) => <div key={i} className='p-10 bg-white rounded-lg'>
                             <div className='flex items-center gap-6 mb-5'>
-                                <Image width={80} height={80} alt='' src='/images/company.webp'></Image>
+                                <Image width={80} height={80} alt='' src='/images/company.webp' />
                                 <div>
                                     <Link className='text-xl font-bold mb-2' href='#'>Darkento Ltd.</Link>
                                     <p className='text-slate-500'>New York, USA</p>

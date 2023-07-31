@@ -16,7 +16,7 @@ const BestCandidate: React.FC = () => {
                 {
                     candidates.map((ele, i) => <div key={i} className='p-10 rounded-lg relative bg-gray-100 border-2 border-transparent hover:bg-white hover:border-gray-200 duration-300'>
                         <div className='flex justify-center items-center'>
-                            <Image className='rounded-lg' alt='' width={180} height={100} src='/candidate/1.webp'></Image>
+                            <Image className='rounded-lg' alt='' width={180} height={100} src='/candidate/1.webp' />
                         </div>
                         <div className='text-center my-3'>
                             <Link className='text-xl font-bold my-3' href=''>Lauran Benitez</Link>
