@@ -94,7 +94,7 @@ UserSchema.pre("save", async function (next) {
     return next();
   }
   const password = this.password;
-  const hashPassword = await bcrypt.hash(password, 16);
+  const hashPassword = bcrypt.hashSync(password, 8);
   this.password = hashPassword;
   this.passwordChangedAt = new Date();
   this.passwordResetToken = undefined;

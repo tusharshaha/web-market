@@ -6,6 +6,7 @@ import {
 import { InjectModel } from "@nestjs/mongoose";
 import { User } from "./schemas/user.schema";
 import * as bcrypt from "bcryptjs";
+import * as crypto from "crypto";
 import { Model } from "mongoose";
 import confirmMailTemp from "../utils/confirm.temp";
 import { JwtService } from "@nestjs/jwt";
@@ -44,7 +45,6 @@ export class AuthService {
     const token = this.jwtService.sign({ id: user._id });
     // mail sending functionality
     const template = confirmMailTemp(updatedUser);
-
     return { name, email, contactNumber, token };
   }
 
