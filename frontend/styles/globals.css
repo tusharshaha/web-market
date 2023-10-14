@@ -15,13 +15,16 @@ body{
 
 /* tailwind base layer  */
 @layer base {
+  body{
+    @apply tracking-wide;
+  }
   
   h1 {
     @apply text-[3.4rem];
   }
 
   h2 {
-    @apply text-3xl md:text-5xl;
+    @apply text-3xl lg:text-5xl;
   }
 
   h3 {

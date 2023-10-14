@@ -10,7 +10,7 @@ const HowItWork: React.FC = () => {
         { icon: <AiOutlineUser className='text-4xl text-primary group-hover:text-white' />, title: 'Create an Account' },
         { icon: <CgNotes className='text-4xl text-primary group-hover:text-white' />, title: 'CV/Resume' },
         { icon: <BiSearch className='text-4xl text-primary group-hover:text-white' />, title: 'Find Your Job' },
-        { icon: <FiSend className='text-4xl text-primary group-hover:text-white' />, title: 'Save & Apply' },
+        { icon: <FiSend className='text-4xl text-primary group-hover:text-white' />, title: 'Apply Job' },
     ]
     return (
         <div className='py-10 my-10 cus-container'>
@@ -23,7 +23,7 @@ const HowItWork: React.FC = () => {
                         works.map((ele, i) =><div key={i} className='group'>
                         <div className='w-full flex justify-center items-center '>
                             <span className='p-2 rounded-lg outline-2 outline-dashed  outline-gray-200 group-hover:outline-primary flex justify-center items-center'>
-                                <span className='p-3 bg-gray-100 transition-all duration-500 group-hover:bg-primary rounded-lg '>
+                                <span className='p-3 bg-gray-100 trans group-hover:bg-primary rounded-lg '>
                                     {ele.icon}
                                 </span>
                             </span>
