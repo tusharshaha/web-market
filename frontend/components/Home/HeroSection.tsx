@@ -12,7 +12,7 @@ const HeroSection = () => {
 
                 </div>
                 <div className=' flex flex-col md:flex-row justify-between gap-2 items-center mt-10'>
-                    <div className='flex gap-2 flex-col sm:flex-row w-full justify-center items-center'>
+                    <div className='flex gap-2 flex-col md:flex-row w-full justify-center items-center'>
                         <input className='input w-full sm:w-[300px] md:w-[250px] lg:w-[300px] p-5 rounded-lg  text-gray-700 border-gray-200 font-semibold' type="text" placeholder='Job title or Keyword' />
                         <select className='select w-full sm:w-[300px] md:w-[200px] p-3 rounded-lg  text-gray-700 border-gray-200' defaultValue=''>
                             <option value="New York">Remote</option>
