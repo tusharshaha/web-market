@@ -1,47 +1,87 @@
+import Link from 'next/link';
 import React from 'react';
+import { FaFacebookF, FaSkype, FaTwitter } from 'react-icons/fa';
+import { AiTwotoneHeart } from 'react-icons/ai';
 
 const Footer = () => {
+    const quickLinks = [
+        {
+            title: "Company",
+            links: [
+                { path: "", title: "About Us" },
+                { path: "", title: "Why Web Market" },
+                { path: "", title: "Contact With Us" },
+                { path: "", title: "Our Partners" },
+            ]
+        },
+        {
+            title: "Resources",
+            links: [
+                { path: "", title: "Quick Links" },
+                { path: "", title: "Job Packages" },
+                { path: "", title: "Post New Job" },
+                { path: "", title: "Job Listing" },
+            ]
+        },
+        {
+            title: "Legal",
+            links: [
+                { path: "", title: "Affiliate" },
+                { path: "", title: "Blog" },
+                { path: "", title: "Help & Support" },
+                { path: "", title: "Careers" },
+            ]
+        },
+        {
+            title: "Products",
+            links: [
+                { path: "", title: "Start a Trial" },
+                { path: "", title: "How It Works" },
+                { path: "", title: "Pirce & Planning" },
+                { path: "", title: "Features" },
+            ]
+        },
+    ]
     return (
         <>
-            <div className='bg-blue-950 text-white'>
-                <footer className="footer py-10 cus-container">
-                    <div>
-                        <span className="footer-title">Services</span>
-                        <a className="link link-hover">Branding</a>
-                        <a className="link link-hover">Design</a>
-                        <a className="link link-hover">Marketing</a>
-                        <a className="link link-hover">Advertisement</a>
-                    </div>
-                    <div>
-                        <span className="footer-title">Company</span>
-                        <a className="link link-hover">About us</a>
-                        <a className="link link-hover">Contact</a>
-                        <a className="link link-hover">Jobs</a>
-                        <a className="link link-hover">Press kit</a>
-                    </div>
-                    <div>
-                        <span className="footer-title">Legal</span>
-                        <a className="link link-hover">Terms of use</a>
-                        <a className="link link-hover">Privacy policy</a>
-                        <a className="link link-hover">Cookie policy</a>
-                    </div>
-                </footer>
-            </div>
-
-            <div className='border-t bg-blue-950 text-white border-t border-slate-500'>
-                <footer className="footer py-4 cus-container">
-                    <div className="items-center grid-flow-col">
-                        <button>logo</button>
-                        <p>ACME Industries Ltd. <br />Providing reliable tech since 1992</p>
-                    </div>
-                    <div className="md:place-self-center md:justify-self-end">
-                        <div className="grid grid-flow-col gap-4">
-                            social logo
+            <div className='bg-slate-900 text-white'>
+                <div className="cus-container py-16">
+                    <div className="grid grid-cols-5 gap-4">
+                        <div>
+                            <h2 className='text-4xl'>Logo</h2>
+                            <p className="text-slate-200 mt-8">Unlock success with our web marketplace offering a plethora of essential web services.</p>
+                            <div className='flex items-center gap-3 mt-6'>
+                                <div className='p-3 rounded-full outline outline-slate-200 outline-2 trans hover:outline-primary hover:bg-primary'><FaFacebookF /></div>
+                                <div className='p-3 rounded-full outline outline-slate-200 outline-2 trans hover:outline-primary hover:bg-primary'><FaSkype /></div>
+                                <div className='p-3 rounded-full outline outline-slate-200 outline-2 trans hover:outline-primary hover:bg-primary'><FaTwitter /></div>
+                            </div>
                         </div>
+                        {
+                            quickLinks.map((ele, i) => (
+                                <div key={i} className='flex justify-center'>
+                                    <div>
+                                        <h2 className='text-3xl font-semibold'>{ele.title}</h2>
+                                        <ul className='mt-8 space-y-3 text-slate-200'>
+                                            {
+                                                ele.links.map((link, i) => (
+                                                    <li key={i}>
+                                                        <Link href={link.path} className='trans hover:text-primary'>{link.title}</Link>
+                                                    </li>
+                                                ))
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            ))
+                        }
                     </div>
-                </footer>
+                </div>
+                <div className='cus-container border-t border-slate-700 py-5'>
+                    <div className='flex items-center justify-center text-slate-200 gap-1'>
+                        &#169; 2023 Web Market. Made with <span className='text-primary'><AiTwotoneHeart /></span> by Tushar.
+                    </div>
+                </div>
             </div>
-
         </>
     );
 };
