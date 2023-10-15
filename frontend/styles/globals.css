@@ -15,13 +15,16 @@ body{
 
 /* tailwind base layer  */
 @layer base {
+  body{
+    @apply tracking-wide;
+  }
   
   h1 {
     @apply text-[3.4rem];
   }
 
   h2 {
-    @apply text-3xl md:text-5xl;
+    @apply text-3xl lg:text-5xl;
   }
 
   h3 {
@@ -50,8 +53,12 @@ body{
 }
 
 .web-btn{
-  @apply bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary transition-all duration-300
+  @apply bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary trans
 }
 .web-btn2{
-  @apply bg-white border hover:border-transparent px-3 py-2 rounded-md text-primary border-primary  hover:bg-primary hover:text-white transition-all duration-300
+  @apply bg-white border hover:border-transparent px-3 py-2 rounded-md text-primary border-primary  hover:bg-primary hover:text-white trans
+}
+
+.trans{
+  @apply transition-all duration-300
 }

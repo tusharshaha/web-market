@@ -18,15 +18,15 @@ const NavBar: React.FC = () => {
             <FaAngleLeft />
         </li>
         <li className="p-2 border-y md:border-0 md:p-0"> <Link href='/'>Home</Link> </li>
-        <li className="p-2 border-y md:border-0 md:p-0"> <Link href='/jobs'>Find Jobs</Link> </li>
-        <li className="p-2 border-y md:border-0 md:p-0"> <Link href='#'>Post Jobs</Link> </li>
-        <li className="p-2 border-y md:border-0 md:p-0"> <Link href='#'>Hire Developer</Link> </li>
+        <li className="p-2 border-y md:border-0 md:p-0"> <Link href='/jobs'>Jobs</Link> </li>
+        <li className="p-2 border-y md:border-0 md:p-0"> <Link href='#'>Developers</Link> </li>
+        <li className="p-2 border-y md:border-0 md:p-0"> <Link href='#'>Projects</Link> </li>
         <li className="p-2 border-y md:border-0 md:p-0"> <Link href='#'>Blogs</Link> </li>
     </>
 
 
     return (
-        <div className="border-b">
+        <div className="border-b border-gray-500">
             <div className="cus-container">
                 <div className="flex justify-between h-[80px] items-center">
                     <div>
