@@ -36,7 +36,7 @@ const Layout: React.FC<props> = ({ title, keywords, description, children }) => 
                 {path === "/" ?
                     <HeroSection />
                     :
-                    <div className="h-[300px] flex flex-col items-center justify-center">
+                    <div className="h-[250px] flex flex-col items-center justify-center">
                         <h2 className="text-4xl font-bold">{pathname?.pathName}</h2>
                         <div className="mt-3 text-xl">
                             <Link href="/" className="transition duration-500 hover:text-green-600">Home</Link>
