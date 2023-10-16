@@ -8,7 +8,7 @@ export class ThrottlerExceptionFilter implements ExceptionFilter {
     const response = ctx.getResponse();
 
     response.status(429).json({
-      message: "Too many request! please try agin later"
+      message: "Too many request! please try agin later",
     });
   }
 }
