@@ -1,12 +1,13 @@
 import { NextPage } from 'next';
+import { useState } from "react";
 import Layout from '@/components/Layout';
 import { QueryClient, useQuery, dehydrate } from "react-query";
 import axiosRequest from '@/utils/axios.service';
 
-const getJobList = async (offset: string) => {
-  const res = await axiosRequest.get("/api/jobs", {
+const getJobList = async (offset: number) => {
+  const res = await axiosRequest.get("/jobs", {
     params: {
-      limit: 20,
+      limit: 15,
       offset
     }
   });
@@ -14,29 +15,28 @@ const getJobList = async (offset: string) => {
 }
 
 const Jobs: NextPage = () => {
-  const [offset, setOffset] = useState(string)
-  useQuery('jobs', ())
+  const [offset, setOffset] = useState(0);
+  useQuery('jobs', ()=> getJobList(offset))
   return (
     <Layout
       title='Web Market | Jobs'
       description='get you desire remote jobs'
       keywords='jobs, remote jobs'
     >
-
+      
     </Layout>
   );
 };
 
-export async function getServerSideProps(context: { query: { offset: string } }) {
-  const { offset } = context.query;
-  const queryClient = new QueryClient()
+// export async function getServerSideProps() {
+//   const queryClient = new QueryClient()
 
-  await queryClient.prefetchQuery(["jobs", offset], () => getJobList(offset))
-  return {
-    props: {
-      dehydratedState: dehydrate(queryClient)
-    },
-  };
-}
+//   await queryClient.prefetchQuery(["jobs", 0], () => getJobList(0))
+//   return {
+//     props: {
+//       dehydratedState: dehydrate(queryClient)
+//     },
+//   };
+// }
 
 export default Jobs;

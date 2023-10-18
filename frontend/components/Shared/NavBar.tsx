@@ -45,16 +45,17 @@ const NavBar: React.FC = () => {
                 </div>
             </div>
             <div className={`slider ${isOpen ? 'translate-x-0' : '-translate-x-full'} transition duration-300 fixed z-30 top-0 left-0`}>
-                <div className="slider-content bg-[#00000080]  h-[100vh] w-[100vw] text-gray-700">
+                <div className="slider-content flex bg-[#00000080] h-screen w-[100vw] text-gray-700">
                     <div className="h-[100vh]  w-[300px] bg-white border-r-2 ">
                         <ul className="mobileManu font-bold">
                             {navItem}
                         </ul>
                     </div>
+                    <div onClick={() => setIsOpen(!isOpen)} className="h-full flex-1">
+
+                    </div>
                 </div>
             </div>
-
-
         </div>
     );
 };
