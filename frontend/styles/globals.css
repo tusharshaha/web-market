@@ -62,3 +62,20 @@ body{
 .trans{
   @apply transition-all duration-300
 }
+
+.jobDetails a {
+  @apply text-sky-600
+}
+
+.jobDetails h3 {
+  margin: 10px 0 5px 0;
+  font-weight: bold;
+}
+
+.jobDetails ul {
+  @apply list-disc ml-10
+}
+
+.jobDetails p {
+  @apply pb-2
+}
