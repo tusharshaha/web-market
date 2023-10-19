@@ -8,6 +8,7 @@ import JobCard from '@/components/Job/JobCard';
 import JobDetails from '@/components/Job/JobDetails';
 import JobCardSkelton from '@/components/Job/JobCardSkelton';
 import JobDetailsSkelton from '@/components/Job/JobDetailsSkelton';
+import Pagination from '@/components/Shared/Pagination';
 
 interface Response {
   jobs: [
@@ -31,6 +32,7 @@ const getJobList = async (offset: number): Promise<Response> => {
 
 const Jobs: NextPage = () => {
   const [offset, setOffset] = useState(0);
+  const [page, setPage] = useState(1);
   const [searchText, setSearchText] = useState("Front End Developer");
   const [jobId, setJobId] = useState(0);
   const { data, isError } = useQuery(
@@ -42,7 +44,10 @@ const Jobs: NextPage = () => {
     }
   );
   const jobDetails = data?.jobs.find((_, i) => i === jobId);
-  console.log("hello")
+  const handlePageChange = (event: number) => {
+    setPage(event)
+  };
+
   return (
     <Layout
       title='Web Market | Jobs'
@@ -52,7 +57,10 @@ const Jobs: NextPage = () => {
       <div className='cus-container my-10 relative'>
         {/* search section  */}
         <SearchSection />
-        <div className='flex items-start gap-4 mt-16 border-t pt-4'>
+        {
+          data?.total_count && <p className='text-right mt-14'>Total <span className='font-semibold'>{data?.total_count}</span> jobs available</p>
+        }
+        <div className='flex items-start gap-4 mt-3 border-t pt-4'>
           {/* job list section  */}
           <div className='space-y-3 w-2/5'>
             {
@@ -69,6 +77,11 @@ const Jobs: NextPage = () => {
                 :
                 Array.from({ length: 15 }, (_, i) => <JobCardSkelton key={i} />)
             }
+            <Pagination 
+              currentPage={page}
+              totalPages={20}
+              onPageChange={handlePageChange}
+            />
           </div>
           {/* job details section  */}
           <div className='w-3/5 sticky top-0 h-screen overflow-y-auto'>
