@@ -3,14 +3,21 @@ import { useState } from "react";
 import { FiMenu } from 'react-icons/Fi';
 import { FaAngleLeft } from 'react-icons/fa';
 import { AiOutlinePlus } from "react-icons/ai";
+import { useRouter } from "next/router";
 
 
 const NavBar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
 
+    const router = useRouter();
+
     const handleToggle = () => {
         setIsOpen(!isOpen);
     };
+
+    const handleRegister = ()=>{
+        router.push("/register");
+    }
 
     const navItem = <>
         <li onClick={handleToggle} className="bg-primary p-2 text-white flex md:hidden items-center justify-between">
@@ -23,7 +30,6 @@ const NavBar: React.FC = () => {
         <li className="p-2 border-y md:border-0 md:p-0"> <Link href='#'>Projects</Link> </li>
         <li className="p-2 border-y md:border-0 md:p-0"> <Link href='#'>Blogs</Link> </li>
     </>
-
 
     return (
         <div className="border-b border-gray-500">
@@ -38,7 +44,7 @@ const NavBar: React.FC = () => {
                         </ul>
                     </div>
                     <div className="flex justify-center items-center">
-                        <button className="btn btn-primary text-white btn-sm md:btn-md"> <AiOutlinePlus className=" font-bold mr-2" /> Register</button>
+                        <button onClick={handleRegister} className="btn btn-primary text-white btn-sm md:btn-md"> <AiOutlinePlus className=" font-bold mr-2" /> Register</button>
                         <button onClick={handleToggle} className="btn btn-sm btn-primary ml-2 md:hidden"><FiMenu className="font-bold" /></button>
                     </div>
 
