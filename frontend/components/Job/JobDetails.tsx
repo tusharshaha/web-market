@@ -13,23 +13,25 @@ const JobDetails: React.FC<any> = ({ jobDetails }) => {
     <div className='border relative'>
       <div className=''>
         <div className='p-3 border-b space-y-2 shadow-sm sticky top-0 bg-white border-l-2 border-primary'>
-          {/* <img src={jobDetails?.companyLogo} alt='company logo' className='w-[40px] h-[40px]' /> */}
-          <h3 className='font-bold'>{jobDetails?.title}</h3>
+          <div className='flex gap-4 items-start'>
+            <img src={jobDetails?.companyLogo} alt='company logo' className='w-[50px] h-[50px]' />
+          <h3 className='font-bold text-xl lg:text-2xl'>{jobDetails?.title}</h3>
+          </div>
           <div className='flex justify-between items-end'>
             <div>
-              <h4 className='flex items-center gap-2'>
+              <h4 className='flex text-lg lg:text-xl items-center gap-2'>
                 <span><MdApartment /></span>
                 {jobDetails?.companyName}
               </h4>
-              <h5 className='flex items-center gap-2'>
+              <h4 className='flex text-lg lg:text-xl items-center gap-2'>
                 <span><MdLocationOn /></span>
                 {
                   jobDetails?.locationRestrictions.length ? "Restricted" : "Remote"
                 }
-              </h5>
+              </h4>
             </div>
             <div>
-              <Link className='btn btn-primary font-bold text-white flex items-center gap-2' href={jobDetails?.applicationLink || ""} target='_blank'>Apply Now <FaArrowRightLong /></Link>
+              <Link className='btn btn-primary font-bold text-white flex items-center gap-2 btn-sm lg:btn-md' href={jobDetails?.applicationLink || ""} target='_blank'>Apply Now <FaArrowRightLong /></Link>
             </div>
           </div>
         </div>
