@@ -93,7 +93,7 @@ const Jobs: NextPage = () => {
             />
           </div>
           {/* job details section  */}
-          <div className='w-full md:w-3/5 hidden md:block sticky top-0 h-screen overflow-y-auto'>
+          <div className='w-full md:w-3/5 hidden md:block sticky top-0 h-screen overflow-y-auto jobDetails_container'>
             {
               data?.jobs.length ?
                 <JobDetails jobDetails={jobDetails} />

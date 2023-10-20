@@ -63,6 +63,14 @@ body{
   @apply transition-all duration-300
 }
 
+.jobDetails_container::-webkit-scrollbar {
+  width: 11px;
+}
+
+.jobDetails_container::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded-full;
+}
+
 .jobDetails a {
   @apply text-sky-600
 }
