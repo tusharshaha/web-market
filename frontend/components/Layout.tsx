@@ -40,7 +40,7 @@ const Layout: React.FC<props> = ({ title, keywords, description, children }) => 
                         <h2 className="text-4xl font-bold">{pathname?.pathName}</h2>
                         <div className="mt-3 text-xl">
                             <Link href="/" className="transition duration-500 hover:text-green-600">Home</Link>
-                            <span className="capitalize text-green-600"> / / {path.slice(1)}</span>
+                            <span className="capitalize text-green-600"> &#47;&#47; {path.slice(1)}</span>
                         </div>
                     </div>
                 }

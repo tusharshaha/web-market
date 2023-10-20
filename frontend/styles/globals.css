@@ -59,6 +59,14 @@ body{
   @apply bg-white border hover:border-transparent px-3 py-2 rounded-md text-primary border-primary  hover:bg-primary hover:text-white trans
 }
 
+.register{
+  @apply bg-[url('../public/images/login-bg.webp')] h-screen w-screen bg-cover bg-center bg-no-repeat
+}
+
+.register_top{
+  @apply bg-[url('../public/images/login-img.webp')] h-[300px] w-full bg-cover bg-center bg-no-repeat
+}
+
 .trans{
   @apply transition-all duration-300
 }
