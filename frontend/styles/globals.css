@@ -60,7 +60,7 @@ body{
 }
 
 .register{
-  @apply bg-[url('../public/images/login-bg.webp')] h-screen w-screen bg-cover bg-center bg-no-repeat
+  @apply bg-[url('../public/images/login-bg.webp')] h-full py-28 w-full bg-cover bg-center bg-no-repeat
 }
 
 .register_top{

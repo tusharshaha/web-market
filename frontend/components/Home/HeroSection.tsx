@@ -22,8 +22,8 @@ const HeroSection = () => {
                             <option value="Texas">Texas</option>
                             <option value="Florida">Florida</option>
                         </select>
-                        <button className='w-full flex justify-center items-center sm:w-[300px]  md:w-auto hover:bg-green-700
-                        trans bg-primary px-5 py-3 text-white rounded-lg text-xl font-bold'>Search</button>
+                        <button className='w-full flex justify-center items-center sm:w-[300px]  md:w-auto
+                        btn btn-primary px-5 py-3 text-white rounded-lg font-bold'>Search</button>
                     </div>
                 </div>
 
