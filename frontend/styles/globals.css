@@ -59,6 +59,39 @@ body{
   @apply bg-white border hover:border-transparent px-3 py-2 rounded-md text-primary border-primary  hover:bg-primary hover:text-white trans
 }
 
+.register{
+  @apply bg-[url('../public/images/login-bg.webp')] h-screen w-screen bg-cover bg-center bg-no-repeat
+}
+
+.register_top{
+  @apply bg-[url('../public/images/login-img.webp')] h-[300px] w-full bg-cover bg-center bg-no-repeat
+}
+
 .trans{
   @apply transition-all duration-300
+}
+
+.jobDetails_container::-webkit-scrollbar {
+  width: 11px;
+}
+
+.jobDetails_container::-webkit-scrollbar-thumb {
+  @apply bg-slate-700 rounded-full;
+}
+
+.jobDetails a {
+  @apply text-sky-600
+}
+
+.jobDetails h3 {
+  margin: 10px 0 5px 0;
+  font-weight: bold;
+}
+
+.jobDetails ul {
+  @apply list-disc ml-10
+}
+
+.jobDetails p {
+  @apply pb-2
 }

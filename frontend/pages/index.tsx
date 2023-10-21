@@ -1,4 +1,4 @@
-import React from "react";
+import { NextPage } from "next";
 import Layout from "@/components/Layout";
 import Category from "@/components/Home/Category";
 import JobCirculars from "@/components/Home/JobCirculars";
@@ -7,7 +7,8 @@ import DownloadApp from "@/components/Home/DownloadApp";
 import BestCandidate from "@/components/Home/BestCandidate";
 import Subscribe from "@/components/Home/Subscribe";
 
-const Home: React.FC = () => {
+const Home: NextPage = () => {
+  
   return (
     <Layout>
       <Category></Category>
