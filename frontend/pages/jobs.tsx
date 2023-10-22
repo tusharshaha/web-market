@@ -8,7 +8,7 @@ import JobCard from '@/components/Job/JobCard';
 import JobDetails from '@/components/Job/JobDetails';
 import JobCardSkelton from '@/components/Job/JobCardSkelton';
 import JobDetailsSkelton from '@/components/Job/JobDetailsSkelton';
-import Pagination from '@/components/Shared/Pagination';
+import Pagination from '@/components/common/Pagination';
 import { AxiosResponse } from 'axios';
 
 interface Response {

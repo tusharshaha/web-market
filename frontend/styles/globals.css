@@ -24,11 +24,11 @@ body{
   }
 
   h2 {
-    @apply text-3xl lg:text-5xl;
+    @apply text-2xl sm:text-3xl lg:text-5xl;
   }
 
   h3 {
-    @apply text-2xl;
+    @apply text-xl md:text-2xl;
   }
 
   h4 {
@@ -53,18 +53,18 @@ body{
 }
 
 .web-btn{
-  @apply bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary trans
+  @apply btn btn-sm md:btn-md bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary trans
 }
 .web-btn2{
-  @apply bg-white border hover:border-transparent px-3 py-2 rounded-md text-primary border-primary  hover:bg-primary hover:text-white trans
+  @apply btn btn-primary btn-sm md:btn-md text-white
 }
 
 .register{
-  @apply bg-[url('../public/images/login-bg.webp')] h-screen w-screen bg-cover bg-center bg-no-repeat
+  @apply bg-[url('/images/login-bg.webp')] h-full pt-14 pb-40 w-full bg-cover bg-center bg-no-repeat
 }
 
 .register_top{
-  @apply bg-[url('../public/images/login-img.webp')] h-[300px] w-full bg-cover bg-center bg-no-repeat
+  @apply bg-[url('/images/login-img.webp')] h-full sm:h-[300px] pb-10 sm:pb-0 w-full bg-cover bg-center bg-no-repeat
 }
 
 .trans{

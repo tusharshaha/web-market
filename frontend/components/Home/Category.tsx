@@ -1,4 +1,4 @@
-import SectionTitle from '@/components/Shared/SectionTitle';
+import SectionTitle from '@/components/common/SectionTitle';
 import Link from 'next/link';
 import React from 'react';
 
