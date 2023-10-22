@@ -1,7 +1,7 @@
 import SectionTitle from '@/components/common/SectionTitle';
 import React from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
-import { BiSearch } from 'react-icons/Bi';
+import { AiOutlineSearch } from 'react-icons/ai';
 import { CgNotes } from 'react-icons/Cg';
 import { FiSend } from 'react-icons/Fi';
 
@@ -9,7 +9,7 @@ const HowItWork: React.FC = () => {
     const works = [
         { icon: <AiOutlineUser className='text-4xl text-primary group-hover:text-white' />, title: 'Create an Account' },
         { icon: <CgNotes className='text-4xl text-primary group-hover:text-white' />, title: 'CV/Resume' },
-        { icon: <BiSearch className='text-4xl text-primary group-hover:text-white' />, title: 'Find Your Job' },
+        { icon: <AiOutlineSearch className='text-4xl text-primary group-hover:text-white' />, title: 'Find Your Job' },
         { icon: <FiSend className='text-4xl text-primary group-hover:text-white' />, title: 'Apply Job' },
     ]
     return (
