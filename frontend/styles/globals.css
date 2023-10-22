@@ -60,11 +60,11 @@ body{
 }
 
 .register{
-  @apply bg-[url('../public/images/login-bg.webp')] h-full pt-14 pb-40 w-full bg-cover bg-center bg-no-repeat
+  @apply bg-[url('/images/login-bg.webp')] h-full pt-14 pb-40 w-full bg-cover bg-center bg-no-repeat
 }
 
 .register_top{
-  @apply bg-[url('../public/images/login-img.webp')] h-full sm:h-[300px] pb-10 sm:pb-0 w-full bg-cover bg-center bg-no-repeat
+  @apply bg-[url('/images/login-img.webp')] h-full sm:h-[300px] pb-10 sm:pb-0 w-full bg-cover bg-center bg-no-repeat
 }
 
 .trans{

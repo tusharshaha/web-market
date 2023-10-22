@@ -31,7 +31,7 @@ const Layout: React.FC<props> = ({ title, keywords, description, children }) => 
                 <meta name="keywords" content={keywords} />
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-            <div className="bg-[url('../public/images/hero-bg.webp')] bg-cover w-full h-full text-white">
+            <div className="bg-[url('/images/hero-bg.webp')] bg-cover w-full h-full text-white">
                 <NavBar />
                 {path === "/" ?
                     <HeroSection />

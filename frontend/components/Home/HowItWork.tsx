@@ -1,4 +1,4 @@
-import SectionTitle from '@/components/Shared/SectionTitle';
+import SectionTitle from '@/components/common/SectionTitle';
 import React from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import { BiSearch } from 'react-icons/Bi';

@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-import SectionTitle from '../Shared/SectionTitle';
+import SectionTitle from '../common/SectionTitle';
 
 const JobCirculars: React.FC = () => {
     const circulars = new Array(9).fill(0);
