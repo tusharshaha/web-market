@@ -31,14 +31,14 @@ const Register: NextPage = () => {
           <div className="register_top">
             <div className='pt-14 text-white space-y-5 w-full px-6 md:px-0 md:w-2/3 mx-auto text-center'>
               <h2 className=''>Welcome to the Website</h2>
-              <p className='text-sm md:text-base'>Discover endless opportunities in our vibrant community of developers, job seekers, and professionals. Join us to search for jobs, create profiles, upload resumes, showcase projects, and share your expertise through blogs. Let&apos;s shape your future together!</p>
+              <p className='text-xs md:text-base'>Discover endless opportunities in our vibrant community of developers, job seekers, and professionals. Join us to search for jobs, create profiles, upload resumes, showcase projects, and share your expertise through blogs. Let&apos;s shape your future together!</p>
             </div>
           </div>
           <div className='bg-white flex flex-col items-center justify-center px-4 py-8'>
             <h3 className='text-lg md:text-xl font-semibold text-primary tracking-widest'>
               USER {regPage ? "REGISTER" : "LOGIN"}
             </h3>
-            <div className='flex flex-col items-center justify-start gap-2 mt-5 md:mt-10 w-3/4 md:w-2/4 mx-auto'>
+            <div className='flex flex-col items-center justify-start gap-2 mt-5 md:mt-10 w-full px-4 sm:px-0 sm:w-2/4 mx-auto'>
               {
                 regPage &&
                 <input
@@ -69,9 +69,9 @@ const Register: NextPage = () => {
                 </div>
               }
               {regPage ?
-                <button className="btn btn-primary text-white btn-sm md:btn-md mt-2">Register</button>
+                <button className="web-btn2 mt-2">Register</button>
                 :
-                <button className="btn btn-primary text-white btn-sm md:btn-md">Login</button>
+                <button className="web-btn2">Login</button>
               }
               <p className='text-slate-500 text-sm mt-2'>
                 {regPage ? "Already have account? Please " : "Don't have account? please "}
@@ -80,7 +80,7 @@ const Register: NextPage = () => {
                 </button>
               </p>
               <div className="divider">OR</div>
-              <button className="btn glass flex items-center gap-3 text-slate-500">
+              <button className="btn glass flex items-center btn-xs md:btn-md gap-3 text-slate-500">
                 <span className='text-xl'><FcGoogle /></span>
                 Login with Google
               </button>

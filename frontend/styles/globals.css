@@ -24,7 +24,7 @@ body{
   }
 
   h2 {
-    @apply text-3xl lg:text-5xl;
+    @apply text-2xl sm:text-3xl lg:text-5xl;
   }
 
   h3 {
@@ -53,10 +53,10 @@ body{
 }
 
 .web-btn{
-  @apply bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary trans
+  @apply btn btn-sm md:btn-md bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary trans
 }
 .web-btn2{
-  @apply bg-white border hover:border-transparent px-3 py-2 rounded-md text-primary border-primary  hover:bg-primary hover:text-white trans
+  @apply btn btn-primary btn-sm md:btn-md text-white
 }
 
 .register{

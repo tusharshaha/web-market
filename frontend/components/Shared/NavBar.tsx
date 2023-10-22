@@ -44,7 +44,7 @@ const NavBar: React.FC = () => {
                         </ul>
                     </div>
                     <div className="flex justify-center items-center">
-                        <button onClick={handleRegister} className="btn btn-primary text-white btn-sm md:btn-md"> <AiOutlinePlus className=" font-bold mr-2" /> Register</button>
+                        <button onClick={handleRegister} className="web-btn2"> <AiOutlinePlus className=" font-bold mr-2" /> Register</button>
                         <button onClick={handleToggle} className="btn btn-sm btn-primary ml-2 md:hidden"><FiMenu className="font-bold" /></button>
                     </div>
 
