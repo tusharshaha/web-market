@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import ReactStars from "react-rating-stars-component";
-import { BiSolidStarHalf } from 'react-icons/Bi';
+// import { BiSolidStarHalf } from 'react-icons/Bi';
 import { BsFillBookmarkDashFill } from 'react-icons/Bs';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
@@ -23,7 +23,7 @@ const CandidateCard: React.FC = () => {
             edit={false}
             isHalf={true}
             emptyIcon={<AiOutlineStar />}
-            halfIcon={<BiSolidStarHalf />}
+            // halfIcon={<BiSolidStarHalf />}
             fullIcon={<AiFillStar />}
             activeColor="#ff9600"
           />
