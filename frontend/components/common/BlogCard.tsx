@@ -5,7 +5,7 @@ import { FaRegClock } from "react-icons/fa";
 
 const BlogCard: React.FC = () => {
   return (
-    <div className='rounded-md shadow-md overflow-hidden'>
+    <div className='rounded-md border trans hover:shadow-md overflow-hidden'>
       <div className='mb-4'>
         <Image
           src="/images/hero-bg.webp"
