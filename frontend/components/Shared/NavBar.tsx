@@ -27,8 +27,8 @@ const NavBar: React.FC = () => {
         <li className="p-2 border-y md:border-0 md:p-0"> <Link href='/'>Home</Link> </li>
         <li className="p-2 border-y md:border-0 md:p-0"> <Link href='/jobs'>Jobs</Link> </li>
         <li className="p-2 border-y md:border-0 md:p-0"> <Link href='/candidate'>Candidate</Link> </li>
-        <li className="p-2 border-y md:border-0 md:p-0"> <Link href='#'>Projects</Link> </li>
-        <li className="p-2 border-y md:border-0 md:p-0"> <Link href='#'>Blogs</Link> </li>
+        <li className="p-2 border-y md:border-0 md:p-0"> <Link href='/projects'>Projects</Link> </li>
+        <li className="p-2 border-y md:border-0 md:p-0"> <Link href='/blogs'>Blogs</Link> </li>
     </>
 
     return (

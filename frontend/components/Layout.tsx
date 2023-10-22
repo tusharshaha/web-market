@@ -18,8 +18,8 @@ const Layout: React.FC<props> = ({ title, keywords, description, children }) => 
     const pathnames = [
         {path: '/jobs', pathName: "Jobs"},
         {path: '/candidate', pathName: "Cadidate"},
-        {path: '/job', pathName: "Jobs"},
-        {path: '/job', pathName: "Jobs"},
+        {path: '/projects', pathName: "Project"},
+        {path: '/blogs', pathName: "Blog"},
     ]
     const pathname = pathnames.find(ele => ele.path === path);
     
