@@ -10,7 +10,7 @@ type Query = {
   search: Search;
 };
 
-export default function flexibleQuery(query: any): Query {
+export function flexibleQuery(query: any): Query {
   let filters = { ...query };
   const excludeFields = ["sort", "fields", "limit", "page"];
   // separate filters from query
