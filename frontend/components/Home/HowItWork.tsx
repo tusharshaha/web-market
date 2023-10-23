@@ -2,7 +2,7 @@ import SectionTitle from '@/components/common/SectionTitle';
 import React from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import { AiOutlineSearch } from 'react-icons/ai';
-import { CgNotes } from 'react-icons/Cg';
+import { CgNotes } from 'react-icons/cg';
 import { FiSend } from 'react-icons/Fi';
 
 const HowItWork: React.FC = () => {
@@ -15,8 +15,6 @@ const HowItWork: React.FC = () => {
     return (
         <div className='py-10 my-10 cus-container'>
             <SectionTitle title='How It Work?' subTitle='Many desktop publishing packages and web page editors' />
-
-
             <div className='pt-10'>
                 <div className='grid grid-cols-2 md:grid-cols-4 gap-10 '>
                     {
