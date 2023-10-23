@@ -4,7 +4,7 @@ import React from 'react';
 
 const DownloadApp: React.FC = () => {
   return (
-    <div className="p-5 mt-14 mb-24 relative w-full bg-[url('../public/images/bg1.webp')] bg-cover py-28 text-center text-white font-bold">
+    <div className="p-5 mt-14 mb-24 relative w-full bg-[url('/images/bg1.webp')] bg-cover py-28 text-center text-white font-bold">
       <div className="before:block before:w-full before:h-full before:bg-[#03a84ded] before:absolute before:inset-0 before:z-10" />
       <div className='relative z-20'>
         <h3 className='my-5 text-xl md:text-2xl'>Trial Version Available from then</h3>
