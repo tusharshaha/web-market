@@ -2,7 +2,7 @@ import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import ReactStars from "react-rating-stars-component";
-import { BsFillBookmarkDashFill, BsStarHalf } from 'react-icons/Bs';
+import { BsFillBookmarkDashFill, BsStarHalf } from 'react-icons/bs';
 import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
 
 const CandidateCard: React.FC = () => {
