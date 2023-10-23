@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { useState } from "react";
-import { FiMenu } from 'react-icons/Fi';
+import { FiMenu } from 'react-icons/fi';
 import { FaAngleLeft } from 'react-icons/fa';
 import { AiOutlinePlus } from "react-icons/ai";
 import { useRouter } from "next/router";

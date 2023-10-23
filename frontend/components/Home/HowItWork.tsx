@@ -3,14 +3,14 @@ import React from 'react';
 import { AiOutlineUser } from 'react-icons/ai';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { CgNotes } from 'react-icons/cg';
-import { LuSend } from 'react-icons/lu';
+import { FiSend } from 'react-icons/fi';
 
 const HowItWork: React.FC = () => {
     const works = [
         { icon: <AiOutlineUser className='text-4xl text-primary group-hover:text-white' />, title: 'Create an Account' },
         { icon: <CgNotes className='text-4xl text-primary group-hover:text-white' />, title: 'CV/Resume' },
         { icon: <AiOutlineSearch className='text-4xl text-primary group-hover:text-white' />, title: 'Find Your Job' },
-        { icon: <LuSend className='text-4xl text-primary group-hover:text-white' />, title: 'Apply Job' },
+        { icon: <FiSend className='text-4xl text-primary group-hover:text-white' />, title: 'Apply Job' },
     ]
     return (
         <div className='py-10 my-10 cus-container'>
