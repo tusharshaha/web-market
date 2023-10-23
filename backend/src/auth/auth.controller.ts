@@ -12,9 +12,9 @@ import {
 import { AuthService } from "./auth.service";
 import { SignUpDto } from "./dto/signup.dto";
 import { LoginDto } from "./dto/login.dto";
-import { handleError } from "src/utils/errorHandler";
+import { handleError } from "@/utils/errorHandler";
 import { Response } from "express";
-import { AuthenticatedRequest } from "src/utils/types";
+import { AuthenticatedRequest } from "@/utils/types";
 import { JwtAuthGuard } from "./guards/jwt-auth.guard";
 import { GoogleAuthGuard } from "./guards/google-auth.guard";
 import { Throttle, ThrottlerGuard } from "@nestjs/throttler";

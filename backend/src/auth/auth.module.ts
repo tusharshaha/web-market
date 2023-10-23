@@ -8,7 +8,7 @@ import { JwtModule } from "@nestjs/jwt";
 import { ConfigService } from "@nestjs/config";
 import { JwtStrategy } from "./strategies/jwt.strategy";
 import { GoogleStrategy } from "./strategies/google.strategy";
-import { SessionSerializer } from "src/auth/session/session.serializer";
+import { SessionSerializer } from "@/auth/session/session.serializer";
 
 @Module({
   imports: [
