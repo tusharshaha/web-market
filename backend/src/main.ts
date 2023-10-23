@@ -2,8 +2,8 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { NestExpressApplication } from "@nestjs/platform-express";
-import * as passport from "passport";
-import * as crypto from "crypto";
+const passport = require("passport");
+const crypto = require("crypto");
 const session = require("express-session");
 const MongoStore = require("connect-mongo");
 import helmet from "helmet";

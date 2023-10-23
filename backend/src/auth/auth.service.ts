@@ -13,8 +13,8 @@ import { JwtService } from "@nestjs/jwt";
 import { SignUpDto } from "./dto/signup.dto";
 import { LoginDto } from "./dto/login.dto";
 import { Response } from "express";
-import { UserDetails } from "src/utils/types";
-import { flexibleQuery } from "src/utils/flexibleQuery";
+import { UserDetails } from "../utils/types";
+import { flexibleQuery } from "../utils/flexibleQuery";
 
 @Injectable({})
 export class AuthService {

@@ -1,6 +1,6 @@
 import { Controller, Get, Query, UseGuards } from "@nestjs/common";
 import { JobsService } from "./jobs.service";
-import { handleError } from "src/utils/errorHandler";
+import { handleError } from "../utils/errorHandler";
 import { Throttle, ThrottlerGuard } from "@nestjs/throttler";
 
 @Controller("jobs")
