@@ -1,10 +1,10 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { NestExpressApplication } from "@nestjs/platform-express";
-import * as session from "express-session";
 import * as passport from "passport";
 import * as crypto from "crypto";
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+const session = require("express-session");
 const MongoStore = require("connect-mongo");
 import helmet from "helmet";
 import { ValidationPipe } from "@nestjs/common";
