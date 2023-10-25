@@ -22,7 +22,7 @@ const ProjectCard: React.FC = () => {
           <li>Powerful & extensive project manager</li>
         </ul>
       </div>
-      <div className='w-1/5 flex flex-col items-end justify-end'>
+      <div className='w-1/5 flex flex-col items-center justify-center'>
         <div className='text-center w-full'>
           <h3 className='text-lg font-bold'>$60</h3>
           <p className='text-slate-500 text-xs'>14.8k Sales</p>
