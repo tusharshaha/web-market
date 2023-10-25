@@ -16,7 +16,7 @@ const Projects: NextPage = () => {
         <SearchSection />
         <div className='flex gap-3 items-start mt-14 relative'>
           {/* project filter section  */}
-          <div className='w-1/4 p-3 h-screen border-t border-l sticky top-0'>
+          <div className='w-1/4 h-screen sticky top-0'>
             <FilterSection />
           </div>
           {/* project list section  */}

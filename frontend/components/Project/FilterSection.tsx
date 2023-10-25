@@ -9,18 +9,25 @@ const FilterSection: React.FC = () => {
   ];
   return (
     <div>
-      <p className='font-bold'>Category</p>
-      <ul className='ml-3 mt-3 space-y-2'>
-        {
-          categories.map((ele, i) => <li key={i} className='flex items-center justify-between'>
-            <button>{ele.title}</button>
-            <span className='text-slate-500 text-sm'>{ele.count}</span>
-          </li>)
-        }
-      </ul>
-      <div className="divider"></div>
-      
-      <p className='font-bold'>Price</p>
+      <div className='bg-slate-50 p-3'>
+        <p className='font-bold relative'>Category</p>
+        <ul className='ml-3 mt-3 space-y-2'>
+          {
+            categories.map((ele, i) => <li key={i} className='flex items-center justify-between'>
+              <label htmlFor="" className='flex items-center gap-2'>
+                <input type="checkbox" name="" id="" />
+                {ele.title}
+              </label>
+              <span className='text-slate-500 text-sm'>{ele.count}</span>
+            </li>)
+          }
+        </ul>
+      </div>
+
+      <div className='mt-4 bg-slate-50 p-3'>
+        <p className='font-bold relative'>Price</p>
+        
+      </div>
     </div>
   );
 };
