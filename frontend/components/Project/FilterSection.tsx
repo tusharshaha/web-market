@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const FilterSection: React.FC = () => {
+  const [minPrice, setMinPrice] = useState(0);
+  const [maxPrice, setMaxPrice] = useState(190);
+
   const categories = [
     { title: "E-Commerce", count: 12 },
     { title: "Management", count: 12 },
@@ -25,10 +28,26 @@ const FilterSection: React.FC = () => {
         </ul>
       </div>
 
-      <div className='mt-4 bg-slate-50 p-3 shadow-md'>
+      <form onSubmit={(e)=>e.preventDefault()} className='mt-4 bg-slate-50 p-3 shadow-md'>
         <p className='font-bold element-heighlight relative'>Price</p>
-        
-      </div>
+        <div className='flex items-center my-4 gap-2 w-full'>
+          <input
+            className='w-full border-2 px-2'
+            value={0}
+            title='Use number'
+            type="text"
+            pattern='^\d*$'
+          />
+          <span>-</span>
+          <input
+            className='w-full border-2 px-2'
+            value={100}
+            type="text"
+            pattern='^\d*$'
+          />
+        </div>
+        <button className="btn btn-primary btn-xs tracking-widest text-white">Filter</button>
+      </form>
     </div>
   );
 };
