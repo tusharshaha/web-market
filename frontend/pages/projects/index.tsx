@@ -1,7 +1,6 @@
 import Layout from '@/components/Layout';
 import FilterSection from '@/components/Project/FilterSection';
 import ProjectCard from '@/components/Project/ProjectCard';
-import SearchSection from '@/components/Project/SearchSection';
 import { NextPage } from 'next';
 
 const Projects: NextPage = () => {

@@ -52,7 +52,7 @@ const Footer = () => {
     const [collapse, setCollapse] = useState({} as Accordion);
     const handleCollapse = (id: number) => {
         setCollapse((prev) => ({
-            isOpen: prev.id === id ? false : true,
+            isOpen: prev.id === id ? !prev.isOpen : true,
             id
         }))
     };
