@@ -13,8 +13,7 @@ const Projects: NextPage = () => {
       description=''
     >
       <div className='cus-container my-14'>
-        <SearchSection />
-        <div className='flex gap-3 items-start mt-14 relative'>
+        <div className='flex gap-3 items-start relative'>
           {/* project filter section  */}
           <div className='w-1/4 h-screen sticky top-0'>
             <FilterSection />

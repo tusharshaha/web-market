@@ -4,6 +4,7 @@ const FilterSection: React.FC = () => {
   const categories = [
     { title: "E-Commerce", count: 12 },
     { title: "Management", count: 12 },
+    { title: "Portfolio", count: 12 },
     { title: "Courses", count: 12 },
     { title: "Blog", count: 12 },
   ];
