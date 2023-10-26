@@ -71,6 +71,17 @@ body{
   @apply transition-all duration-300
 }
 
+.element-heighlight::before{
+  content: "";
+  display: block;
+  height: 100%;
+  width: 3px;
+  position: absolute;
+  top: 0;
+  left: -12px;
+  @apply bg-primary
+}
+
 .jobDetails_container::-webkit-scrollbar {
   width: 11px;
 }

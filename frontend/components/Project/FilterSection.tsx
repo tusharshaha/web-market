@@ -9,13 +9,13 @@ const FilterSection: React.FC = () => {
   ];
   return (
     <div>
-      <div className='bg-slate-50 p-3'>
-        <p className='font-bold relative'>Category</p>
+      <div className='bg-slate-50 p-3 shadow-md'>
+        <p className='font-bold element-heighlight relative'>Category</p>
         <ul className='ml-3 mt-3 space-y-2'>
           {
             categories.map((ele, i) => <li key={i} className='flex items-center justify-between'>
-              <label htmlFor="" className='flex items-center gap-2'>
-                <input type="checkbox" name="" id="" />
+              <label htmlFor={ele.title} className='flex items-center gap-2 cursor-pointer hover:text-primary w-full'>
+                <input type="checkbox" className='' name="" id={ele.title} />
                 {ele.title}
               </label>
               <span className='text-slate-500 text-sm'>{ele.count}</span>
@@ -24,8 +24,8 @@ const FilterSection: React.FC = () => {
         </ul>
       </div>
 
-      <div className='mt-4 bg-slate-50 p-3'>
-        <p className='font-bold relative'>Price</p>
+      <div className='mt-4 bg-slate-50 p-3 shadow-md'>
+        <p className='font-bold element-heighlight relative'>Price</p>
         
       </div>
     </div>

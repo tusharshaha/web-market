@@ -53,7 +53,8 @@ export class User extends Document {
   userImage: string;
 
   @Prop({
-    default: "developer",
+    enum: ["candidate", "recuiter", "admin"],
+    default: "candidate",
   })
   role: Role;
 
