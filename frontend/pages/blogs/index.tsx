@@ -11,7 +11,7 @@ const Blogs: NextPage = () => {
       description=""
     >
       <div className="cus-container my-14">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {
             candidates.map((ele, i)=> <BlogCard key={i}/>)
           }
