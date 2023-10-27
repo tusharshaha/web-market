@@ -5,31 +5,18 @@ const FilterSection: React.FC = () => {
   const [maxPrice, setMaxPrice] = useState(190);
 
   const categories = [
-    { title: "E-Commerce", count: 12 },
-    { title: "Management", count: 12 },
-    { title: "Portfolio", count: 12 },
-    { title: "Courses", count: 12 },
-    { title: "Blog", count: 12 },
+    { title: "Web Developer", count: 12 },
+    { title: "Front End Developer", count: 12 },
+    { title: "UI/UX Developer", count: 12 },
+    { title: "Backend Developer", count: 12 },
+    { title: "Full Stack Developer", count: 12 },
   ];
   return (
     <div>
       <form onSubmit={(e) => e.preventDefault()} className='bg-slate-50 p-3 shadow-md'>
-        <p className='font-bold element-heighlight relative'>Price</p>
+        <p className='font-bold element-heighlight relative'>Experience</p>
         <div className='flex items-center my-4 gap-2 w-full'>
-          <input
-            className='w-full border-2 px-2'
-            value={0}
-            title='Use number'
-            type="text"
-            pattern='^\d*$'
-          />
-          <span>-</span>
-          <input
-            className='w-full border-2 px-2'
-            value={100}
-            type="text"
-            pattern='^\d*$'
-          />
+          <input type="range" min={0} max="100" className="range range-primary range-xs" />
         </div>
         <button className="btn btn-primary btn-xs tracking-widest text-white">Filter</button>
       </form>

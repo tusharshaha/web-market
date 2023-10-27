@@ -86,8 +86,12 @@ body{
   width: 11px;
 }
 
+.jobDetails_container::-webkit-scrollbar-track{
+  @apply bg-green-100
+}
+
 .jobDetails_container::-webkit-scrollbar-thumb {
-  @apply bg-slate-700 rounded-full;
+  @apply bg-primary rounded-full;
 }
 
 .jobDetails a {
