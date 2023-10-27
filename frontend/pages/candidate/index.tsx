@@ -1,5 +1,5 @@
 import Layout from '@/components/Layout';
-import CandidateCard from '@/components/common/CandidateCard';
+import CandidateCard from '@/components/Candidate/CandidateCard';
 import { NextPage } from 'next';
 import Image from 'next/image';
 
@@ -47,8 +47,8 @@ const Candidate: NextPage = () => {
                   </div>
                   <div className="divider divider-horizontal"></div>
                   <div className='w-1/5 mx-auto text-center'>
-                  <button className="bg-primary text-white px-6 py-1">Short List</button>
-                  <button className="bg-primary text-white px-6 py-1 mt-2">View Details</button>
+                  <button className="bg-primary text-white w-[100px] py-1">Short List</button>
+                  <button className="bg-primary text-white w-[100px] py-1 mt-2">View Details</button>
                   </div>
                 </div>
               </div>)

@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import BlogCard from "@/components/common/BlogCard";
+import BlogCard from "@/components/Blog/BlogCard";
 import { NextPage } from "next";
 
 const Blogs: NextPage = () => {

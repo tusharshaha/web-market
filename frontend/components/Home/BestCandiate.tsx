@@ -1,6 +1,6 @@
 import SectionTitle from '@/components/common/SectionTitle';
 import React from 'react';
-import CandidateCard from '../common/CandidateCard';
+import CandidateCard from '../Candidate/CandidateCard';
 
 const BestCandidate: React.FC = () => {
     const candidates = new Array(4).fill(0);

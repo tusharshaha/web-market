@@ -14,11 +14,11 @@ const Projects: NextPage = () => {
       <div className='cus-container my-14'>
         <div className='flex gap-3 items-start relative'>
           {/* project filter section  */}
-          <div className='w-1/4 h-screen sticky top-0'>
+          <div className='hidden w-1/4 md:block h-screen sticky top-0'>
             <FilterSection />
           </div>
           {/* project list section  */}
-          <div className='w-3/4 space-y-4'>
+          <div className='md:w-3/4 space-y-4'>
             {
               projects.map((ele, i) => <ProjectCard key={i} />)
             }
