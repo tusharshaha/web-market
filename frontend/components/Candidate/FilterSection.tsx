@@ -3,7 +3,7 @@ import Slider from '../common/Slider';
 
 const FilterSection: React.FC = () => {
   const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(190);
+  const [maxPrice, setMaxPrice] = useState(15);
 
   const categories = [
     { title: "Web Developer", count: 12 },
@@ -25,14 +25,17 @@ const FilterSection: React.FC = () => {
         <div className='w-full py-6'>
           <Slider
             min={0}
-            max={190}
+            max={15}
             onChange={({ min, max }) => {
               setMinPrice(min);
               setMaxPrice(max)
             }}
           />
         </div>
-        <button className="btn btn-primary btn-xs tracking-widest text-white">Filter</button>
+        <div className='flex items-center justify-between'>
+          <button className="btn btn-primary btn-xs tracking-widest text-white">Filter</button>
+          <p className=''>{minPrice} - {maxPrice} Years</p>
+        </div>
       </form>
 
       <div className='bg-slate-50 p-3 shadow-md'>

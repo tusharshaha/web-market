@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Slider from '../common/Slider';
 
 const FilterSection: React.FC = () => {
   const [minPrice, setMinPrice] = useState(0);
@@ -15,23 +16,20 @@ const FilterSection: React.FC = () => {
     <div className='space-y-4'>
       <form onSubmit={(e) => e.preventDefault()} className='bg-slate-50 p-3 shadow-md'>
         <p className='font-bold element-heighlight relative'>Price</p>
-        <div className='flex items-center my-4 gap-2 w-full'>
-          <input
-            className='w-full border-2 px-2'
-            value={0}
-            title='Use number'
-            type="text"
-            pattern='^\d*$'
-          />
-          <span>-</span>
-          <input
-            className='w-full border-2 px-2'
-            value={100}
-            type="text"
-            pattern='^\d*$'
+        <div className='w-full py-6'>
+          <Slider
+            min={0}
+            max={190}
+            onChange={({ min, max }) => {
+              setMinPrice(min);
+              setMaxPrice(max)
+            }}
           />
         </div>
-        <button className="btn btn-primary btn-xs tracking-widest text-white">Filter</button>
+        <div className='flex items-center justify-between'>
+          <button className="btn btn-primary btn-xs tracking-widest text-white">Filter</button>
+          <p className='text-sm text-slate-500'>Price: ${minPrice} - ${maxPrice}</p>
+        </div>
       </form>
 
       <div className='bg-slate-50 p-3 shadow-md'>

@@ -20,11 +20,11 @@ const CandidateCard: React.FC = () => {
           <div className='flex items-center justify-between w-full mt-3'>
             <div>
               <p className='font-bold'>Location</p>
-              <p>Chittagong, Bangladesh</p>
+              <p className='text-slate-600'>Chittagong, Bangladesh</p>
             </div>
             <div>
-              <p className='font-bold'>Salary</p>
-              <p>$300/month</p>
+              <p className='font-bold'>Expreince</p>
+              <p className='text-center text-slate-600'>2 Years</p>
             </div>
           </div>
         </div>

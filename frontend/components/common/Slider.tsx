@@ -62,7 +62,7 @@ const Slider: React.FC<SliderProps> = ({ min, max, onChange }) => {
           minValRef.current = value;
         }}
         className={`${styles.thumb} ${styles.thumb__left}`}
-        style={{ zIndex: minVal > max - 100 && "5" }}
+        style={{ zIndex: minVal > max - 100 ? "5" : undefined }}
       />
       <input
         type="range"
