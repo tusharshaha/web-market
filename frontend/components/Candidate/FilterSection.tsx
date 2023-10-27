@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Slider from '../common/Slider';
 
 const FilterSection: React.FC = () => {
   const [minPrice, setMinPrice] = useState(0);
@@ -11,17 +12,30 @@ const FilterSection: React.FC = () => {
     { title: "Backend Developer", count: 12 },
     { title: "Full Stack Developer", count: 12 },
   ];
+
+  const skills = ["HTML", "CSS", "Tailwind", "Bootstrap", "Javascript", "Node.js", "GraphQL"];
+
+  const handleAddNewSkill = () => {
+
+  }
   return (
-    <div>
+    <div className='space-y-4'>
       <form onSubmit={(e) => e.preventDefault()} className='bg-slate-50 p-3 shadow-md'>
         <p className='font-bold element-heighlight relative'>Experience</p>
-        <div className='flex items-center my-4 gap-2 w-full'>
-          <input type="range" min={0} max="100" className="range range-primary range-xs" />
+        <div className='w-full py-6'>
+          <Slider
+            min={0}
+            max={190}
+            onChange={({ min, max }) => {
+              setMinPrice(min);
+              setMaxPrice(max)
+            }}
+          />
         </div>
         <button className="btn btn-primary btn-xs tracking-widest text-white">Filter</button>
       </form>
 
-      <div className='bg-slate-50 p-3 shadow-md mt-4'>
+      <div className='bg-slate-50 p-3 shadow-md'>
         <p className='font-bold element-heighlight relative'>Category</p>
         <ul className='ml-3 mt-3 space-y-2'>
           {
@@ -34,6 +48,16 @@ const FilterSection: React.FC = () => {
             </li>)
           }
         </ul>
+      </div>
+
+      <div className='bg-slate-50 p-3 shadow-md'>
+        <p className='font-bold element-heighlight relative'>Skills</p>
+        <div className='mt-3 flex items-center flex-wrap gap-2'>
+          {
+            skills.map((ele, i) => <button key={i} className='btn btn-xs capitalize tracking-wider btn-outline btn-primary'>{ele}</button>)
+          }
+          <button className='btn btn-xs text-white capitalize btn-primary'>Add New +</button>
+        </div>
       </div>
     </div>
   );

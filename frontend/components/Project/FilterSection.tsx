@@ -12,7 +12,7 @@ const FilterSection: React.FC = () => {
     { title: "Blog", count: 12 },
   ];
   return (
-    <div>
+    <div className='space-y-4'>
       <form onSubmit={(e) => e.preventDefault()} className='bg-slate-50 p-3 shadow-md'>
         <p className='font-bold element-heighlight relative'>Price</p>
         <div className='flex items-center my-4 gap-2 w-full'>
@@ -34,7 +34,7 @@ const FilterSection: React.FC = () => {
         <button className="btn btn-primary btn-xs tracking-widest text-white">Filter</button>
       </form>
 
-      <div className='bg-slate-50 p-3 shadow-md mt-4'>
+      <div className='bg-slate-50 p-3 shadow-md'>
         <p className='font-bold element-heighlight relative'>Category</p>
         <ul className='ml-3 mt-3 space-y-2'>
           {
