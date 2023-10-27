@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-import BlogCard from "@/components/common/BlogCard";
+import BlogCard from "@/components/Blog/BlogCard";
 import { NextPage } from "next";
 
 const Blogs: NextPage = () => {
@@ -11,7 +11,7 @@ const Blogs: NextPage = () => {
       description=""
     >
       <div className="cus-container my-14">
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {
             candidates.map((ele, i)=> <BlogCard key={i}/>)
           }

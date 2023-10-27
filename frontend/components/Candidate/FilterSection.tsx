@@ -3,23 +3,29 @@ import Slider from '../common/Slider';
 
 const FilterSection: React.FC = () => {
   const [minPrice, setMinPrice] = useState(0);
-  const [maxPrice, setMaxPrice] = useState(190);
+  const [maxPrice, setMaxPrice] = useState(15);
 
   const categories = [
-    { title: "E-Commerce", count: 12 },
-    { title: "Management", count: 12 },
-    { title: "Portfolio", count: 12 },
-    { title: "Courses", count: 12 },
-    { title: "Blog", count: 12 },
+    { title: "Web Developer", count: 12 },
+    { title: "Front End Developer", count: 12 },
+    { title: "UI/UX Developer", count: 12 },
+    { title: "Backend Developer", count: 12 },
+    { title: "Full Stack Developer", count: 12 },
   ];
+
+  const skills = ["HTML", "CSS", "Tailwind", "Bootstrap", "Javascript", "Node.js", "GraphQL"];
+
+  const handleAddNewSkill = () => {
+
+  }
   return (
     <div className='space-y-4'>
       <form onSubmit={(e) => e.preventDefault()} className='bg-slate-50 p-3 shadow-md'>
-        <p className='font-bold element-heighlight relative'>Price</p>
+        <p className='font-bold element-heighlight relative'>Experience</p>
         <div className='w-full py-6'>
           <Slider
             min={0}
-            max={190}
+            max={15}
             onChange={({ min, max }) => {
               setMinPrice(min);
               setMaxPrice(max)
@@ -28,7 +34,7 @@ const FilterSection: React.FC = () => {
         </div>
         <div className='flex items-center justify-between'>
           <button className="btn btn-primary btn-xs tracking-widest text-white">Filter</button>
-          <p className='text-sm text-slate-500'>Price: ${minPrice} - ${maxPrice}</p>
+          <p className=''>{minPrice} - {maxPrice} Years</p>
         </div>
       </form>
 
@@ -45,6 +51,16 @@ const FilterSection: React.FC = () => {
             </li>)
           }
         </ul>
+      </div>
+
+      <div className='bg-slate-50 p-3 shadow-md'>
+        <p className='font-bold element-heighlight relative'>Skills</p>
+        <div className='mt-3 flex items-center flex-wrap gap-2'>
+          {
+            skills.map((ele, i) => <button key={i} className='btn btn-xs capitalize tracking-wider btn-outline btn-primary'>{ele}</button>)
+          }
+          <button className='btn btn-xs text-white capitalize btn-primary'>Add New +</button>
+        </div>
       </div>
     </div>
   );

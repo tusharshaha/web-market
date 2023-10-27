@@ -3,8 +3,8 @@ import React from 'react';
 
 const ProjectCard: React.FC = () => {
   return (
-    <div className='shadow-md border p-2 flex gap-3'>
-      <div className='w-2/5'>
+    <div className='shadow-md border p-2 flex flex-col sm:flex-row gap-3'>
+      <div className='sm:w-2/5'>
         <Image
           src="/images/bg1.webp"
           className='h-[200px] w-full'
@@ -13,7 +13,7 @@ const ProjectCard: React.FC = () => {
           alt='project image'
         />
       </div>
-      <div className='w-2/5 border-r-2 border-slate-200'>
+      <div className='sm:w-2/5 sm:border-r-2 border-slate-200'>
         <h2 className='text-lg font-bold'>Io Task - Project Management</h2>
         <p className='text-sm text-slate-500'>By <b>Jhon Doe</b></p>
         <ul className='mt-4 text-slate-500 list-disc ml-6'>
@@ -22,7 +22,7 @@ const ProjectCard: React.FC = () => {
           <li>Powerful & extensive project manager</li>
         </ul>
       </div>
-      <div className='w-1/5 flex flex-col items-center justify-center'>
+      <div className='sm:w-1/5 flex flex-col items-center justify-center'>
         <div className='text-center w-full'>
           <h3 className='text-lg font-bold'>$60</h3>
           <p className='text-slate-500 text-xs'>14.8k Sales</p>

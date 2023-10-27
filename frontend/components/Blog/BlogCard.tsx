@@ -11,7 +11,7 @@ const BlogCard: React.FC = () => {
           src="/images/hero-bg.webp"
           height={500}
           width={500}
-          className='w-full h-[250px]'
+          className='w-full h-[200px] sm:h-[250px]'
           alt=""
         />
       </div>
