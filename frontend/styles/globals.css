@@ -71,7 +71,7 @@ body{
   @apply transition-all duration-300
 }
 
-.element-heighlight::before{
+.element-highlight::before{
   content: "";
   display: block;
   height: 100%;
