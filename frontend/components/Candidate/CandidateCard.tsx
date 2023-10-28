@@ -1,7 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 
 const CandidateCard: React.FC = () => {
+  const router = useRouter();
+  
   return (
     <div className='shadow-md border rounded-md p-3'>
       <div className='flex items-center sm:gap-6 flex-wrap sm:flex-nowrap'>
