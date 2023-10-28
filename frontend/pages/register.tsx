@@ -18,7 +18,7 @@ const Register: NextPage = () => {
   const handShowPass = () => setShowPass(!showPass);
   const handleSubmit = () => {
     const emailRegex = /^[a-zA-Z0-9._-]+@(?:gmail|yahoo|hotmail|outlook)\.com$/;
-    const passRegex = /^(?=.*[a-z])(?=.*\d).{8,}$/;
+    const passRegex = /^(?=.*[a-z])(?=.*\d).{6,}$/;
   }
   return (
     <div className="register flex items-start justify-center px-10">

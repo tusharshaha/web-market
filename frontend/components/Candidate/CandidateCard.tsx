@@ -32,8 +32,8 @@ const CandidateCard: React.FC = () => {
           </div>
         </div>
         <div className='w-full sm:w-1/5 sm:mx-auto sm:text-center text-left space-x-2 sm:space-x-0 sm:mt-0 mt-3'>
-          <button className="bg-primary hover:bg-green-700 trans text-white w-[100px] py-1">Short List</button>
-          <button className="bg-primary hover:bg-green-700 trans text-white w-[100px] py-1 mt-2">View Details</button>
+          <button className="bg-primary hover:bg-green-700 trans text-white w-[120px] py-1">Short List</button>
+          <button className="bg-primary hover:bg-green-700 trans text-white w-[120px] py-1 mt-2">View Details</button>
         </div>
       </div>
     </div>
