@@ -16,10 +16,10 @@ const Candidate: NextPage = () => {
 
         {/* candidate details section  */}
         <div className="flex items-start justify-between mt-6 gap-6">
-          <div>
+          <div className="w-2/3">
 
           </div>
-          <div>
+          <div className="w-1/3">
             <CandidateInfo />
           </div>
         </div>

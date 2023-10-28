@@ -18,7 +18,7 @@ const CandidateTop = () => {
         <div className=''>
           <h3 className='text-xl font-bold'>Tushar Kumar Shaha</h3>
           <h4 className='text-base text-primary'>Web Developer</h4>
-          <ul className='flex items-center gap-6 text-slate-600 text-sm mt-2'>
+          <ul className='flex items-center gap-6 text-sm mt-2'>
             <li className='flex items-center gap-2'><FaLocationDot /> Chittagong, Bangladesh</li>
             <li className='flex items-center gap-2'><FaPhone /> +88 0123456789</li>
           </ul>
