@@ -38,7 +38,7 @@ export class User extends Document {
     required: [true, "Password can't be empty!"],
     validate: {
       validator: (value: string) => {
-        const regex = /^(?=.*[a-z])(?=.*\d).{8,}$/;
+        const regex = /^(?=.*[a-z])(?=.*\d).{6,}$/;
         return regex.test(value);
       },
       message: "password {VALUE} is not strong enough.",

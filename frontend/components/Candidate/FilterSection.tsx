@@ -20,24 +20,6 @@ const FilterSection: React.FC = () => {
   }
   return (
     <div className='space-y-4'>
-      <form onSubmit={(e) => e.preventDefault()} className='bg-slate-50 p-3 shadow-md'>
-        <p className='font-bold element-heighlight relative'>Experience</p>
-        <div className='w-full py-6'>
-          <Slider
-            min={0}
-            max={15}
-            onChange={({ min, max }) => {
-              setMinPrice(min);
-              setMaxPrice(max)
-            }}
-          />
-        </div>
-        <div className='flex items-center justify-between'>
-          <button className="btn btn-primary btn-xs tracking-widest text-white">Filter</button>
-          <p className=''>{minPrice} - {maxPrice} Years</p>
-        </div>
-      </form>
-
       <div className='bg-slate-50 p-3 shadow-md'>
         <p className='font-bold element-heighlight relative'>Category</p>
         <ul className='ml-3 mt-3 space-y-2'>
@@ -60,6 +42,24 @@ const FilterSection: React.FC = () => {
             skills.map((ele, i) => <button key={i} className='btn btn-xs capitalize tracking-wider btn-outline btn-primary'>{ele}</button>)
           }
           <button className='btn btn-xs text-white capitalize btn-primary'>Add New +</button>
+        </div>
+      </div>
+
+      <div className='bg-slate-50 p-3 shadow-md'>
+        <p className='font-bold element-heighlight relative'>Experience</p>
+        <div className='w-full py-6'>
+          <Slider
+            min={0}
+            max={15}
+            onChange={({ min, max }) => {
+              setMinPrice(min);
+              setMaxPrice(max)
+            }}
+          />
+        </div>
+        <div className='flex items-center justify-between'>
+          <button className="btn btn-primary btn-xs tracking-widest text-white">Filter</button>
+          <p className=''>{minPrice} - {maxPrice} Years</p>
         </div>
       </div>
     </div>
