@@ -26,7 +26,7 @@ const CandidateCard: React.FC = () => {
             </div>
             <div>
               <p className='font-bold'>Expreince</p>
-              <p className='text-center text-slate-600'>2 Years</p>
+              <p className='text-center text-slate-600'>02 Years</p>
             </div>
           </div>
         </div>
