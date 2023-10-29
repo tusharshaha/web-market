@@ -4,7 +4,7 @@ import { FaLocationDot, FaPhone } from 'react-icons/fa6';
 
 const CandidateTop = () => {
   return (
-    <div className='bg-green-50 rounded-md shadow-sm p-10 flex items-center justify-between gap-4'>
+    <div className='bg-slate-100 rounded-md shadow-sm p-10 flex items-center justify-between gap-4'>
       <div className='flex items-center gap-4'>
         <div>
           <Image
