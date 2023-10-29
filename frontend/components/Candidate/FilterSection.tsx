@@ -21,7 +21,7 @@ const FilterSection: React.FC = () => {
   return (
     <div className='space-y-4'>
       <div className='bg-slate-50 p-3 shadow-md'>
-        <p className='font-bold element-heighlight relative'>Category</p>
+        <p className='font-bold element-highlight relative'>Category</p>
         <ul className='ml-3 mt-3 space-y-2'>
           {
             categories.map((ele, i) => <li key={i} className='flex items-center justify-between'>
@@ -36,7 +36,7 @@ const FilterSection: React.FC = () => {
       </div>
 
       <div className='bg-slate-50 p-3 shadow-md'>
-        <p className='font-bold element-heighlight relative'>Skills</p>
+        <p className='font-bold element-highlight relative'>Skills</p>
         <div className='mt-3 flex items-center flex-wrap gap-2'>
           {
             skills.map((ele, i) => <button key={i} className='btn btn-xs capitalize tracking-wider btn-outline btn-primary'>{ele}</button>)
@@ -46,7 +46,7 @@ const FilterSection: React.FC = () => {
       </div>
 
       <div className='bg-slate-50 p-3 shadow-md'>
-        <p className='font-bold element-heighlight relative'>Experience</p>
+        <p className='font-bold element-highlight relative'>Experience</p>
         <div className='w-full py-6'>
           <Slider
             min={0}
