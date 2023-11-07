@@ -1,34 +1,34 @@
 import React from 'react';
 import { FaCalendarAlt } from 'react-icons/fa';
 
-const WorkExperience: React.FC = () => {
-  const works = [
+const Education: React.FC = () => {
+  const educations = [
     {
-      title: "Front End Developer",
-      company: "Sommly",
-      startDate: "May 2022",
-      endDate: "Nov 2022"
+      title: "Graphics Design", 
+      institution: "University of Michigan",
+      startDate: "Jul 2018",
+      endDate: "Jan 2020",
     },
     {
-      title: "Front End Developer",
-      company: "Deesha Trade Endevours Pvt. Ltd.",
-      startDate: "Jan 2022",
-      endDate: "Apr 2022"
+      title: "Diploma in CSE", 
+      institution: "University of Michigan",
+      startDate: "Jul 2018",
+      endDate: "Jan 2020",
     },
   ]
   return (
     <div>
-      <h2 className='text-3xl font-bold mb-6'>Work Experience</h2>
+      <h2 className='text-3xl font-bold mb-6'>Education</h2>
       {
-        works.map((work, i) => (
+        educations.map((ele, i) => (
           <div key={i} className='pl-14 border-l-4 py-4 border-slate-200 trans hover:border-primary'>
             <div className='flex justify-between items-start'>
               <div>
-                <h3 className='font-bold text-xl'>{work.title}</h3>
-                <h4 className='text-primary text-base mt-2'>{work.company}</h4>
+                <h3 className='font-bold text-xl'>{ele.title}</h3>
+                <h4 className='text-primary text-base mt-2'>{ele.institution}</h4>
               </div>
               <span className='text-base flex items-center gap-2 text-slate-500'>
-                <FaCalendarAlt /> {work.startDate} - {work.endDate}
+                <FaCalendarAlt /> {ele.startDate} - {ele.endDate}
               </span>
             </div>
             <p className='mt-3'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem dicta tenetur animi ea id consequatur deserunt qui laborum aliquam, vel ratione dignissimos? Ducimus corrupti, iure facere iste aliquid distinctio unde quos qui natus numquam accusamus necessitatibus officiis a ab dignissimos.</p>
@@ -39,4 +39,4 @@ const WorkExperience: React.FC = () => {
   );
 };
 
-export default WorkExperience;
+export default Education;
