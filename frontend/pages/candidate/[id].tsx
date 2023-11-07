@@ -2,6 +2,7 @@ import CandidateInfo from "@/components/Candidate/CandidateDetails/CandidateInfo
 import CandidateTop from "@/components/Candidate/CandidateDetails/CandidateTop";
 import CareerObjective from "@/components/Candidate/CandidateDetails/CareerObjective";
 import Education from "@/components/Candidate/CandidateDetails/Education";
+import Skills from "@/components/Candidate/CandidateDetails/Skills";
 import WorkExperience from "@/components/Candidate/CandidateDetails/WorkExperience";
 import Layout from "@/components/Layout";
 import { NextPage } from "next";
@@ -24,8 +25,9 @@ const Candidate: NextPage = () => {
             <WorkExperience />
             <Education />
           </div>
-          <div className="w-1/3">
+          <div className="w-1/3 space-y-10">
             <CandidateInfo />
+            <Skills />
           </div>
         </div>
       </div>
