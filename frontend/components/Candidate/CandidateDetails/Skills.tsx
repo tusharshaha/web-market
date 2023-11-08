@@ -7,7 +7,7 @@ const Skills: React.FC = () => {
       skills: [
         {
           subCategory: "Front End",
-          langs: ["HTML", "CSS", "Javascript", "Typescript","CSS", "Javascript", "Typescript"]
+          langs: ["HTML", "CSS", "Javascript", "Typescript", "CSS", "Javascript", "Typescript"]
         },
         {
           subCategory: "Back End",
@@ -57,7 +57,9 @@ const Skills: React.FC = () => {
             {
               skill.skills.map((ele, i) => (
                 <div key={i} className='flex items-start text-sm text-slate-500'>
-                  <span className='font-bold inline-block w-1/4 mr-3'>{ele.subCategory} :</span>
+                  <div className='w-1/4 mr-3'>
+                    <span className='font-bold'>{ele.subCategory} :</span>
+                  </div>
                   <div className='flex flex-wrap items-center gap-2 w-3/4'>
                     {
                       ele.langs.map((lang, i) =>

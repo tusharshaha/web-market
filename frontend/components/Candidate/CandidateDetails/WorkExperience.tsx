@@ -28,7 +28,7 @@ const WorkExperience: React.FC = () => {
                 <h4 className='text-primary text-base mt-2'>{work.company}</h4>
               </div>
               <span className='text-base flex items-center gap-2 text-slate-500'>
-                <FaCalendarAlt className='hidden sm:inline'/> {work.startDate} - {work.endDate}
+                <FaCalendarAlt className='hidden sm:inline' /> {work.startDate} - {work.endDate}
               </span>
             </div>
             <p className='mt-3'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem dicta tenetur animi ea id consequatur deserunt qui laborum aliquam, vel ratione dignissimos? Ducimus corrupti, iure facere iste aliquid distinctio unde quos qui natus numquam accusamus necessitatibus officiis a ab dignissimos.</p>
