@@ -4,8 +4,8 @@ import { FaLocationDot, FaPhone } from 'react-icons/fa6';
 
 const CandidateTop = () => {
   return (
-    <div className='bg-slate-50 rounded-md shadow-md p-10 flex items-center justify-between gap-4'>
-      <div className='flex items-center gap-4'>
+    <div className='bg-slate-50 rounded-md shadow-md p-10 flex flex-col lg:flex-row items-center lg:justify-between gap-4'>
+      <div className='flex flex-col lg:flex-row items-center text-center lg:text-left gap-4'>
         <div>
           <Image
             src="/candidate/1.webp"
@@ -25,8 +25,8 @@ const CandidateTop = () => {
         </div>
       </div>
       <div className='flex flex-col gap-3'>
-        <button className="btn btn-outline btn-primary">Short List</button>
-        <button className="btn btn-primary text-white">Download Resume</button>
+        <button className="btn btn-outline btn-primary btn-sm lg:btn-md">Short List</button>
+        <button className="btn btn-primary text-white btn-sm lg:btn-md">Download Resume</button>
       </div>
     </div>
   );
