@@ -57,7 +57,7 @@ const Skills: React.FC = () => {
             {
               skill.skills.map((ele, i) => (
                 <div key={i} className='flex items-start text-sm text-slate-500'>
-                  <span className='font-bold inline-block w-1/4'>{ele.subCategory} :</span>
+                  <span className='font-bold inline-block w-1/4 mr-3'>{ele.subCategory} :</span>
                   <div className='flex flex-wrap items-center gap-2 w-3/4'>
                     {
                       ele.langs.map((lang, i) =>

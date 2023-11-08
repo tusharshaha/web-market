@@ -21,14 +21,14 @@ const WorkExperience: React.FC = () => {
       <h2 className='text-3xl font-bold mb-6'>Work Experience</h2>
       {
         works.map((work, i) => (
-          <div key={i} className='pl-14 border-l-4 py-4 border-slate-200 trans hover:border-primary'>
-            <div className='flex justify-between items-start'>
+          <div key={i} className='sm:pl-14 sm:border-l-4 py-4 border-slate-200 trans hover:border-primary'>
+            <div className='flex flex-col sm:flex-row sm:justify-between items-start'>
               <div>
                 <h3 className='font-bold text-xl'>{work.title}</h3>
                 <h4 className='text-primary text-base mt-2'>{work.company}</h4>
               </div>
               <span className='text-base flex items-center gap-2 text-slate-500'>
-                <FaCalendarAlt /> {work.startDate} - {work.endDate}
+                <FaCalendarAlt className='hidden sm:inline'/> {work.startDate} - {work.endDate}
               </span>
             </div>
             <p className='mt-3'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem dicta tenetur animi ea id consequatur deserunt qui laborum aliquam, vel ratione dignissimos? Ducimus corrupti, iure facere iste aliquid distinctio unde quos qui natus numquam accusamus necessitatibus officiis a ab dignissimos.</p>
