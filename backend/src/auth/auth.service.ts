@@ -125,6 +125,10 @@ export class AuthService {
       .sort(search.sortBy);
   }
 
+  async refreshToken() {
+    return;
+  }
+
   async resendConfirmationToken(userId: string): Promise<{ message: string }> {
     const user = await this.userModel.findById(userId);
     if (user.status !== "deactive") {

@@ -21,7 +21,7 @@ import { Throttle, ThrottlerGuard } from "@nestjs/throttler";
 
 @Controller("auth")
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
   @Post("signup")
   async signup(@Req() req: any, @Body() signUpDto: SignUpDto) {
@@ -48,7 +48,7 @@ export class AuthController {
   @Get("login/google")
   @UseGuards(GoogleAuthGuard)
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  async loginWithGoogle() {}
+  async loginWithGoogle() { }
 
   @Get("logout")
   @UseGuards(JwtAuthGuard)
@@ -75,6 +75,16 @@ export class AuthController {
   async googleRedirect(@Res() res: Response) {
     try {
       res.redirect(`${process.env.FRONTEND_URL}/`);
+    } catch (error) {
+      return handleError(error);
+    }
+  }
+
+  @Get("/refresh")
+  @UseGuards(JwtAuthGuard)
+  async refreshToken() {
+    try {
+      this.authService.refreshToken();
     } catch (error) {
       return handleError(error);
     }
