@@ -9,6 +9,7 @@ import { ConfigService } from "@nestjs/config";
 import { JwtStrategy } from "./strategies/jwt.strategy";
 import { GoogleStrategy } from "./strategies/google.strategy";
 import { SessionSerializer } from "../auth/session/session.serializer";
+import { RefreshStrategy } from "./strategies/refresh.strategy";
 
 @Module({
   imports: [
@@ -25,7 +26,13 @@ import { SessionSerializer } from "../auth/session/session.serializer";
     MongooseModule.forFeature([{ name: "User", schema: UserSchema }]),
   ],
   controllers: [AuthController],
-  providers: [SessionSerializer, AuthService, JwtStrategy, GoogleStrategy],
-  exports: [JwtStrategy, GoogleStrategy],
+  providers: [
+    SessionSerializer,
+    AuthService,
+    JwtStrategy,
+    RefreshStrategy,
+    GoogleStrategy,
+  ],
+  exports: [JwtStrategy, RefreshStrategy, GoogleStrategy],
 })
 export class AuthModule {}
