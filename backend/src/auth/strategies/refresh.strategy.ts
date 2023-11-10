@@ -1,13 +1,13 @@
 import { Injectable } from "@nestjs/common";
 import { PassportStrategy } from "@nestjs/passport";
-import { ExtractJwt, Strategy } from "passport-jwt";
+import { Strategy } from "passport-jwt";
 import { Request } from "express";
 
 @Injectable()
 export class RefreshStrategy extends PassportStrategy(Strategy, "jwt-refresh") {
   constructor() {
     const extractJwtFromCookie = (req: any) => {
-      return req.user || ExtractJwt.fromAuthHeaderAsBearerToken()(req);
+      return req.user;
     };
     super({
       jwtFromRequest: extractJwtFromCookie,

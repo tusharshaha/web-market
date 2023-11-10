@@ -27,7 +27,7 @@ export class AuthController {
   async signup(@Req() req: any, @Body() signUpDto: SignUpDto) {
     try {
       const token = await this.authService.signUp(signUpDto);
-      req.session.passport = { user: token.refresh_token };
+      req.session.passport = { user: token.access_token };
       return { token, message: "Successfully Signup" };
     } catch (error) {
       return handleError(error);
@@ -38,7 +38,7 @@ export class AuthController {
   async login(@Req() req: any, @Body() loginDto: LoginDto) {
     try {
       const token = await this.authService.login(loginDto);
-      req.session.passport = { user: token.refresh_token };
+      req.session.passport = { user: token.access_token };
       return { token, message: "Successfully login" };
     } catch (error) {
       return handleError(error);
