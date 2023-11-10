@@ -59,11 +59,11 @@ export class AuthService {
   }
 
   async signUp(signUpDto: SignUpDto) {
-    const { name, email, password, role, contactNumber } = signUpDto;
+    const { name, email, password, role } = signUpDto;
     if (role === "admin") {
       throw new UnauthorizedException("You can't perform this action");
     }
-    const userBody = { name, email, password, contactNumber, role };
+    const userBody = { name, email, password };
     const user = new this.userModel(userBody);
     this.generateConfirmationToken(user);
     const updatedUser = await user.save({ validateBeforeSave: true });
@@ -101,13 +101,13 @@ export class AuthService {
     user.confirmationTokenExpires = undefined;
     if (user.email) {
       const updatedUser = await user.save({ validateBeforeSave: false });
-      return this.jwtService.sign({ id: updatedUser._id });
+      return await this.getToken(updatedUser._id);
     }
     user.email = email;
     user.provider = "google";
     user.providerId = providerId;
     const updatedUser = await user.save({ validateBeforeSave: false });
-    return this.jwtService.sign({ id: updatedUser._id });
+    return await this.getToken(updatedUser._id);
   }
 
   async confirmEmail(token: string, res: Response) {

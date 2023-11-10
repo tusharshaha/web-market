@@ -21,14 +21,14 @@ import { Throttle, ThrottlerGuard } from "@nestjs/throttler";
 
 @Controller("auth")
 export class AuthController {
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService) {}
 
   @Post("signup")
   async signup(@Req() req: any, @Body() signUpDto: SignUpDto) {
     try {
-      const { token, ...user } = await this.authService.signUp(signUpDto);
-      req.session.passport = { user: token };
-      return { user, message: "Successfully Signup" };
+      const token = await this.authService.signUp(signUpDto);
+      req.session.passport = { user: token.refresh_token };
+      return { token, message: "Successfully Signup" };
     } catch (error) {
       return handleError(error);
     }
@@ -37,9 +37,9 @@ export class AuthController {
   @Post("login")
   async login(@Req() req: any, @Body() loginDto: LoginDto) {
     try {
-      const { token, ...user } = await this.authService.login(loginDto);
-      req.session.passport = { user: token };
-      return { user, message: "Successfully login" };
+      const token = await this.authService.login(loginDto);
+      req.session.passport = { user: token.refresh_token };
+      return { token, message: "Successfully login" };
     } catch (error) {
       return handleError(error);
     }
@@ -48,7 +48,7 @@ export class AuthController {
   @Get("login/google")
   @UseGuards(GoogleAuthGuard)
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  async loginWithGoogle() { }
+  async loginWithGoogle() {}
 
   @Get("logout")
   @UseGuards(JwtAuthGuard)
