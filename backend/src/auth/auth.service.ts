@@ -24,6 +24,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
+  // get confirm mail token
   async generateConfirmationToken(user: User) {
     const confToken = crypto.randomUUID();
     user.confirmationToken = confToken;
@@ -31,6 +32,30 @@ export class AuthService {
     // get tomorrow / expire date is 1 day.
     date.setDate(date.getDate() + 1);
     user.confirmationTokenExpires = date;
+  }
+
+  // get access token and refresh token
+  async getToken(id: string) {
+    const access_token = this.jwtService.signAsync(
+      { id },
+      {
+        secret: process.env.JWT_SECRET,
+        expiresIn: 60 * 20, // expire time is 20 minute
+      },
+    );
+    const refresh_token = this.jwtService.signAsync(
+      { id },
+      {
+        secret: process.env.RT_SECRET,
+        expiresIn: 60 * 60 * 24 * 7, // expire time is 7 days
+      },
+    );
+    const [at, rt] = await Promise.all([access_token, refresh_token]);
+
+    return {
+      access_token: at,
+      refresh_token: rt,
+    };
   }
 
   async signUp(signUpDto: SignUpDto) {
@@ -42,10 +67,10 @@ export class AuthService {
     const user = new this.userModel(userBody);
     this.generateConfirmationToken(user);
     const updatedUser = await user.save({ validateBeforeSave: true });
-    const token = this.jwtService.sign({ id: user._id });
+    const token = await this.getToken(user._id);
     // mail sending functionality
     const template = confirmMailTemp(updatedUser);
-    return { name, email, contactNumber, token };
+    return token;
   }
 
   async login(loginDto: LoginDto) {
@@ -61,16 +86,8 @@ export class AuthService {
     if (!isPasswordMatch) {
       throw new UnauthorizedException("Invalid email or password");
     }
-    const token = this.jwtService.sign({ id: user._id });
-    const { name, userImage, contactNumber, passwordChangedAt } = user;
-    return {
-      name,
-      email,
-      userImage,
-      contactNumber,
-      passwordChangedAt,
-      token,
-    };
+    const token = await this.getToken(user._id);
+    return token;
   }
 
   async loginWithGoogle(details: UserDetails) {
