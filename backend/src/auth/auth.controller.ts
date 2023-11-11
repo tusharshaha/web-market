@@ -17,7 +17,7 @@ import { Response } from "express";
 import { AuthenticatedRequest } from "../utils/types";
 import { JwtAuthGuard } from "./guards/jwt-auth.guard";
 import { GoogleAuthGuard } from "./guards/google-auth.guard";
-import { Throttle, ThrottlerGuard } from "@nestjs/throttler";
+import { Throttle } from "@nestjs/throttler";
 import { Public } from "../common/public.decorator";
 
 @Controller("auth")
