@@ -24,6 +24,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
+  // get confirm mail token
   async generateConfirmationToken(user: User) {
     const confToken = crypto.randomUUID();
     user.confirmationToken = confToken;
@@ -33,19 +34,43 @@ export class AuthService {
     user.confirmationTokenExpires = date;
   }
 
+  // get access token and refresh token
+  async getToken(id: string) {
+    const access_token = this.jwtService.signAsync(
+      { id },
+      {
+        secret: process.env.JWT_SECRET,
+        expiresIn: 60 * 20, // expire time is 20 minute
+      },
+    );
+    const refresh_token = this.jwtService.signAsync(
+      { id },
+      {
+        secret: process.env.RT_SECRET,
+        expiresIn: 60 * 60 * 24 * 7, // expire time is 7 days
+      },
+    );
+    const [at, rt] = await Promise.all([access_token, refresh_token]);
+
+    return {
+      access_token: at,
+      refresh_token: rt,
+    };
+  }
+
   async signUp(signUpDto: SignUpDto) {
-    const { name, email, password, role, contactNumber } = signUpDto;
+    const { name, email, password, role } = signUpDto;
     if (role === "admin") {
       throw new UnauthorizedException("You can't perform this action");
     }
-    const userBody = { name, email, password, contactNumber, role };
+    const userBody = { name, email, password };
     const user = new this.userModel(userBody);
     this.generateConfirmationToken(user);
     const updatedUser = await user.save({ validateBeforeSave: true });
-    const token = this.jwtService.sign({ id: user._id });
+    const token = await this.getToken(user._id);
     // mail sending functionality
     const template = confirmMailTemp(updatedUser);
-    return { name, email, contactNumber, token };
+    return token;
   }
 
   async login(loginDto: LoginDto) {
@@ -61,16 +86,8 @@ export class AuthService {
     if (!isPasswordMatch) {
       throw new UnauthorizedException("Invalid email or password");
     }
-    const token = this.jwtService.sign({ id: user._id });
-    const { name, userImage, contactNumber, passwordChangedAt } = user;
-    return {
-      name,
-      email,
-      userImage,
-      contactNumber,
-      passwordChangedAt,
-      token,
-    };
+    const token = await this.getToken(user._id);
+    return token;
   }
 
   async loginWithGoogle(details: UserDetails) {
@@ -84,13 +101,13 @@ export class AuthService {
     user.confirmationTokenExpires = undefined;
     if (user.email) {
       const updatedUser = await user.save({ validateBeforeSave: false });
-      return this.jwtService.sign({ id: updatedUser._id });
+      return await this.getToken(updatedUser._id);
     }
     user.email = email;
     user.provider = "google";
     user.providerId = providerId;
     const updatedUser = await user.save({ validateBeforeSave: false });
-    return this.jwtService.sign({ id: updatedUser._id });
+    return await this.getToken(updatedUser._id);
   }
 
   async confirmEmail(token: string, res: Response) {
@@ -123,6 +140,10 @@ export class AuthService {
       .limit(search.limit)
       .select("-password -__v -updatedAt -passwordChangedAt -provider")
       .sort(search.sortBy);
+  }
+
+  async refreshToken() {
+    return;
   }
 
   async resendConfirmationToken(userId: string): Promise<{ message: string }> {

@@ -26,9 +26,9 @@ export class AuthController {
   @Post("signup")
   async signup(@Req() req: any, @Body() signUpDto: SignUpDto) {
     try {
-      const { token, ...user } = await this.authService.signUp(signUpDto);
-      req.session.passport = { user: token };
-      return { user, message: "Successfully Signup" };
+      const token = await this.authService.signUp(signUpDto);
+      req.session.passport = { user: token.access_token };
+      return { token, message: "Successfully Signup" };
     } catch (error) {
       return handleError(error);
     }
@@ -37,9 +37,9 @@ export class AuthController {
   @Post("login")
   async login(@Req() req: any, @Body() loginDto: LoginDto) {
     try {
-      const { token, ...user } = await this.authService.login(loginDto);
-      req.session.passport = { user: token };
-      return { user, message: "Successfully login" };
+      const token = await this.authService.login(loginDto);
+      req.session.passport = { user: token.access_token };
+      return { token, message: "Successfully login" };
     } catch (error) {
       return handleError(error);
     }
@@ -75,6 +75,16 @@ export class AuthController {
   async googleRedirect(@Res() res: Response) {
     try {
       res.redirect(`${process.env.FRONTEND_URL}/`);
+    } catch (error) {
+      return handleError(error);
+    }
+  }
+
+  @Get("/refresh")
+  @UseGuards(JwtAuthGuard)
+  async refreshToken() {
+    try {
+      this.authService.refreshToken();
     } catch (error) {
       return handleError(error);
     }
