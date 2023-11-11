@@ -8,7 +8,6 @@ import { JwtModule } from "@nestjs/jwt";
 import { JwtStrategy } from "./strategies/jwt.strategy";
 import { GoogleStrategy } from "./strategies/google.strategy";
 import { SessionSerializer } from "../auth/session/session.serializer";
-import { RefreshStrategy } from "./strategies/refresh.strategy";
 import { ConfigService } from "@nestjs/config";
 
 @Module({
@@ -19,19 +18,14 @@ import { ConfigService } from "@nestjs/config";
       useFactory: (config: ConfigService) => {
         return {
           secret: config.get<string>("JWT_SECRET"),
+          signOptions: { expiresIn: config.get<string | number>("JWT_EXP") },
         };
       },
     }),
     MongooseModule.forFeature([{ name: "User", schema: UserSchema }]),
   ],
   controllers: [AuthController],
-  providers: [
-    SessionSerializer,
-    AuthService,
-    JwtStrategy,
-    RefreshStrategy,
-    GoogleStrategy,
-  ],
-  exports: [JwtStrategy, RefreshStrategy, GoogleStrategy],
+  providers: [SessionSerializer, AuthService, JwtStrategy, GoogleStrategy],
+  exports: [JwtStrategy, GoogleStrategy],
 })
 export class AuthModule {}
