@@ -18,11 +18,13 @@ import { AuthenticatedRequest } from "../utils/types";
 import { JwtAuthGuard } from "./guards/jwt-auth.guard";
 import { GoogleAuthGuard } from "./guards/google-auth.guard";
 import { Throttle, ThrottlerGuard } from "@nestjs/throttler";
+import { Public } from "../common/public.decorator";
 
 @Controller("auth")
 export class AuthController {
   constructor(private readonly authService: AuthService) {}
 
+  @Public()
   @Post("signup")
   async signup(@Req() req: any, @Body() signUpDto: SignUpDto) {
     try {
@@ -34,6 +36,7 @@ export class AuthController {
     }
   }
 
+  @Public()
   @Post("login")
   async login(@Req() req: any, @Body() loginDto: LoginDto) {
     try {
@@ -45,13 +48,13 @@ export class AuthController {
     }
   }
 
+  @Public()
   @Get("login/google")
   @UseGuards(GoogleAuthGuard)
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   async loginWithGoogle() {}
 
   @Get("logout")
-  @UseGuards(JwtAuthGuard)
   async logoutUser(@Req() req: any, @Res() res: Response) {
     try {
       req.session.destroy((err: any) => {
@@ -70,6 +73,7 @@ export class AuthController {
     }
   }
 
+  @Public()
   @Get("/google/redirect")
   @UseGuards(GoogleAuthGuard)
   async googleRedirect(@Res() res: Response) {
@@ -80,6 +84,7 @@ export class AuthController {
     }
   }
 
+  @Public()
   @Get("/refresh")
   @UseGuards(JwtAuthGuard)
   async refreshToken() {
@@ -90,8 +95,8 @@ export class AuthController {
     }
   }
 
+  @Public()
   @Get("confirm_email")
-  @UseGuards(ThrottlerGuard)
   @Throttle(5, 60)
   async confirmEmail(@Query("token") token: string, @Res() res: Response) {
     try {
@@ -108,7 +113,6 @@ export class AuthController {
   }
 
   @Get("users")
-  @UseGuards(JwtAuthGuard)
   async getAllUser(@Req() req: AuthenticatedRequest, @Query() query: any) {
     try {
       const { userId } = req.user;
@@ -119,7 +123,6 @@ export class AuthController {
   }
 
   @Get("resend_confirmation_token")
-  @UseGuards(JwtAuthGuard)
   async resendConfirmationToken(@Req() req: AuthenticatedRequest) {
     try {
       const { userId } = req.user;
@@ -130,7 +133,6 @@ export class AuthController {
   }
 
   @Get("password_reset_token")
-  @UseGuards(JwtAuthGuard)
   async resetPasswordToken(@Req() req: AuthenticatedRequest) {
     try {
       const { userId } = req.user;
