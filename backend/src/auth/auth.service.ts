@@ -39,14 +39,14 @@ export class AuthService {
     const access_token = this.jwtService.signAsync(
       { id },
       {
-        secret: process.env.JWT_SECRET,
+        secret: `${process.env.JWT_SECRET}`,
         expiresIn: 60 * 20, // expire time is 20 minute
       },
     );
     const refresh_token = this.jwtService.signAsync(
       { id },
       {
-        secret: process.env.RT_SECRET,
+        secret: `${process.env.RT_SECRET}`,
         expiresIn: 60 * 60 * 24 * 7, // expire time is 7 days
       },
     );

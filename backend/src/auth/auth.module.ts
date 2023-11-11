@@ -9,19 +9,11 @@ import { JwtStrategy } from "./strategies/jwt.strategy";
 import { GoogleStrategy } from "./strategies/google.strategy";
 import { SessionSerializer } from "../auth/session/session.serializer";
 import { RefreshStrategy } from "./strategies/refresh.strategy";
-import { ConfigService } from "@nestjs/config";
 
 @Module({
   imports: [
     PassportModule.register({ defaultStrategy: "jwt" }),
-    JwtModule.registerAsync({
-      inject: [ConfigService],
-      useFactory: (config: ConfigService) => {
-        return {
-          secret: config.get<string>("JWT_SECRET"),
-        };
-      },
-    }),
+    JwtModule.register({}),
     MongooseModule.forFeature([{ name: "User", schema: UserSchema }]),
   ],
   controllers: [AuthController],

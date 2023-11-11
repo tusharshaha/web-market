@@ -5,6 +5,7 @@ import { ConfigModule } from "@nestjs/config";
 import { ThrottlerGuard, ThrottlerModule } from "@nestjs/throttler";
 import { APP_GUARD } from "@nestjs/core";
 import { JobsModule } from "./jobs/jobs.module";
+import { JwtAuthGuard } from "./auth/guards/jwt-auth.guard";
 
 @Module({
   imports: [
@@ -27,6 +28,10 @@ import { JobsModule } from "./jobs/jobs.module";
     {
       provide: APP_GUARD,
       useClass: ThrottlerGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: JwtAuthGuard,
     },
   ],
 })
