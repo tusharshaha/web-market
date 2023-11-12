@@ -1,15 +1,14 @@
 import { Controller, Get, Query, UseGuards } from "@nestjs/common";
 import { JobsService } from "./jobs.service";
 import { handleError } from "../utils/errorHandler";
-import { Throttle, ThrottlerGuard } from "@nestjs/throttler";
+import { Public } from "../common/public.decorator";
 
 @Controller("jobs")
 export class JobsController {
   constructor(private readonly jobsService: JobsService) {}
 
+  @Public()
   @Get("/")
-  @UseGuards(ThrottlerGuard)
-  @Throttle()
   async jobList(
     @Query("limit") limit: string,
     @Query("offset") offset: string,
