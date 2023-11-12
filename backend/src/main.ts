@@ -2,8 +2,8 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { NestExpressApplication } from "@nestjs/platform-express";
-import * as cookieParser from "cookie-parser";
 const passport = require("passport");
+const cookieParser = require("cookie-parser");
 const crypto = require("crypto");
 const session = require("express-session");
 import helmet from "helmet";
