@@ -1,5 +1,4 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Get,
@@ -26,11 +25,16 @@ export class AuthController {
 
   @Public()
   @Post("signup")
-  async signup(@Req() req: any, @Body() signUpDto: SignUpDto) {
+  async signup(
+    @Req() req: any,
+    @Res() res: Response,
+    @Body() signUpDto: SignUpDto,
+  ) {
     try {
       const token = await this.authService.signUp(signUpDto);
       req.session.passport = { user: token.access_token };
-      return { token, message: "Successfully Signup" };
+      res.cookie("refresh_token", token.refresh_token);
+      return { message: "Successfully Signup" };
     } catch (error) {
       return handleError(error);
     }
@@ -57,17 +61,7 @@ export class AuthController {
   @Get("logout")
   async logoutUser(@Req() req: any, @Res() res: Response) {
     try {
-      req.session.destroy((err: any) => {
-        if (err) {
-          throw new BadRequestException("Failed to logout");
-        } else {
-          res.clearCookie("LOGIN_INFO");
-          res.json({
-            status: 200,
-            message: "Successfully logged out.",
-          });
-        }
-      });
+      this.authService.logout(req, res);
     } catch (error) {
       return handleError(error);
     }

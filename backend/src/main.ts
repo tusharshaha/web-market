@@ -32,7 +32,7 @@ async function bootstrap() {
     collectionName: "user_sessions",
     autoRemove: "native",
   });
-  const cookie: Cookie = { maxAge: 60 * 60 * 1000 }; //cookie max age is 1 hour
+  const cookie: Cookie = { maxAge: 60 * 60 * 24 * 7 * 1000 }; //cookie max age is 7 days
 
   // set cookie security on  production
   if (process.env.NODE_ENV === "production") {

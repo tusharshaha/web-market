@@ -1,5 +1,6 @@
 import {
   ForbiddenException,
+  BadRequestException,
   Injectable,
   UnauthorizedException,
 } from "@nestjs/common";
@@ -32,8 +33,9 @@ export class AuthService {
     const userBody = { name, email, password };
     const user = new this.userModel(userBody);
     this.generateConfirmationToken(user);
-    const updatedUser = await user.save({ validateBeforeSave: true });
     const token = await this.getToken(user._id);
+    user.refreshToken = bcrypt.hashSync(token.refresh_token, 8);
+    const updatedUser = await user.save({ validateBeforeSave: true });
     // mail sending functionality
     const template = confirmMailTemp(updatedUser);
     return token;
@@ -53,10 +55,11 @@ export class AuthService {
       throw new UnauthorizedException("Invalid email or password");
     }
     const token = await this.getToken(user._id);
+    await this.updateRefreshToken(user._id, token.refresh_token);
     return token;
   }
 
-  async loginWithGoogle(details: UserDetails) {
+  async loginWithGoogle(details: UserDetails): Promise<Token> {
     const { email, userImage, name, providerId } = details;
     const user =
       (await this.userModel.findOne({ email })) || new this.userModel();
@@ -66,14 +69,34 @@ export class AuthService {
     user.confirmationToken = undefined;
     user.confirmationTokenExpires = undefined;
     if (user.email) {
-      const updatedUser = await user.save({ validateBeforeSave: true });
-      return await this.getToken(updatedUser._id);
+      const token = await this.getToken(user._id);
+      user.refreshToken = bcrypt.hashSync(token.refresh_token, 8);
+      await user.save({ validateBeforeSave: false });
+      return token;
     }
     user.email = email;
     user.provider = "google";
     user.providerId = providerId;
-    const updatedUser = await user.save({ validateBeforeSave: true });
-    return await this.getToken(updatedUser._id);
+    const token = await this.getToken(user._id);
+    user.refreshToken = bcrypt.hashSync(token.refresh_token, 8);
+    await user.save({ validateBeforeSave: false });
+    return token;
+  }
+
+  async logout(req: any, res: Response) {
+    const { userId } = req.user;
+    req.session.destroy(async (err: any) => {
+      if (err) {
+        throw new BadRequestException("Failed to logout");
+      } else {
+        await this.userModel.findByIdAndUpdate(userId, { refreshToken: null });
+        res.clearCookie("LOGIN_INFO");
+        res.json({
+          status: 200,
+          message: "Successfully logged out.",
+        });
+      }
+    });
   }
 
   async confirmEmail(token: string, res: Response) {
@@ -151,6 +174,11 @@ export class AuthService {
     // get tomorrow / expire date is 1 day.
     date.setDate(date.getDate() + 1);
     user.confirmationTokenExpires = date;
+  }
+
+  async updateRefreshToken(userId: string, refresh_token: string) {
+    const hash = bcrypt.hashSync(refresh_token, 8);
+    await this.userModel.findByIdAndUpdate(userId, { refreshToken: hash });
   }
 
   // get access token and refresh token
