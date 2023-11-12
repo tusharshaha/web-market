@@ -24,6 +24,5 @@ import { RefreshStrategy } from "./strategies/refresh.strategy";
     RefreshStrategy,
     GoogleStrategy,
   ],
-  exports: [JwtStrategy, RefreshStrategy, GoogleStrategy],
 })
 export class AuthModule {}

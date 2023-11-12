@@ -73,6 +73,11 @@ export class User extends Document {
   @Prop()
   providerId: string;
 
+  @Prop({
+    required: [true, "Refresh token is required"],
+  })
+  refreshToken: string;
+
   @Prop()
   confirmationToken: string;
 

@@ -1,5 +1,6 @@
 import {
   ForbiddenException,
+  BadRequestException,
   Injectable,
   UnauthorizedException,
 } from "@nestjs/common";
@@ -13,7 +14,7 @@ import { JwtService } from "@nestjs/jwt";
 import { SignUpDto } from "./dto/signup.dto";
 import { LoginDto } from "./dto/login.dto";
 import { Response } from "express";
-import { UserDetails } from "../utils/types";
+import { Token, UserDetails } from "../utils/types";
 import { flexibleQuery } from "../utils/flexibleQuery";
 
 @Injectable({})
@@ -24,41 +25,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  // get confirm mail token
-  async generateConfirmationToken(user: User) {
-    const confToken = crypto.randomUUID();
-    user.confirmationToken = confToken;
-    const date = new Date();
-    // get tomorrow / expire date is 1 day.
-    date.setDate(date.getDate() + 1);
-    user.confirmationTokenExpires = date;
-  }
-
-  // get access token and refresh token
-  async getToken(id: string) {
-    const access_token = this.jwtService.signAsync(
-      { id },
-      {
-        secret: `${process.env.JWT_SECRET}`,
-        expiresIn: 60 * 20, // expire time is 20 minute
-      },
-    );
-    const refresh_token = this.jwtService.signAsync(
-      { id },
-      {
-        secret: `${process.env.RT_SECRET}`,
-        expiresIn: 60 * 60 * 24 * 7, // expire time is 7 days
-      },
-    );
-    const [at, rt] = await Promise.all([access_token, refresh_token]);
-
-    return {
-      access_token: at,
-      refresh_token: rt,
-    };
-  }
-
-  async signUp(signUpDto: SignUpDto) {
+  async signUp(signUpDto: SignUpDto): Promise<Token> {
     const { name, email, password, role } = signUpDto;
     if (role === "admin") {
       throw new UnauthorizedException("You can't perform this action");
@@ -66,14 +33,15 @@ export class AuthService {
     const userBody = { name, email, password };
     const user = new this.userModel(userBody);
     this.generateConfirmationToken(user);
-    const updatedUser = await user.save({ validateBeforeSave: true });
     const token = await this.getToken(user._id);
+    user.refreshToken = bcrypt.hashSync(token.refresh_token, 8);
+    const updatedUser = await user.save({ validateBeforeSave: true });
     // mail sending functionality
     const template = confirmMailTemp(updatedUser);
     return token;
   }
 
-  async login(loginDto: LoginDto) {
+  async login(loginDto: LoginDto): Promise<Token> {
     const { email, password } = loginDto;
     const user = await this.userModel.findOne({ email });
     if (!user) {
@@ -87,10 +55,11 @@ export class AuthService {
       throw new UnauthorizedException("Invalid email or password");
     }
     const token = await this.getToken(user._id);
+    await this.updateRefreshToken(user._id, token.refresh_token);
     return token;
   }
 
-  async loginWithGoogle(details: UserDetails) {
+  async loginWithGoogle(details: UserDetails): Promise<Token> {
     const { email, userImage, name, providerId } = details;
     const user =
       (await this.userModel.findOne({ email })) || new this.userModel();
@@ -100,14 +69,22 @@ export class AuthService {
     user.confirmationToken = undefined;
     user.confirmationTokenExpires = undefined;
     if (user.email) {
-      const updatedUser = await user.save({ validateBeforeSave: false });
-      return await this.getToken(updatedUser._id);
+      const token = await this.getToken(user._id);
+      user.refreshToken = bcrypt.hashSync(token.refresh_token, 8);
+      await user.save({ validateBeforeSave: false });
+      return token;
     }
     user.email = email;
     user.provider = "google";
     user.providerId = providerId;
-    const updatedUser = await user.save({ validateBeforeSave: false });
-    return await this.getToken(updatedUser._id);
+    const token = await this.getToken(user._id);
+    user.refreshToken = bcrypt.hashSync(token.refresh_token, 8);
+    await user.save({ validateBeforeSave: false });
+    return token;
+  }
+
+  async logout(userId: string) {
+    await this.userModel.findByIdAndUpdate(userId, { refreshToken: null });
   }
 
   async confirmEmail(token: string, res: Response) {
@@ -142,8 +119,16 @@ export class AuthService {
       .sort(search.sortBy);
   }
 
-  async refreshToken() {
-    return;
+  async refreshToken(userId: string, refreshToken: string): Promise<Token> {
+    const user = await this.userModel.findById(userId);
+    if (!user || !user.refreshToken) {
+      throw new ForbiddenException("Access Denied");
+    }
+    const rtMatch = bcrypt.compare(refreshToken, user.refreshToken);
+    if (!rtMatch) throw new ForbiddenException("Access Denied");
+    const token = await this.getToken(user._id);
+    await this.updateRefreshToken(user._id, token.refresh_token);
+    return token;
   }
 
   async resendConfirmationToken(userId: string): Promise<{ message: string }> {
@@ -175,5 +160,44 @@ export class AuthService {
     const template = confirmMailTemp(updatedUser);
 
     return { message: "Token have sent to your mail" };
+  }
+
+  // get confirm mail token
+  async generateConfirmationToken(user: User): Promise<void> {
+    const confToken = crypto.randomUUID();
+    user.confirmationToken = confToken;
+    const date = new Date();
+    // get tomorrow / expire date is 1 day.
+    date.setDate(date.getDate() + 1);
+    user.confirmationTokenExpires = date;
+  }
+
+  async updateRefreshToken(userId: string, refresh_token: string) {
+    const hash = bcrypt.hashSync(refresh_token, 8);
+    await this.userModel.findByIdAndUpdate(userId, { refreshToken: hash });
+  }
+
+  // get access token and refresh token
+  async getToken(id: string): Promise<Token> {
+    const access_token = this.jwtService.signAsync(
+      { id },
+      {
+        secret: `${process.env.JWT_SECRET}`,
+        expiresIn: "1h", // expire time is 1 hour
+      },
+    );
+    const refresh_token = this.jwtService.signAsync(
+      { id },
+      {
+        secret: `${process.env.RT_SECRET}`,
+        expiresIn: "7d", // expire time is 7 days
+      },
+    );
+    const [at, rt] = await Promise.all([access_token, refresh_token]);
+
+    return {
+      access_token: at,
+      refresh_token: rt,
+    };
   }
 }

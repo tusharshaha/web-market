@@ -23,6 +23,6 @@ export class GoogleStrategy extends PassportStrategy(Strategy, "google") {
       providerId: id,
     };
     const user = await this.authService.loginWithGoogle(details);
-    return user.access_token || null;
+    return user || null;
   }
 }

@@ -1,5 +1,4 @@
 import {
-  BadRequestException,
   Body,
   Controller,
   Get,
@@ -15,10 +14,10 @@ import { LoginDto } from "./dto/login.dto";
 import { handleError } from "../utils/errorHandler";
 import { Response } from "express";
 import { AuthenticatedRequest } from "../utils/types";
-import { JwtAuthGuard } from "./guards/jwt-auth.guard";
 import { GoogleAuthGuard } from "./guards/google-auth.guard";
 import { Throttle } from "@nestjs/throttler";
 import { Public } from "../common/public.decorator";
+import { RTAuthGuard } from "./guards/refresh-auth.guard";
 
 @Controller("auth")
 export class AuthController {
@@ -26,11 +25,12 @@ export class AuthController {
 
   @Public()
   @Post("signup")
-  async signup(@Req() req: any, @Body() signUpDto: SignUpDto) {
+  async signup(@Res() res: Response, @Body() signUpDto: SignUpDto) {
     try {
       const token = await this.authService.signUp(signUpDto);
-      req.session.passport = { user: token.access_token };
-      return { token, message: "Successfully Signup" };
+      res.cookie("access_token", token.access_token);
+      res.cookie("refresh_token", token.refresh_token);
+      return { message: "Successfully Signup" };
     } catch (error) {
       return handleError(error);
     }
@@ -38,11 +38,12 @@ export class AuthController {
 
   @Public()
   @Post("login")
-  async login(@Req() req: any, @Body() loginDto: LoginDto) {
+  async login(@Res() res: Response, @Body() loginDto: LoginDto) {
     try {
       const token = await this.authService.login(loginDto);
-      req.session.passport = { user: token.access_token };
-      return { token, message: "Successfully login" };
+      res.cookie("access_token", token.access_token);
+      res.cookie("refresh_token", token.refresh_token);
+      res.json({ message: "Successfully login" });
     } catch (error) {
       return handleError(error);
     }
@@ -54,31 +55,28 @@ export class AuthController {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   async loginWithGoogle() {}
 
-  @Get("logout")
-  async logoutUser(@Req() req: any, @Res() res: Response) {
+  @Public()
+  @Get("/google/redirect")
+  @UseGuards(GoogleAuthGuard)
+  async googleRedirect(@Req() req: any, @Res() res: Response) {
     try {
-      req.session.destroy((err: any) => {
-        if (err) {
-          throw new BadRequestException("Failed to logout");
-        } else {
-          res.clearCookie("LOGIN_INFO");
-          res.json({
-            status: 200,
-            message: "Successfully logged out.",
-          });
-        }
-      });
+      const token = req.user;
+      res.cookie("access_token", token.access_token);
+      res.cookie("refresh_token", token.refresh_token);
+      res.redirect(`${process.env.FRONTEND_URL}/`);
     } catch (error) {
       return handleError(error);
     }
   }
 
-  @Public()
-  @Get("/google/redirect")
-  @UseGuards(GoogleAuthGuard)
-  async googleRedirect(@Res() res: Response) {
+  @Get("logout")
+  async logoutUser(@Req() req: AuthenticatedRequest, @Res() res: Response) {
     try {
-      res.redirect(`${process.env.FRONTEND_URL}/`);
+      const { userId } = req.user;
+      await this.authService.logout(userId);
+      res.clearCookie("access_token");
+      res.clearCookie("refresh_token");
+      res.json({ message: "Successfully logout" });
     } catch (error) {
       return handleError(error);
     }
@@ -86,10 +84,15 @@ export class AuthController {
 
   @Public()
   @Get("/refresh")
-  @UseGuards(JwtAuthGuard)
-  async refreshToken() {
+  @UseGuards(RTAuthGuard)
+  async refreshToken(@Req() req: any, @Res() res: Response) {
     try {
-      this.authService.refreshToken();
+      const { userId } = req.user;
+      const refreshToken = req.cookies.refresh_token || null;
+      const token = await this.authService.refreshToken(userId, refreshToken);
+      res.cookie("access_token", token.access_token);
+      res.cookie("refresh_token", token.refresh_token);
+      res.json({ message: "Token refresh successfuly" });
     } catch (error) {
       return handleError(error);
     }

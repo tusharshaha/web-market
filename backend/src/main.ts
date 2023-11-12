@@ -2,10 +2,10 @@
 import { NestFactory } from "@nestjs/core";
 import { AppModule } from "./app.module";
 import { NestExpressApplication } from "@nestjs/platform-express";
+import * as cookieParser from "cookie-parser";
 const passport = require("passport");
 const crypto = require("crypto");
 const session = require("express-session");
-const MongoStore = require("connect-mongo");
 import helmet from "helmet";
 import { ValidationPipe } from "@nestjs/common";
 import { ThrottlerExceptionFilter } from "./utils/throtller-exception.filter";
@@ -26,13 +26,7 @@ async function bootstrap() {
     methods: "GET,HEAD,PATCH,POST,DELETE",
     credentials: true,
   });
-  // store the user session to mongoDB
-  const mongoStore = MongoStore.create({
-    mongoUrl: process.env.MONGO_URI,
-    collectionName: "user_sessions",
-    autoRemove: "native",
-  });
-  const cookie: Cookie = { maxAge: 60 * 20 };
+  const cookie: Cookie = { maxAge: 60 * 1000 }; //cookie max age is 1 minute
 
   // set cookie security on  production
   if (process.env.NODE_ENV === "production") {
@@ -48,12 +42,12 @@ async function bootstrap() {
       secret: process.env.SESSION_SECRET,
       resave: false,
       saveUninitialized: false,
-      store: mongoStore,
       cookie,
     }),
   );
   app.use(passport.initialize());
   app.use(passport.session());
+  app.use(cookieParser());
   app.useGlobalPipes(new ValidationPipe());
   app.useGlobalFilters(new ThrottlerExceptionFilter());
   await app.listen(5000);
