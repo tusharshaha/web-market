@@ -119,8 +119,16 @@ export class AuthService {
       .sort(search.sortBy);
   }
 
-  async refreshToken() {
-    return;
+  async refreshToken(userId: string, refreshToken: string): Promise<Token> {
+    const user = await this.userModel.findById(userId);
+    if (!user || !user.refreshToken) {
+      throw new ForbiddenException("Access Denied");
+    }
+    const rtMatch = bcrypt.compare(refreshToken, user.refreshToken);
+    if (!rtMatch) throw new ForbiddenException("Access Denied");
+    const token = await this.getToken(user._id);
+    await this.updateRefreshToken(user._id, token.refresh_token);
+    return token;
   }
 
   async resendConfirmationToken(userId: string): Promise<{ message: string }> {

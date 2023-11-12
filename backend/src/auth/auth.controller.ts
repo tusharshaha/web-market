@@ -14,10 +14,10 @@ import { LoginDto } from "./dto/login.dto";
 import { handleError } from "../utils/errorHandler";
 import { Response } from "express";
 import { AuthenticatedRequest } from "../utils/types";
-import { JwtAuthGuard } from "./guards/jwt-auth.guard";
 import { GoogleAuthGuard } from "./guards/google-auth.guard";
 import { Throttle } from "@nestjs/throttler";
 import { Public } from "../common/public.decorator";
+import { RTAuthGuard } from "./guards/refresh-auth.guard";
 
 @Controller("auth")
 export class AuthController {
@@ -63,8 +63,7 @@ export class AuthController {
       const token = req.user;
       res.cookie("access_token", token.access_token);
       res.cookie("refresh_token", token.refresh_token);
-      // res.redirect(`${process.env.FRONTEND_URL}/`);
-      res.send("test");
+      res.redirect(`${process.env.FRONTEND_URL}/`);
     } catch (error) {
       return handleError(error);
     }
@@ -85,10 +84,14 @@ export class AuthController {
 
   @Public()
   @Get("/refresh")
-  @UseGuards(JwtAuthGuard)
-  async refreshToken() {
+  @UseGuards(RTAuthGuard)
+  async refreshToken(@Req() req: any, @Res() res: Response) {
     try {
-      this.authService.refreshToken();
+      const { userId } = req.user;
+      const refreshToken = req.cookies.refresh_token || null;
+      const token = await this.authService.refreshToken(userId, refreshToken);
+      res.cookie("access_token", token.access_token);
+      res.cookie("refresh_token", token.refresh_token);
     } catch (error) {
       return handleError(error);
     }
