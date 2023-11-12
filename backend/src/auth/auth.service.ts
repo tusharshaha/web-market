@@ -16,6 +16,7 @@ import { LoginDto } from "./dto/login.dto";
 import { Response } from "express";
 import { Token, UserDetails } from "../utils/types";
 import { flexibleQuery } from "../utils/flexibleQuery";
+import axios from "axios";
 
 @Injectable({})
 export class AuthService {
@@ -34,6 +35,8 @@ export class AuthService {
     const user = new this.userModel(userBody);
     this.generateConfirmationToken(user);
     const token = await this.getToken(user._id);
+    const ip = await this.getUserIp();
+    user.userIp = ip;
     user.refreshToken = bcrypt.hashSync(token.refresh_token, 8);
     const updatedUser = await user.save({ validateBeforeSave: true });
     // mail sending functionality
@@ -63,22 +66,22 @@ export class AuthService {
     const { email, userImage, name, providerId } = details;
     const user =
       (await this.userModel.findOne({ email })) || new this.userModel();
+    const token = await this.getToken(user._id);
+    const ip = await this.getUserIp();
+    user.userIp = ip;
     user.userImage = userImage;
     user.name = name;
     user.status = "active";
+    user.refreshToken = bcrypt.hashSync(token.refresh_token, 8);
     user.confirmationToken = undefined;
     user.confirmationTokenExpires = undefined;
     if (user.email) {
-      const token = await this.getToken(user._id);
-      user.refreshToken = bcrypt.hashSync(token.refresh_token, 8);
       await user.save({ validateBeforeSave: false });
       return token;
     }
     user.email = email;
     user.provider = "google";
     user.providerId = providerId;
-    const token = await this.getToken(user._id);
-    user.refreshToken = bcrypt.hashSync(token.refresh_token, 8);
     await user.save({ validateBeforeSave: false });
     return token;
   }
@@ -175,6 +178,12 @@ export class AuthService {
   async updateRefreshToken(userId: string, refresh_token: string) {
     const hash = bcrypt.hashSync(refresh_token, 8);
     await this.userModel.findByIdAndUpdate(userId, { refreshToken: hash });
+  }
+
+  async getUserIp(): Promise<string> {
+    const res = await axios.get(`${process.env.GET_IP_API}`);
+    const ip = (await res.data.ip) || "";
+    return ip;
   }
 
   // get access token and refresh token
