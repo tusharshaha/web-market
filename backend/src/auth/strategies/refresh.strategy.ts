@@ -7,7 +7,7 @@ import { Request } from "express";
 export class RefreshStrategy extends PassportStrategy(Strategy, "jwt-refresh") {
   constructor() {
     const extractJwtFromCookie = (req: any) => {
-      return req.user;
+      return req.cookies.refresh_token;
     };
     super({
       jwtFromRequest: extractJwtFromCookie,

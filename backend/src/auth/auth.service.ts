@@ -83,20 +83,8 @@ export class AuthService {
     return token;
   }
 
-  async logout(req: any, res: Response) {
-    const { userId } = req.user;
-    req.session.destroy(async (err: any) => {
-      if (err) {
-        throw new BadRequestException("Failed to logout");
-      } else {
-        await this.userModel.findByIdAndUpdate(userId, { refreshToken: null });
-        res.clearCookie("LOGIN_INFO");
-        res.json({
-          status: 200,
-          message: "Successfully logged out.",
-        });
-      }
-    });
+  async logout(userId: string) {
+    await this.userModel.findByIdAndUpdate(userId, { refreshToken: null });
   }
 
   async confirmEmail(token: string, res: Response) {

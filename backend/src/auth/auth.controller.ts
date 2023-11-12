@@ -25,14 +25,10 @@ export class AuthController {
 
   @Public()
   @Post("signup")
-  async signup(
-    @Req() req: any,
-    @Res() res: Response,
-    @Body() signUpDto: SignUpDto,
-  ) {
+  async signup(@Res() res: Response, @Body() signUpDto: SignUpDto) {
     try {
       const token = await this.authService.signUp(signUpDto);
-      req.session.passport = { user: token.access_token };
+      res.cookie("access_token", token.access_token);
       res.cookie("refresh_token", token.refresh_token);
       return { message: "Successfully Signup" };
     } catch (error) {
@@ -42,11 +38,12 @@ export class AuthController {
 
   @Public()
   @Post("login")
-  async login(@Req() req: any, @Body() loginDto: LoginDto) {
+  async login(@Res() res: Response, @Body() loginDto: LoginDto) {
     try {
       const token = await this.authService.login(loginDto);
-      req.session.passport = { user: token.access_token };
-      return { token, message: "Successfully login" };
+      res.cookie("access_token", token.access_token);
+      res.cookie("refresh_token", token.refresh_token);
+      res.json({ message: "Successfully login" });
     } catch (error) {
       return handleError(error);
     }
@@ -58,21 +55,29 @@ export class AuthController {
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   async loginWithGoogle() {}
 
-  @Get("logout")
-  async logoutUser(@Req() req: any, @Res() res: Response) {
+  @Public()
+  @Get("/google/redirect")
+  @UseGuards(GoogleAuthGuard)
+  async googleRedirect(@Req() req: any, @Res() res: Response) {
     try {
-      this.authService.logout(req, res);
+      const token = req.user;
+      res.cookie("access_token", token.access_token);
+      res.cookie("refresh_token", token.refresh_token);
+      // res.redirect(`${process.env.FRONTEND_URL}/`);
+      res.send("test");
     } catch (error) {
       return handleError(error);
     }
   }
 
-  @Public()
-  @Get("/google/redirect")
-  @UseGuards(GoogleAuthGuard)
-  async googleRedirect(@Res() res: Response) {
+  @Get("logout")
+  async logoutUser(@Req() req: AuthenticatedRequest, @Res() res: Response) {
     try {
-      res.redirect(`${process.env.FRONTEND_URL}/`);
+      const { userId } = req.user;
+      await this.authService.logout(userId);
+      res.clearCookie("access_token");
+      res.clearCookie("refresh_token");
+      res.json({ message: "Successfully logout" });
     } catch (error) {
       return handleError(error);
     }
