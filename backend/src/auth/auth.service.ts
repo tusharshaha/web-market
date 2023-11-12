@@ -13,7 +13,7 @@ import { JwtService } from "@nestjs/jwt";
 import { SignUpDto } from "./dto/signup.dto";
 import { LoginDto } from "./dto/login.dto";
 import { Response } from "express";
-import { UserDetails } from "../utils/types";
+import { Token, UserDetails } from "../utils/types";
 import { flexibleQuery } from "../utils/flexibleQuery";
 
 @Injectable({})
@@ -24,41 +24,7 @@ export class AuthService {
     private readonly jwtService: JwtService,
   ) {}
 
-  // get confirm mail token
-  async generateConfirmationToken(user: User) {
-    const confToken = crypto.randomUUID();
-    user.confirmationToken = confToken;
-    const date = new Date();
-    // get tomorrow / expire date is 1 day.
-    date.setDate(date.getDate() + 1);
-    user.confirmationTokenExpires = date;
-  }
-
-  // get access token and refresh token
-  async getToken(id: string) {
-    const access_token = this.jwtService.signAsync(
-      { id },
-      {
-        secret: `${process.env.JWT_SECRET}`,
-        expiresIn: 60 * 20, // expire time is 20 minute
-      },
-    );
-    const refresh_token = this.jwtService.signAsync(
-      { id },
-      {
-        secret: `${process.env.RT_SECRET}`,
-        expiresIn: 60 * 60 * 24 * 7, // expire time is 7 days
-      },
-    );
-    const [at, rt] = await Promise.all([access_token, refresh_token]);
-
-    return {
-      access_token: at,
-      refresh_token: rt,
-    };
-  }
-
-  async signUp(signUpDto: SignUpDto) {
+  async signUp(signUpDto: SignUpDto): Promise<Token> {
     const { name, email, password, role } = signUpDto;
     if (role === "admin") {
       throw new UnauthorizedException("You can't perform this action");
@@ -73,7 +39,7 @@ export class AuthService {
     return token;
   }
 
-  async login(loginDto: LoginDto) {
+  async login(loginDto: LoginDto): Promise<Token> {
     const { email, password } = loginDto;
     const user = await this.userModel.findOne({ email });
     if (!user) {
@@ -100,13 +66,13 @@ export class AuthService {
     user.confirmationToken = undefined;
     user.confirmationTokenExpires = undefined;
     if (user.email) {
-      const updatedUser = await user.save({ validateBeforeSave: false });
+      const updatedUser = await user.save({ validateBeforeSave: true });
       return await this.getToken(updatedUser._id);
     }
     user.email = email;
     user.provider = "google";
     user.providerId = providerId;
-    const updatedUser = await user.save({ validateBeforeSave: false });
+    const updatedUser = await user.save({ validateBeforeSave: true });
     return await this.getToken(updatedUser._id);
   }
 
@@ -175,5 +141,39 @@ export class AuthService {
     const template = confirmMailTemp(updatedUser);
 
     return { message: "Token have sent to your mail" };
+  }
+
+  // get confirm mail token
+  async generateConfirmationToken(user: User): Promise<void> {
+    const confToken = crypto.randomUUID();
+    user.confirmationToken = confToken;
+    const date = new Date();
+    // get tomorrow / expire date is 1 day.
+    date.setDate(date.getDate() + 1);
+    user.confirmationTokenExpires = date;
+  }
+
+  // get access token and refresh token
+  async getToken(id: string): Promise<Token> {
+    const access_token = this.jwtService.signAsync(
+      { id },
+      {
+        secret: `${process.env.JWT_SECRET}`,
+        expiresIn: "1h", // expire time is 1 hour
+      },
+    );
+    const refresh_token = this.jwtService.signAsync(
+      { id },
+      {
+        secret: `${process.env.RT_SECRET}`,
+        expiresIn: "7d", // expire time is 7 days
+      },
+    );
+    const [at, rt] = await Promise.all([access_token, refresh_token]);
+
+    return {
+      access_token: at,
+      refresh_token: rt,
+    };
   }
 }
