@@ -19,7 +19,10 @@ const Register: NextPage = () => {
     formState: { errors },
   } = useForm<RegFormData>({ resolver: zodResolver(regFormSchema) })
 
-  if (!regPage) delete errors.name;
+  if (!regPage) {
+    
+    delete errors.name
+  };
 
   const onSubmit = handleSubmit((data) => {
     console.log(data)
@@ -50,7 +53,7 @@ const Register: NextPage = () => {
                   type="text"
                   className="w-full border-2 border-primary focus:outline-none focus:caret-primary rounded-full px-6 py-2 mb-2"
                   placeholder='Your name'
-                  {...register("name", { required: true })}
+                  {...register("name")}
                 />
               }
 
