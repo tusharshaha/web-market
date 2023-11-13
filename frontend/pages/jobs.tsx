@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Layout from '@/components/Layout';
 import { QueryClient, useQuery, dehydrate } from "react-query";
 import { publicApi } from '@/utils/axios.service';
@@ -9,9 +9,9 @@ import JobDetails from '@/components/Job/JobDetails';
 import JobCardSkelton from '@/components/Job/JobCardSkelton';
 import JobDetailsSkelton from '@/components/Job/JobDetailsSkelton';
 import Pagination from '@/components/common/Pagination';
-import { AxiosResponse } from 'axios';
+import toast from "react-hot-toast";
 
-interface Response {
+interface JobData {
   jobs: [
     {
       image: string,
@@ -23,8 +23,8 @@ interface Response {
 
 const limit = 15;
 
-const getJobList = async (offset: number): Promise<Response> => {
-  const res: Response = await publicApi.get("/jobs", {
+const getJobList = async (offset: number): Promise<JobData> => {
+  const res: JobData = await publicApi.get("/jobs", {
     params: {
       limit,
       offset
@@ -38,7 +38,7 @@ const Jobs: NextPage = () => {
   const [page, setPage] = useState(1);
   const [searchText, setSearchText] = useState("Front End Developer");
   const [jobId, setJobId] = useState(0);
-  const { data, isError } = useQuery(
+  const { data, isError, error } = useQuery(
     ['jobs', offset],
     () => getJobList(offset),
     {
@@ -46,6 +46,12 @@ const Jobs: NextPage = () => {
       cacheTime: 60000
     }
   );
+  // show api error message 
+  useEffect(()=>{
+    const apiError = error as string;
+    if(isError) toast.error(apiError, {id: "job_err"})
+  },[isError, error])
+
   const jobDetails = data?.jobs.find((_, i) => i === jobId);
   const totalPages = data?.total_count ? Math.ceil(data?.total_count / limit) : 0;
 

@@ -11,7 +11,9 @@ const privateApi: AxiosInstance = axios.create({ ...axiosConfig, withCredentials
 publicApi.interceptors.response.use(
   (res) => res.data,
   (err) => {
-    // Handle errors globally here if necessary
+    if (err?.response?.data?.message) {
+      err.message = err.response.data.message;
+    }
     return Promise.reject(err.message);
   },
 );
