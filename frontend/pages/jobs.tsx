@@ -2,7 +2,7 @@ import { NextPage } from 'next';
 import { useState } from "react";
 import Layout from '@/components/Layout';
 import { QueryClient, useQuery, dehydrate } from "react-query";
-import axiosRequest from '@/utils/axios.service';
+import { publicApi } from '@/utils/axios.service';
 import SearchSection from '@/components/Job/SearchSection';
 import JobCard from '@/components/Job/JobCard';
 import JobDetails from '@/components/Job/JobDetails';
@@ -24,7 +24,7 @@ interface Response {
 const limit = 15;
 
 const getJobList = async (offset: number): Promise<Response> => {
-  const res: Response = await axiosRequest.get("/jobs", {
+  const res: Response = await publicApi.get("/jobs", {
     params: {
       limit,
       offset
