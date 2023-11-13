@@ -2,9 +2,8 @@ import SectionTitle from '@/components/common/SectionTitle';
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import ReactStars from "react-rating-stars-component";
-import { BsFillBookmarkDashFill, BsStarHalf } from 'react-icons/bs';
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
+import { BsFillBookmarkDashFill } from 'react-icons/bs';
+import { AiFillStar } from 'react-icons/ai';
 
 const BestCandidate: React.FC = () => {
     const candidates = new Array(4).fill(0);
@@ -20,18 +19,10 @@ const BestCandidate: React.FC = () => {
                         <div className='text-center my-3'>
                             <Link className='text-xl font-bold my-3' href=''>Lauran Benitez</Link>
                             <h4 className='text-base text-primary my-2'>Web Designer</h4>
-                            <div className='flex justify-center'>
-                                <ReactStars
-                                    count={5}
-                                    value={4.5}
-                                    size={20}
-                                    edit={false}
-                                    isHalf={true}
-                                    emptyIcon={<AiOutlineStar />}
-                                    halfIcon={<BsStarHalf />}
-                                    fullIcon={<AiFillStar />}
-                                    activeColor="#ff9600"
-                                />
+                            <div className='flex justify-center text-yellow-500'>
+                                <AiFillStar/>
+                                <AiFillStar/>
+                                <AiFillStar/>
                             </div>
                             <p className='my-2'>CSS3, HTML5, Javascript Bootstrap, Jquery</p>
                         </div>
