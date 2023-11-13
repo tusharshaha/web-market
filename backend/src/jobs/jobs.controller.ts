@@ -1,4 +1,4 @@
-import { Controller, Get, Query, UseGuards } from "@nestjs/common";
+import { Controller, Get, Query } from "@nestjs/common";
 import { JobsService } from "./jobs.service";
 import { handleError } from "../utils/errorHandler";
 import { Public } from "../common/public.decorator";
