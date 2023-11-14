@@ -1,25 +1,16 @@
 import { NextPage } from 'next';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import { FaBackwardStep, FaEye, FaEyeSlash } from 'react-icons/fa6';
+import { FaBackwardStep } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
-
-interface InputError {
-  email: string,
-  pass: string
-}
+import RegForm from '@/components/Register/RegForm';
+import LoginForm from '@/components/Register/LoginForm';
 
 const Register: NextPage = () => {
-  const [showPass, setShowPass] = useState(false);
   const [regPage, setRegPage] = useState(false);
-  const [inputError, setInputError] = useState({} as InputError);
   const router = useRouter();
   const handleBack = () => router.back();
-  const handShowPass = () => setShowPass(!showPass);
-  const handleSubmit = () => {
-    const emailRegex = /^[a-zA-Z0-9._-]+@(?:gmail|yahoo|hotmail|outlook)\.com$/;
-    const passRegex = /^(?=.*[a-z])(?=.*\d).{6,}$/;
-  }
+  const handleGoogleLogin = () => router.push(`${process.env.NEXT_PUBLIC_API}/auth/login/google`)
   return (
     <div className="register flex items-start justify-center px-10">
       <div className='max-w-3xl'>
@@ -38,58 +29,25 @@ const Register: NextPage = () => {
             <h3 className='text-lg md:text-xl font-semibold text-primary tracking-widest'>
               USER {regPage ? "REGISTER" : "LOGIN"}
             </h3>
-            <form className='flex flex-col items-center justify-start gap-2 mt-5 md:mt-10 w-full px-4 sm:px-0 sm:w-2/4 mx-auto'>
-              {
-                regPage &&
-                <input
-                  type="text"
-                  required
-                  className="w-full border-2 border-primary focus:outline-none focus:caret-primary rounded-full px-6 py-2 mb-2"
-                  placeholder='Your name'
-                />
-              }
-              <input
-                type="email"
-                required
-                className="w-full border-2 border-primary focus:outline-none focus:caret-primary rounded-full px-6 py-2 mb-2"
-                placeholder='Your email'
-              />
-              <div className='w-full relative'>
-                <input
-                  type={showPass ? "text" : "password"}
-                  required
-                  className='w-full border-2 border-primary focus:outline-none focus:caret-primary rounded-full px-6 py-2'
-                  placeholder='Your password'
-                />
-                <button onClick={handShowPass} className='absolute top-[13px] right-[20px] text-slate-400'>
-                  {showPass ? <FaEye /> : <FaEyeSlash />}
-                </button>
-              </div>
-              {
-                !regPage &&
-                <div className='flex justify-end w-full'>
-                  <button className='trans hover:text-primary text-sm md:text-base'>Forgot Password?</button>
-                </div>
-              }
-              {regPage ?
-                <button type='submit' className="web-btn2 mt-2">Register</button>
-                :
-                <button type='submit' className="web-btn2">Login</button>
-              }
-              <p className='text-slate-500 text-sm mt-2'>
-                {regPage ? "Already have account? Please " : "Don't have account? please "}
-                <span onClick={() => setRegPage(!regPage)} className='text-primary cursor-pointer'>
-                  {regPage ? "login" : "register"}
-                </span>
-              </p>
-            </form>
-            <form action="" className='w-full px-4 sm:px-0 sm:w-2/4 mx-auto'>
+
+            {
+              regPage ? <RegForm /> : <LoginForm />
+            }
+
+            <p className='text-slate-500 text-sm mt-3'>
+              {regPage ? "Already have account? Please " : "Don't have account? please "}
+              <span onClick={() => setRegPage(!regPage)} className='text-primary cursor-pointer'>
+                {regPage ? "login" : "register"}
+              </span>
+            </p>
+
+            <div className='w-full px-4 sm:px-0 sm:w-2/4 mx-auto'>
               <div className="divider">OR</div>
-              <button className="btn glass flex items-center btn-xs md:btn-md gap-3 text-slate-500 mx-auto">
+              <button onClick={handleGoogleLogin} className="btn glass flex items-center btn-xs md:btn-md gap-3 text-slate-500 mx-auto">
                 <span className='text-xl'><FcGoogle /></span>
                 Login with Google
               </button>
-            </form>
+            </div>
           </div>
         </div>
       </div>

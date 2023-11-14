@@ -18,6 +18,7 @@ import { GoogleAuthGuard } from "./guards/google-auth.guard";
 import { Throttle } from "@nestjs/throttler";
 import { Public } from "../common/public.decorator";
 import { RTAuthGuard } from "./guards/refresh-auth.guard";
+import { ATC_Option, RTC_Option } from "../utils/cookieOption";
 
 @Controller("auth")
 export class AuthController {
@@ -28,9 +29,9 @@ export class AuthController {
   async signup(@Res() res: Response, @Body() signUpDto: SignUpDto) {
     try {
       const token = await this.authService.signUp(signUpDto);
-      res.cookie("access_token", token.access_token);
-      res.cookie("refresh_token", token.refresh_token);
-      return { message: "Successfully Signup" };
+      res.cookie("access_token", token.access_token, ATC_Option);
+      res.cookie("refresh_token", token.refresh_token, RTC_Option);
+      res.json({ message: "Successfully Signup" });
     } catch (error) {
       return handleError(error);
     }
@@ -41,8 +42,8 @@ export class AuthController {
   async login(@Res() res: Response, @Body() loginDto: LoginDto) {
     try {
       const token = await this.authService.login(loginDto);
-      res.cookie("access_token", token.access_token);
-      res.cookie("refresh_token", token.refresh_token);
+      res.cookie("access_token", token.access_token, ATC_Option);
+      res.cookie("refresh_token", token.refresh_token, RTC_Option);
       res.json({ message: "Successfully login" });
     } catch (error) {
       return handleError(error);
@@ -61,8 +62,8 @@ export class AuthController {
   async googleRedirect(@Req() req: any, @Res() res: Response) {
     try {
       const token = req.user;
-      res.cookie("access_token", token.access_token);
-      res.cookie("refresh_token", token.refresh_token);
+      res.cookie("access_token", token.access_token, ATC_Option);
+      res.cookie("refresh_token", token.refresh_token, RTC_Option);
       res.redirect(`${process.env.FRONTEND_URL}/`);
     } catch (error) {
       return handleError(error);
@@ -90,8 +91,8 @@ export class AuthController {
       const { userId } = req.user;
       const refreshToken = req.cookies.refresh_token || null;
       const token = await this.authService.refreshToken(userId, refreshToken);
-      res.cookie("access_token", token.access_token);
-      res.cookie("refresh_token", token.refresh_token);
+      res.cookie("access_token", token.access_token, ATC_Option);
+      res.cookie("refresh_token", token.refresh_token, RTC_Option);
       res.json({ message: "Token refresh successfuly" });
     } catch (error) {
       return handleError(error);

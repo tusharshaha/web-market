@@ -9,13 +9,7 @@ const session = require("express-session");
 import helmet from "helmet";
 import { ValidationPipe } from "@nestjs/common";
 import { ThrottlerExceptionFilter } from "./utils/throtller-exception.filter";
-
-type Cookie = {
-  maxAge: number;
-  httpOnly?: boolean;
-  secure?: boolean;
-  sameSite?: boolean;
-};
+import { Cookie } from "./utils/types";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
