@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { LoginFormData, loginFormSchema } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -24,6 +24,13 @@ const LoginForm: React.FC = () => {
   const onSubmit = handleSubmit(async (data) => {
     mutation.mutate(data);
   })
+
+  useEffect(() => {
+    const apiError = mutation.error as string;
+    if (mutation.isError) toast.error(apiError, { id: "login_err" })
+    if (mutation.isSuccess) { console.log(mutation.data) }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mutation.isError, mutation.isSuccess])
   console.log({ apiError: mutation.error, loading: mutation.isLoading })
   return (
     <form onSubmit={onSubmit} className='flex flex-col items-center justify-start gap-2 mt-5 md:mt-10 w-full px-4 sm:px-0 sm:w-2/4 mx-auto'>
@@ -46,7 +53,12 @@ const LoginForm: React.FC = () => {
         </button>
       </div>
 
-      <button type='submit' className="web-btn2 mt-2">Login</button>
+      <button type='submit' disabled={mutation.isLoading} className="web-btn2 mt-2">
+        {mutation.isLoading &&
+          <span className='w-[20px] h-[20px] border-4 border-slate-200 border-b-white rounded-full mr-2 animate-spin' />
+        }
+        Login
+      </button>
     </form>
   );
 };
