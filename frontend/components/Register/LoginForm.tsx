@@ -25,14 +25,14 @@ const LoginForm: React.FC = () => {
     formState: { errors },
   } = useForm<LoginFormData>({ resolver: zodResolver(loginFormSchema) });
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = handleSubmit((data) => {
     mutation.mutate(data);
   })
 
   useEffect(() => {
     const apiError = mutation.error as string;
-    if (mutation.isError) toast.error(apiError, { id: "login_err" })
-    if (mutation.isSuccess) toast.success(mutation.data?.message, { id: "login_err" })
+    if (mutation.isError) toast.error(apiError, { id: "login_err" });
+    if (mutation.isSuccess) toast.success(mutation.data?.message, { id: "login_err" });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mutation.isError, mutation.isSuccess])
   return (
