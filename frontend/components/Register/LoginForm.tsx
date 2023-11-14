@@ -12,7 +12,11 @@ const LoginForm: React.FC = () => {
   const handShowPass = () => setShowPass(!showPass);
   const mutation = useMutation({
     mutationFn: async (loginData: LoginFormData) => {
-      return await publicApi.post("/auth/login", loginData)
+      return await publicApi.post<LoginFormData, { message: string }>(
+        "/auth/login",
+        loginData,
+        { withCredentials: true }
+      )
     },
   })
   const {
@@ -28,10 +32,9 @@ const LoginForm: React.FC = () => {
   useEffect(() => {
     const apiError = mutation.error as string;
     if (mutation.isError) toast.error(apiError, { id: "login_err" })
-    if (mutation.isSuccess) { console.log(mutation.data) }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    if (mutation.isSuccess) toast.success(mutation.data?.message, { id: "login_err" })
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mutation.isError, mutation.isSuccess])
-  console.log({ apiError: mutation.error, loading: mutation.isLoading })
   return (
     <form onSubmit={onSubmit} className='flex flex-col items-center justify-start gap-2 mt-5 md:mt-10 w-full px-4 sm:px-0 sm:w-2/4 mx-auto'>
       <input
@@ -48,9 +51,9 @@ const LoginForm: React.FC = () => {
           {...register("password")}
         />
 
-        <button onClick={handShowPass} className='absolute top-[13px] right-[20px] text-slate-400'>
+        <span onClick={handShowPass} className='absolute top-[13px] right-[20px] text-slate-400 cursor-pointer'>
           {showPass ? <FaEye /> : <FaEyeSlash />}
-        </button>
+        </span>
       </div>
 
       <button type='submit' disabled={mutation.isLoading} className="web-btn2 mt-2">
