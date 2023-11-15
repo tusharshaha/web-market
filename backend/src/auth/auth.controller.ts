@@ -116,6 +116,16 @@ export class AuthController {
     }
   }
 
+  @Get("profile")
+  async getUserProfile(@Req() req: AuthenticatedRequest) {
+    try {
+      const { userId } = req.user;
+      return await this.authService.getProfile(userId);
+    } catch (error) {
+      return handleError(error);
+    }
+  }
+
   @Get("users")
   async getAllUser(@Req() req: AuthenticatedRequest, @Query() query: any) {
     try {
