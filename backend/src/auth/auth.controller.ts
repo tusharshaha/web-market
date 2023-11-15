@@ -117,10 +117,15 @@ export class AuthController {
   }
 
   @Get("profile")
-  async getUserProfile(@Req() req: AuthenticatedRequest) {
+  async getUserProfile(@Req() req: any) {
     try {
+      console.log();
       const { userId } = req.user;
-      return await this.authService.getProfile(userId);
+      return {
+        cookie1: req.ip,
+        cookie2: req.headers["x-forwarded-for"],
+        cookie3: req.socket.remoteAddress,
+      };
     } catch (error) {
       return handleError(error);
     }
