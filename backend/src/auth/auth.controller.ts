@@ -19,6 +19,7 @@ import { Throttle } from "@nestjs/throttler";
 import { Public } from "../common/public.decorator";
 import { RTAuthGuard } from "./guards/refresh-auth.guard";
 import { ATC_Option, RTC_Option } from "../utils/cookieOption";
+const ip = require('ip');
 
 @Controller("auth")
 export class AuthController {
@@ -123,6 +124,7 @@ export class AuthController {
       // console.log();
       // const { userId } = req.user;
       return {
+        cookie: ip.address(),
         cookie1: req.ip,
         cookie2: req.headers["x-forwarded-for"],
         cookie3: req.socket.remoteAddress,
