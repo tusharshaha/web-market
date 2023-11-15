@@ -34,7 +34,7 @@ export class AuthService {
     const userBody = { name, email, password };
     const user = new this.userModel(userBody);
     this.generateConfirmationToken(user);
-    const token = await this.getToken(user._id);
+    const token = await this.getToken(user.id);
     const ip = await this.getUserIp();
     user.userIp = ip;
     user.refreshToken = bcrypt.hashSync(token.refresh_token, 8);
@@ -57,8 +57,8 @@ export class AuthService {
     if (!isPasswordMatch) {
       throw new UnauthorizedException("Invalid email or password");
     }
-    const token = await this.getToken(user._id);
-    await this.updateRefreshToken(user._id, token.refresh_token);
+    const token = await this.getToken(user.id);
+    await this.updateRefreshToken(user.id, token.refresh_token);
     return token;
   }
 
@@ -66,9 +66,7 @@ export class AuthService {
     const { email, userImage, name, providerId } = details;
     const user =
       (await this.userModel.findOne({ email })) || new this.userModel();
-    const token = await this.getToken(user._id);
-    const ip = await this.getUserIp();
-    user.userIp = ip;
+    const token = await this.getToken(user.id);
     user.userImage = userImage;
     user.name = name;
     user.status = "active";
@@ -118,8 +116,24 @@ export class AuthService {
       .find({})
       .skip(search.skip)
       .limit(search.limit)
-      .select("-password -__v -updatedAt -passwordChangedAt -provider")
+      .select(
+        "-password -__v -updatedAt -passwordChangedAt -provider -refreshToken",
+      )
       .sort(search.sortBy);
+  }
+
+  async getProfile(userId: string): Promise<User> {
+    const user = await this.userModel
+      .findById(userId)
+      .select(
+        "-password -__v -updatedAt -passwordChangedAt -provider -providerId -refreshToken",
+      );
+    if (user && !user.userIp) {
+      const ip = await this.getUserIp();
+      user.userIp = ip;
+      user.save({ validateBeforeSave: false });
+    }
+    return user;
   }
 
   async refreshToken(userId: string, refreshToken: string): Promise<Token> {
@@ -129,8 +143,8 @@ export class AuthService {
     }
     const rtMatch = bcrypt.compare(refreshToken, user.refreshToken);
     if (!rtMatch) throw new ForbiddenException("Access Denied");
-    const token = await this.getToken(user._id);
-    await this.updateRefreshToken(user._id, token.refresh_token);
+    const token = await this.getToken(user.id);
+    await this.updateRefreshToken(user.id, token.refresh_token);
     return token;
   }
 
