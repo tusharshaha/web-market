@@ -120,8 +120,8 @@ export class AuthController {
   @Get("profile")
   async getUserProfile(@Req() req: any) {
     try {
-      console.log();
-      const { userId } = req.user;
+      // console.log();
+      // const { userId } = req.user;
       return {
         cookie1: req.ip,
         cookie2: req.headers["x-forwarded-for"],
