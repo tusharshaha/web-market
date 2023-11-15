@@ -19,7 +19,6 @@ import { Throttle } from "@nestjs/throttler";
 import { Public } from "../common/public.decorator";
 import { RTAuthGuard } from "./guards/refresh-auth.guard";
 import { ATC_Option, RTC_Option } from "../utils/cookieOption";
-const ip = require('ip');
 
 @Controller("auth")
 export class AuthController {
@@ -117,18 +116,11 @@ export class AuthController {
     }
   }
 
-  @Public()
   @Get("profile")
-  async getUserProfile(@Req() req: any) {
+  async getUserProfile(@Req() req: AuthenticatedRequest) {
     try {
-      // console.log();
-      // const { userId } = req.user;
-      return {
-        cookie: ip.address(),
-        cookie1: req.ip,
-        cookie2: req.headers["x-forwarded-for"],
-        cookie3: req.socket.remoteAddress,
-      };
+      const { userId } = req.user;
+      return await this.authService.getProfile(userId);
     } catch (error) {
       return handleError(error);
     }
