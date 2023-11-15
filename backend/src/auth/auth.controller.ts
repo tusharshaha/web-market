@@ -116,6 +116,7 @@ export class AuthController {
     }
   }
 
+  @Public()
   @Get("profile")
   async getUserProfile(@Req() req: any) {
     try {
