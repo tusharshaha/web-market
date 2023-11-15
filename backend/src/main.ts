@@ -13,13 +13,13 @@ import { Cookie } from "./utils/types";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
-  app.setGlobalPrefix("api");
-  app.use(helmet());
   app.enableCors({
     origin: process.env.FRONTEND_URL,
     methods: "GET,HEAD,PATCH,POST,DELETE",
     credentials: true,
   });
+  app.setGlobalPrefix("api");
+  app.use(helmet());
   const cookie: Cookie = { maxAge: 60 * 1000 }; //cookie max age is 1 minute
 
   // set cookie security on  production
