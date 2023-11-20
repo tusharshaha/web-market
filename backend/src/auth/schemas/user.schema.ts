@@ -13,11 +13,6 @@ export enum Role {
 })
 export class User extends Document {
   @Prop({
-    required: [true, "Something went wrong!"],
-  })
-  userIp: string;
-
-  @Prop({
     required: [true, "Please give your name"],
     trim: true,
     minLength: [3, "Name must be at least 3 characters."],

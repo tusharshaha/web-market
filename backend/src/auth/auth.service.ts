@@ -16,7 +16,6 @@ import { LoginDto } from "./dto/login.dto";
 import { Response } from "express";
 import { Token, UserDetails } from "../utils/types";
 import { flexibleQuery } from "../utils/flexibleQuery";
-import axios from "axios";
 
 @Injectable({})
 export class AuthService {
@@ -35,8 +34,6 @@ export class AuthService {
     const user = new this.userModel(userBody);
     this.generateConfirmationToken(user);
     const token = await this.getToken(user.id);
-    const ip = await this.getUserIp();
-    user.userIp = ip;
     user.refreshToken = bcrypt.hashSync(token.refresh_token, 8);
     const updatedUser = await user.save({ validateBeforeSave: true });
     // mail sending functionality
@@ -128,11 +125,6 @@ export class AuthService {
       .select(
         "-password -__v -updatedAt -passwordChangedAt -provider -providerId -refreshToken",
       );
-    if (user && !user.userIp) {
-      const ip = await this.getUserIp();
-      user.userIp = ip;
-      user.save({ validateBeforeSave: false });
-    }
     return user;
   }
 
@@ -192,12 +184,6 @@ export class AuthService {
   async updateRefreshToken(userId: string, refresh_token: string) {
     const hash = bcrypt.hashSync(refresh_token, 8);
     await this.userModel.findByIdAndUpdate(userId, { refreshToken: hash });
-  }
-
-  async getUserIp(): Promise<string> {
-    const res = await axios.get(`${process.env.GET_IP_API}`);
-    const ip = (await res.data.ip) || "";
-    return ip;
   }
 
   // get access token and refresh token
