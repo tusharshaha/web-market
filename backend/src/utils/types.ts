@@ -15,11 +15,3 @@ export interface Token {
   access_token: string;
   refresh_token: string;
 }
-
-export interface Cookie {
-  maxAge: number;
-  httpOnly?: boolean;
-  secure?: boolean;
-  sameSite?: boolean;
-  path?: string;
-}
