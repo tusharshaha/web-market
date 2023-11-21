@@ -61,7 +61,8 @@ const NavBar: React.FC = () => {
                             :
                             <button onClick={handleMenu} className="avatar">
                                 <div className="w-[30px] rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                                    <img src={userImage} height={100} width={100} alt="" />
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img src={userImage} height={100} width={100} alt="user image" />
                                 </div>
                             </button>
                         }
