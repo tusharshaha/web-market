@@ -1,21 +1,28 @@
 import Link from "next/link";
 import { useState } from "react";
 import { FiMenu } from 'react-icons/fi';
-import { FaAngleLeft } from 'react-icons/fa';
+import { FaAngleLeft, FaRegEye } from 'react-icons/fa';
 import { AiOutlinePlus } from "react-icons/ai";
+import { MdOutlineSpaceDashboard, MdOutlineBookmarks, MdLogout } from "react-icons/md";
 import { useRouter } from "next/router";
+import useAuth from "@/hooks/useAuth";
 
 
 const NavBar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
-
+    const [menu, setMenu] = useState(false);
+    const { email, userImage } = useAuth();
     const router = useRouter();
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
     };
 
-    const handleRegister = ()=>{
+    const handleMenu = () => {
+        setMenu(!menu);
+    };
+
+    const handleRegister = () => {
         router.push("/register");
     }
 
@@ -31,9 +38,14 @@ const NavBar: React.FC = () => {
         <li className="p-2 border-y md:border-0 md:p-0"> <Link href='/blogs'>Blogs</Link> </li>
     </>
 
+    const menuItems = [
+        { icon: <MdOutlineSpaceDashboard />, path: "/dashboard", title: "Dashboard" },
+        { icon: <FaRegEye />, path: "/resume", title: "View Resume" },
+        { icon: <MdOutlineBookmarks />, path: "/dashboard", title: "Bookmark Jobs" },
+    ];
     return (
         <div className="border-b border-gray-500">
-            <div className="cus-container">
+            <div className="cus-container relative">
                 <div className="flex justify-between h-[80px] items-center">
                     <div>
                         <h4>Logo</h4>
@@ -44,7 +56,34 @@ const NavBar: React.FC = () => {
                         </ul>
                     </div>
                     <div className="flex justify-center items-center">
-                        <button onClick={handleRegister} className="web-btn2 tracking-widest"> <AiOutlinePlus className="font-bold mr-2" /> Join</button>
+                        {!email ?
+                            <button onClick={handleRegister} className="web-btn2 tracking-widest"> <AiOutlinePlus className="font-bold mr-2" /> Join</button>
+                            :
+                            <button onClick={handleMenu} className="avatar">
+                                <div className="w-[30px] rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                                    <img src={userImage} height={100} width={100} alt="" />
+                                </div>
+                            </button>
+                        }
+                        {/* tooltip menu  */}
+                        <div className={`${menu ? "" : "hidden"} absolute top-[83px] right-[10px] bg-white text-black rounded-md`}>
+                            <ul className="w-[170px]">
+                                {
+                                    menuItems.map((ele, i) => (
+                                        <li key={i} className="border-y py-1 px-2 flex items-center gap-2">
+                                            <span className="text-primary">{ele.icon}</span>
+                                            <Link href={ele.path} className="hover:text-primary">{ele.title}</Link>
+                                        </li>
+                                    ))
+                                }
+                                <li className="border-y py-1 px-2">
+                                    <button className="flex items-center gap-2 hover:text-primary">
+                                        <span className="text-primary"><MdLogout /></span>
+                                        Log Out
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
                         <button onClick={handleToggle} className="btn btn-sm btn-primary ml-2 md:hidden"><FiMenu className="font-bold" /></button>
                     </div>
 

@@ -20,3 +20,11 @@ export const regFormSchema = z.object({
 
 export type RegFormData = z.infer<typeof regFormSchema>;
 export type LoginFormData = z.infer<typeof loginFormSchema>;
+
+export interface User {
+  name: string,
+  email: string,
+  userImage: string,
+  role: string,
+  status: string
+}
