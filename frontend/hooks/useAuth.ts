@@ -17,24 +17,20 @@ const getProfile = async (): Promise<User> => {
 }
 
 const useAuth = (): Auth => {
-  const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch<AppDispatch>();
-  const { data, isLoading } = useQuery("profile", getProfile,
+  const { data, isLoading, isSuccess } = useQuery("profile", getProfile,
     {
       staleTime: 60000,
       cacheTime: 60000,
       retry: 1
     })
 
-  useEffect(() => {
-    dispatch(addUser(data as User));
-  }, [data])
   const logout = async () => {
     await privateApi("/auth/logout")
-    dispatch(removeUser);
+    dispatch(removeUser());
   }
   return {
-    ...user,
+    ...data,
     isLoading,
     logout
   } as Auth;

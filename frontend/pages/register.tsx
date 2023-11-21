@@ -5,17 +5,17 @@ import { FaBackwardStep } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
 import RegForm from '@/components/Register/RegForm';
 import LoginForm from '@/components/Register/LoginForm';
-import useAuth from '@/hooks/useAuth';
+import { useSelector } from "react-redux";
+import { RootState } from '@/redux/store';
 
 const Register: NextPage = () => {
   const [regPage, setRegPage] = useState(false);
   const router = useRouter();
-  const { email, isLoading } = useAuth();;
+  const user = useSelector((state:RootState)=> state.auth.user);
 
-  if (email) {
-    isLoading && <h2>Loading .....</h2>
-    console.log({email, isLoading})
-    return;
+  console.log(user)
+  if (user.email) {
+    router.push("/")
   }
 
   const handleBack = () => router.back();
