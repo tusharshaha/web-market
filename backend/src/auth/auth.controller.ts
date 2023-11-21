@@ -117,6 +117,7 @@ export class AuthController {
   }
 
   @Get("profile")
+  @Throttle(30, 60)
   async getUserProfile(@Req() req: AuthenticatedRequest) {
     try {
       const { userId } = req.user;

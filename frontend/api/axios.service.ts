@@ -24,12 +24,8 @@ privateApi.interceptors.response.use(
     const prevRequest = err.config;
     if (err?.response?.status === 401 && !prevRequest?.sent) {
       prevRequest.sent = true;
-      try {
-        await publicApi.get("/auth/refresh", { withCredentials: true });
-        return privateApi(prevRequest);
-      } catch (refreshErr) {
-        return Promise.reject(err.message)
-      }
+      await publicApi.get("/auth/refresh", { withCredentials: true });
+      return privateApi(prevRequest);
     }
     return Promise.reject(err.message);
   }

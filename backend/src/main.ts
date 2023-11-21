@@ -9,7 +9,7 @@ const session = require("express-session");
 import helmet from "helmet";
 import { ValidationPipe } from "@nestjs/common";
 import { ThrottlerExceptionFilter } from "./utils/throtller-exception.filter";
-import { Cookie } from "./utils/types";
+import { CookieOptions } from "express-session";
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -20,7 +20,7 @@ async function bootstrap() {
   });
   app.setGlobalPrefix("api");
   app.use(helmet());
-  const cookie: Cookie = { maxAge: 60 * 1000 }; //cookie max age is 1 minute
+  const cookie: CookieOptions = { maxAge: 60 * 1000 }; //cookie max age is 1 minute
 
   // set cookie security on  production
   if (process.env.NODE_ENV === "production") {
