@@ -1,9 +1,13 @@
 import React from 'react';
 
-const DashBoardLayout: React.FC = () => {
+interface DashboardProps {
+  children: React.ReactNode;
+}
+
+const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
   return (
-    <div>
-      
+    <div className='relative flex'>
+
     </div>
   );
 };

@@ -1,7 +1,10 @@
 import { privateApi } from '@/api/axios.service';
+import { addUser, removeUser } from '@/redux/features/user.reducer';
+import { AppDispatch, RootState } from '@/redux/store';
 import { User } from '@/types';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useQuery } from 'react-query';
+import { useDispatch, useSelector } from 'react-redux';
 
 interface Auth extends User {
   isLoading: boolean,
@@ -14,20 +17,21 @@ const getProfile = async (): Promise<User> => {
 }
 
 const useAuth = (): Auth => {
-  const [user, setUser] = useState<User | {}>({});
+  const user = useSelector((state: RootState) => state.auth.user);
+  const dispatch = useDispatch<AppDispatch>();
   const { data, isLoading } = useQuery("profile", getProfile,
     {
       staleTime: 60000,
       cacheTime: 60000,
       retry: 1
     })
-  useEffect(() => {
-    setUser(data as User);
-  }, [data])
 
+  useEffect(() => {
+    dispatch(addUser(data as User));
+  }, [data])
   const logout = async () => {
     await privateApi("/auth/logout")
-    setUser({});
+    dispatch(removeUser);
   }
   return {
     ...user,

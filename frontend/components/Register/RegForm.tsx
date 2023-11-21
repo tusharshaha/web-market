@@ -6,10 +6,13 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 import { useMutation } from 'react-query';
 import { publicApi } from '@/api/axios.service';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
 
 const RegForm: React.FC = () => {
   const [showPass, setShowPass] = useState(false);
   const handShowPass = () => setShowPass(!showPass);
+  const router = useRouter();
+
   const mutation = useMutation({
     mutationFn: async (signupData: RegFormData) => {
       return await publicApi.post<RegFormData, { message: string }>(
@@ -26,13 +29,14 @@ const RegForm: React.FC = () => {
   } = useForm<RegFormData>({ resolver: zodResolver(regFormSchema) });
   const onSubmit = handleSubmit((data) => {
     mutation.mutate(data);
-  })
-  useEffect(() => {
     const apiError = mutation.error as string;
     if (mutation.isError) toast.error(apiError, { id: "signup_err" });
-    if (mutation.isSuccess) toast.success(mutation.data?.message, { id: "signup_err" });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mutation.isError, mutation.isSuccess])
+    if (mutation.isSuccess) {
+      toast.success(mutation.data?.message, { id: "signup_err" });
+      router.push("/dashboard");
+    };
+  })
+
   return (
     <form onSubmit={onSubmit} className='flex flex-col items-center justify-start gap-2 mt-5 md:mt-10 w-full px-4 sm:px-0 sm:w-2/4 mx-auto'>
       <input

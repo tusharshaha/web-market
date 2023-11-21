@@ -61,7 +61,7 @@ const NavBar: React.FC = () => {
                     </div>
                     <div className="flex justify-center items-center">
                         
-                        {!email && isLoading &&
+                        {!email &&
                             <button onClick={handleRegister} className="web-btn2 tracking-widest"> <AiOutlinePlus className="font-bold mr-2" /> Join</button>
                         }
                         {email && !isLoading &&

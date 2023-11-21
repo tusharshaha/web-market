@@ -6,10 +6,14 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 import { publicApi } from '@/api/axios.service';
 import { useMutation } from 'react-query';
 import toast from 'react-hot-toast';
+import { useRouter } from 'next/router';
+import useAuth from '@/hooks/useAuth';
 
 const LoginForm: React.FC = () => {
   const [showPass, setShowPass] = useState(false);
   const handShowPass = () => setShowPass(!showPass);
+  const {email} = useAuth();
+  const router = useRouter();
   const mutation = useMutation({
     mutationFn: async (loginData: LoginFormData) => {
       return await publicApi.post<LoginFormData, { message: string }>(
@@ -32,7 +36,11 @@ const LoginForm: React.FC = () => {
   useEffect(() => {
     const apiError = mutation.error as string;
     if (mutation.isError) toast.error(apiError, { id: "login_err" });
-    if (mutation.isSuccess) toast.success(mutation.data?.message, { id: "login_err" });
+    if (mutation.isSuccess) {
+      toast.success(mutation.data?.message, { id: "login_err" })
+      // router.push("/dashboard");
+      console.log(mutation.isSuccess)
+    };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mutation.isError, mutation.isSuccess])
   return (
