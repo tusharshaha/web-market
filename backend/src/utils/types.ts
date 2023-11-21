@@ -21,4 +21,5 @@ export interface Cookie {
   httpOnly?: boolean;
   secure?: boolean;
   sameSite?: boolean;
+  path?: string;
 }
