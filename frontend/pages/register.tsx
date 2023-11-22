@@ -10,14 +10,6 @@ import useAuth from '@/hooks/useAuth';
 const Register: NextPage = () => {
   const [regPage, setRegPage] = useState(false);
   const router = useRouter();
-  const { email } = useAuth();
-
-  console.log(email)
-  useEffect(() => {
-    if (email) {
-      router.back();
-    }
-  }, [email, router])
 
   const handleBack = () => router.back();
   const handleGoogleLogin = () => router.push(`${process.env.NEXT_PUBLIC_API}/auth/login/google`)

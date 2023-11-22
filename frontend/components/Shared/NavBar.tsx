@@ -11,9 +11,14 @@ import useAuth from "@/hooks/useAuth";
 const NavBar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [menu, setMenu] = useState(false);
-    const { email, userImage, isLoading, setUser, logout } = useAuth();
+    const { email, userImage, isLoading, getProfile, logout } = useAuth();
     const router = useRouter();
-    
+    useEffect(() => {
+        if (!email && !isLoading) {
+            getProfile();
+        }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [email, isLoading, menu])
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
@@ -30,7 +35,6 @@ const NavBar: React.FC = () => {
     const handleLogout = () => {
         logout();
         setMenu(false);
-        console.log(email)
     }
     const navItem = <>
         <li onClick={handleToggle} className="bg-primary p-2 text-white flex md:hidden items-center justify-between">
@@ -62,7 +66,7 @@ const NavBar: React.FC = () => {
                         </ul>
                     </div>
                     <div className="flex justify-center items-center">
-                        
+
                         {!email &&
                             <button onClick={handleRegister} className="web-btn2 tracking-widest"> <AiOutlinePlus className="font-bold mr-2" /> Join</button>
                         }
@@ -76,9 +80,9 @@ const NavBar: React.FC = () => {
                         }
                         {/* tooltip menu  */}
                         <div className={`${menu ? "" : "hidden"} absolute top-[70px] right-[11px] bg-white text-black rounded-md py-1`}>
-                        <div className="relative">
-                        <div className="w-[10px] h-[10px] bg-white absolute top-[-9px] right-[15px] rotate-45"></div>
-                        </div>
+                            <div className="relative">
+                                <div className="w-[10px] h-[10px] bg-white absolute top-[-9px] right-[15px] rotate-45"></div>
+                            </div>
                             <ul className="w-[170px]">
                                 {
                                     menuItems.map((ele, i) => (

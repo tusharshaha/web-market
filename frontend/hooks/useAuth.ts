@@ -2,34 +2,29 @@ import { privateApi } from '@/api/axios.service';
 import { addUser, removeUser } from '@/redux/features/user.reducer';
 import { AppDispatch, RootState } from '@/redux/store';
 import { User } from '@/types';
-import { useEffect } from 'react';
-import { useQuery } from 'react-query';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
 interface Auth extends User {
   isLoading: boolean,
   logout: () => void,
-  setUser: () => void,
+  getProfile: () => void,
 }
 
-const getProfile = async (): Promise<User> => {
-  const res: User = await privateApi.get("/auth/profile");
-  return res
-}
+
 
 const useAuth = (): Auth => {
+  const [isLoading, setIsloading] = useState(false);
   const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch<AppDispatch>();
-  const { data, isLoading, refetch } = useQuery("profile", getProfile,
-    {
-      staleTime: 60000,
-      cacheTime: 60000,
-      retry: 1
-    })
-  const setUser = async () => {
-    await refetch()
-    dispatch(addUser(data as User));
+
+  const getProfile = () => {
+    setIsloading(true)
+    privateApi.get<any, User>("/auth/profile")
+      .then((data) => dispatch(addUser(data)))
+      .finally(() => setIsloading(false))
   }
+
   const logout = async () => {
     await privateApi("/auth/logout")
     dispatch(removeUser());
@@ -38,7 +33,7 @@ const useAuth = (): Auth => {
     ...user,
     isLoading,
     logout,
-    setUser
+    getProfile
   } as Auth;
 };
 
