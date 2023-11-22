@@ -11,8 +11,9 @@ import useAuth from "@/hooks/useAuth";
 const NavBar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [menu, setMenu] = useState(false);
-    const { email, userImage, isLoading, logout } = useAuth();
+    const { email, userImage, isLoading, setUser, logout } = useAuth();
     const router = useRouter();
+    
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
@@ -29,6 +30,7 @@ const NavBar: React.FC = () => {
     const handleLogout = () => {
         logout();
         setMenu(false);
+        console.log(email)
     }
     const navItem = <>
         <li onClick={handleToggle} className="bg-primary p-2 text-white flex md:hidden items-center justify-between">

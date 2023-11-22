@@ -15,7 +15,7 @@ export const loginFormSchema = z.object({
 });
 
 export const regFormSchema = z.object({
-  name: z.string().min(3).max(100),
+  name: z.string().min(3, "Name must contain at least 3 character(s)").max(100),
 }).merge(loginFormSchema);
 
 export type RegFormData = z.infer<typeof regFormSchema>;

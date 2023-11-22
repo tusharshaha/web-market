@@ -5,18 +5,19 @@ import { FaBackwardStep } from 'react-icons/fa6';
 import { FcGoogle } from 'react-icons/fc';
 import RegForm from '@/components/Register/RegForm';
 import LoginForm from '@/components/Register/LoginForm';
-import { useSelector } from "react-redux";
-import { RootState } from '@/redux/store';
+import useAuth from '@/hooks/useAuth';
 
 const Register: NextPage = () => {
   const [regPage, setRegPage] = useState(false);
   const router = useRouter();
-  const user = useSelector((state:RootState)=> state.auth.user);
+  const { email } = useAuth();
 
-  console.log(user)
-  if (user.email) {
-    router.push("/")
-  }
+  console.log(email)
+  useEffect(() => {
+    if (email) {
+      router.back();
+    }
+  }, [email, router])
 
   const handleBack = () => router.back();
   const handleGoogleLogin = () => router.push(`${process.env.NEXT_PUBLIC_API}/auth/login/google`)
