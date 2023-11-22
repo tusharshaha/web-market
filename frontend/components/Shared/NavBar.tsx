@@ -18,7 +18,7 @@ const NavBar: React.FC = () => {
             getProfile();
         }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [email, isLoading, menu])
+    }, [email, menu])
 
     const handleToggle = () => {
         setIsOpen(!isOpen);
