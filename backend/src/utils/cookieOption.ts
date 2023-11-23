@@ -3,6 +3,7 @@ import { CookieOptions } from "express";
 export const ATC_Option: CookieOptions = {
   path: "/",
   httpOnly: true,
+  sameSite: "lax",
   secure: true,
   maxAge: 60 * 60 * 1000, //cookie max age is 1 hour
 };
