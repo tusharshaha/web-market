@@ -10,9 +10,19 @@ import useAuth from '@/hooks/useAuth';
 const Register: NextPage = () => {
   const [regPage, setRegPage] = useState(false);
   const router = useRouter();
+  const { getProfile, email, isLoading } = useAuth();
 
   const handleBack = () => router.back();
   const handleGoogleLogin = () => router.push(`${process.env.NEXT_PUBLIC_API}/auth/login/google`)
+
+  useEffect(() => {
+    if (!email && !isLoading) {
+      getProfile();
+    }
+    email && router.push("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [email])
+
   return (
     <div className="register flex items-start justify-center px-10">
       <div className='max-w-3xl'>
