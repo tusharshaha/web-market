@@ -75,8 +75,24 @@ export class AuthController {
     try {
       const { userId } = req.user;
       await this.authService.logout(userId);
-      res.clearCookie("access_token", { secure: true, path: "/" });
-      res.clearCookie("refresh_token", { secure: true, path: "/" });
+      res.clearCookie("access_token", {
+        secure: true,
+        sameSite: "none",
+        domain:
+          process.env.NODE_ENV === "dev"
+            ? "localhost"
+            : "web-market-nu.vercel.app",
+        path: "/",
+      });
+      res.clearCookie("refresh_token", {
+        secure: true,
+        sameSite: "none",
+        domain:
+          process.env.NODE_ENV === "dev"
+            ? "localhost"
+            : "web-market-nu.vercel.app",
+        path: "/",
+      });
       res.json({ message: "Successfully logout" });
     } catch (error) {
       return handleError(error);
