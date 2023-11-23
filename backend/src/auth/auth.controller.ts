@@ -81,7 +81,7 @@ export class AuthController {
         domain:
           process.env.NODE_ENV === "dev"
             ? "localhost"
-            : "web-market-nu.vercel.app",
+            : "web-market-api.vercel.app",
         path: "/",
       });
       res.clearCookie("refresh_token", {
@@ -90,7 +90,7 @@ export class AuthController {
         domain:
           process.env.NODE_ENV === "dev"
             ? "localhost"
-            : "web-market-nu.vercel.app",
+            : "web-market-api.vercel.app",
         path: "/",
       });
       res.json({ message: "Successfully logout" });
