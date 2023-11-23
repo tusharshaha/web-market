@@ -24,7 +24,7 @@ const useAuth = (): Auth => {
   }
 
   const logout = async () => {
-    await privateApi("/auth/logout")
+    await privateApi.get("/auth/logout")
     dispatch(removeUser());
   }
   return {
