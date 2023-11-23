@@ -1,6 +1,5 @@
 import {
   IsEmail,
-  IsEnum,
   IsMobilePhone,
   IsNotEmpty,
   IsOptional,
@@ -8,7 +7,6 @@ import {
   IsUrl,
   Matches,
 } from "class-validator";
-import { Role } from "../schemas/user.schema";
 
 export class SignUpDto {
   @IsNotEmpty()
@@ -28,11 +26,7 @@ export class SignUpDto {
   @IsMobilePhone()
   readonly contactNumber: string;
 
-  @IsOptional()
+  @IsNotEmpty()
   @IsUrl()
   readonly userImage: string;
-
-  @IsOptional()
-  @IsEnum(Role, { message: "The role can't be accepted" })
-  readonly role: string;
 }

@@ -1,6 +1,5 @@
 import {
   ForbiddenException,
-  BadRequestException,
   Injectable,
   UnauthorizedException,
 } from "@nestjs/common";
@@ -26,11 +25,8 @@ export class AuthService {
   ) {}
 
   async signUp(signUpDto: SignUpDto): Promise<Token> {
-    const { name, email, password, role } = signUpDto;
-    if (role === "admin") {
-      throw new UnauthorizedException("You can't perform this action");
-    }
-    const userBody = { name, email, password };
+    const { name, email, password, userImage } = signUpDto;
+    const userBody = { name, email, password, userImage };
     const user = new this.userModel(userBody);
     this.generateConfirmationToken(user);
     const token = await this.getToken(user.id);
