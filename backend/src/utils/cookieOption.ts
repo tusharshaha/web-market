@@ -1,7 +1,6 @@
 import { CookieOptions } from "express";
 
 export const ATC_Option: CookieOptions = {
-  domain: process.env.FRONTEND_URL,
   httpOnly: true,
   sameSite: "none",
   secure: true,
