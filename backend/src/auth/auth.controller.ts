@@ -75,8 +75,8 @@ export class AuthController {
     try {
       const { userId } = req.user;
       await this.authService.logout(userId);
-      res.clearCookie("access_token");
-      res.clearCookie("refresh_token");
+      res.clearCookie("access_token", { path: "/" });
+      res.clearCookie("refresh_token", { path: "/" });
       res.json({ message: "Successfully logout" });
     } catch (error) {
       return handleError(error);
