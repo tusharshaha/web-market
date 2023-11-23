@@ -21,7 +21,7 @@ const Register: NextPage = () => {
     }
     email && router.push("/");
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [email])
 
   return (
     <div className="register flex items-start justify-center px-10">
