@@ -1,4 +1,4 @@
-import { privateApi } from '@/api/axios.service';
+import { privateApi, publicApi } from '@/api/axios.service';
 import { addUser, removeUser } from '@/redux/features/user.reducer';
 import { AppDispatch, RootState } from '@/redux/store';
 import { User } from '@/types';
@@ -24,7 +24,7 @@ const useAuth = (): Auth => {
   }
 
   const logout = async () => {
-    await privateApi.get("/auth/logout")
+    await publicApi.get("/auth/logout", { withCredentials: true })
     dispatch(removeUser());
   }
   return {
