@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { RegFormData, regFormSchema } from '@/types';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -6,6 +6,14 @@ import { FaEye, FaEyeSlash } from 'react-icons/fa6';
 import { publicApi } from '@/api/axios.service';
 import toast from 'react-hot-toast';
 import { useRouter } from 'next/router';
+
+const userImages = [
+  "https://i.ibb.co/Z2bBfyD/avatar3.jpg",
+  "https://i.ibb.co/BTzhYwY/avatar2.jpg",
+  "https://i.ibb.co/MSQBs8M/avatar1.jpg",
+  "https://i.ibb.co/5WJDLB0/avatar4.jpg",
+  "https://i.ibb.co/Kbx62K2/avatar5.jpg"
+]
 
 const RegForm: React.FC = () => {
   const [showPass, setShowPass] = useState(false);
@@ -20,9 +28,10 @@ const RegForm: React.FC = () => {
   } = useForm<RegFormData>({ resolver: zodResolver(regFormSchema) });
   const onSubmit = handleSubmit((data) => {
     setLoading(true);
+    const userImage = userImages[Math.floor(Math.random() * userImages.length)];
     publicApi.post<RegFormData, { message: string }>(
       "/auth/signup",
-      data,
+      { ...data, userImage },
       { withCredentials: true }
     ).then((res) => {
       reset()

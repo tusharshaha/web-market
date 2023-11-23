@@ -11,8 +11,6 @@ interface Auth extends User {
   getProfile: () => void,
 }
 
-
-
 const useAuth = (): Auth => {
   const [isLoading, setIsloading] = useState(false);
   const user = useSelector((state: RootState) => state.auth.user);
