@@ -24,7 +24,7 @@ const useAuth = (): Auth => {
   }
 
   const logout = async () => {
-    await publicApi.get("/auth/logout", { withCredentials: true })
+    await publicApi.post("/auth/logout", {}, { withCredentials: true })
     dispatch(removeUser());
   }
   return {

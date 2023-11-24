@@ -70,25 +70,13 @@ export class AuthController {
     }
   }
 
-  @Get("logout")
+  @Post("logout")
   async logoutUser(@Req() req: AuthenticatedRequest, @Res() res: Response) {
     try {
       const { userId } = req.user;
       await this.authService.logout(userId);
-      res.clearCookie("access_token", {
-        domain:
-          process.env.NODE_ENV === "dev"
-            ? "localhost"
-            : "web-market-api.vercel.app",
-        path: "/",
-      });
-      res.clearCookie("refresh_token", {
-        domain:
-          process.env.NODE_ENV === "dev"
-            ? "localhost"
-            : "web-market-api.vercel.app",
-        path: "/",
-      });
+      res.clearCookie("access_token");
+      res.clearCookie("refresh_token");
       res.json({ message: "Successfully logout" });
     } catch (error) {
       return handleError(error);
@@ -96,7 +84,7 @@ export class AuthController {
   }
 
   @Public()
-  @Get("/refresh")
+  @Post("/refresh")
   @UseGuards(RTAuthGuard)
   async refreshToken(@Req() req: any, @Res() res: Response) {
     try {
