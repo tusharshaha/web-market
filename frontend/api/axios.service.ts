@@ -6,7 +6,10 @@ const axiosConfig: AxiosRequestConfig = {
 };
 
 const publicApi: AxiosInstance = axios.create(axiosConfig);
-const privateApi: AxiosInstance = axios.create({ ...axiosConfig, withCredentials: true });
+const privateApi: AxiosInstance = axios.create({
+  ...axiosConfig,
+  withCredentials: true,
+});
 
 publicApi.interceptors.response.use(
   (res) => res.data,
@@ -28,7 +31,7 @@ privateApi.interceptors.response.use(
       return privateApi(prevRequest);
     }
     return Promise.reject(err.message);
-  }
+  },
 );
 
 export { publicApi, privateApi };

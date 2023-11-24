@@ -9,11 +9,7 @@ import { NextPage } from "next";
 
 const Candidate: NextPage = () => {
   return (
-    <Layout
-      title=""
-      keywords=""
-      description=""
-    >
+    <Layout title="" keywords="" description="">
       <div className="my-14 cus-container">
         {/* candidate top section  */}
         <CandidateTop />

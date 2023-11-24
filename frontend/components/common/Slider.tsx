@@ -1,13 +1,13 @@
 import React, { useCallback, useEffect, useState, useRef } from "react";
-import styles from "@/styles/Slider.module.css"
+import styles from "@/styles/Slider.module.css";
 
 interface OnChangeProps {
-  min: number,
-  max: number
+  min: number;
+  max: number;
 }
 
 interface SliderProps extends OnChangeProps {
-  onChange: (props: OnChangeProps) => void,
+  onChange: (props: OnChangeProps) => void;
 }
 
 const Slider: React.FC<SliderProps> = ({ min, max, onChange }) => {
@@ -20,7 +20,7 @@ const Slider: React.FC<SliderProps> = ({ min, max, onChange }) => {
   // Convert to percentage
   const getPercent = useCallback(
     (value: number) => Math.round(((value - min) / (max - min)) * 100),
-    [min, max]
+    [min, max],
   );
 
   // Set width of the range to decrease from the left side

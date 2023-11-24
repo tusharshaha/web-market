@@ -18,7 +18,7 @@ import { GoogleAuthGuard } from "./guards/google-auth.guard";
 import { Throttle } from "@nestjs/throttler";
 import { Public } from "../common/public.decorator";
 import { RTAuthGuard } from "./guards/refresh-auth.guard";
-import { ATC_Option, RTC_Option } from "../utils/cookieOption";
+import { ATC_Option, CC_Option, RTC_Option } from "../utils/cookieOption";
 
 @Controller("auth")
 export class AuthController {
@@ -75,16 +75,8 @@ export class AuthController {
     try {
       const { userId } = req.user;
       await this.authService.logout(userId);
-      res.clearCookie("access_token", {
-        secure: true,
-        sameSite: "none",
-        path: "/",
-      });
-      res.clearCookie("refresh_token", {
-        secure: true,
-        sameSite: "none",
-        path: "/",
-      });
+      res.clearCookie("access_token", CC_Option);
+      res.clearCookie("refresh_token", CC_Option);
       res.json({ message: "Successfully logout" });
     } catch (error) {
       return handleError(error);

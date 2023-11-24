@@ -8,7 +8,6 @@ import BestCandidate from "@/components/Home/BestCandiate";
 import Subscribe from "@/components/Home/Subscribe";
 
 const Home: NextPage = () => {
-
   return (
     <Layout>
       <Category></Category>

@@ -1,10 +1,14 @@
 import { CookieOptions } from "express";
 
-export const ATC_Option: CookieOptions = {
-  path: "/",
-  httpOnly: true,
-  sameSite: "none",
+export const CC_Option: CookieOptions = {
   secure: true,
+  sameSite: "none",
+  path: "/",
+};
+
+export const ATC_Option: CookieOptions = {
+  ...CC_Option,
+  httpOnly: true,
   maxAge: 60 * 60 * 1000, //cookie max age is 1 hour
 };
 export const RTC_Option: CookieOptions = {

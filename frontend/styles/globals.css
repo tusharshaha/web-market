@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Jost&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Jost&display=swap");
 
 * {
   margin: 0;
@@ -6,8 +6,8 @@
   box-sizing: border-box;
 }
 
-body{
-  font-family: 'Jost', sans-serif;
+body {
+  font-family: "Jost", sans-serif;
 }
 @tailwind base;
 @tailwind components;
@@ -15,10 +15,10 @@ body{
 
 /* tailwind base layer  */
 @layer base {
-  body{
+  body {
     @apply tracking-wide;
   }
-  
+
   h1 {
     @apply text-[3.4rem];
   }
@@ -34,13 +34,13 @@ body{
   h4 {
     @apply text-xl;
   }
-  
+
   h5 {
-    @apply text-lg
+    @apply text-lg;
   }
 
   h6 {
-    @apply text-sm
+    @apply text-sm;
   }
 
   p {
@@ -49,29 +49,29 @@ body{
 }
 
 .cus-container {
-  @apply container mx-auto px-5
+  @apply container mx-auto px-5;
 }
 
-.web-btn{
-  @apply btn btn-sm md:btn-md bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary trans
+.web-btn {
+  @apply btn btn-sm md:btn-md bg-primary border border-transparent px-3 py-2 rounded-md text-white hover:border-primary  hover:bg-white hover:text-primary trans;
 }
-.web-btn2{
-  @apply btn btn-primary btn-sm md:btn-md text-white
-}
-
-.register{
-  @apply bg-[url('/images/login-bg.webp')] h-full pt-14 pb-40 w-full bg-cover bg-center bg-no-repeat
+.web-btn2 {
+  @apply btn btn-primary btn-sm md:btn-md text-white;
 }
 
-.register_top{
-  @apply bg-[url('/images/login-img.webp')] h-full sm:h-[300px] pb-10 sm:pb-0 w-full bg-cover bg-center bg-no-repeat
+.register {
+  @apply bg-[url('/images/login-bg.webp')] h-full pt-14 pb-40 w-full bg-cover bg-center bg-no-repeat;
 }
 
-.trans{
-  @apply transition-all duration-300
+.register_top {
+  @apply bg-[url('/images/login-img.webp')] h-full sm:h-[300px] pb-10 sm:pb-0 w-full bg-cover bg-center bg-no-repeat;
 }
 
-.element-highlight::before{
+.trans {
+  @apply transition-all duration-300;
+}
+
+.element-highlight::before {
   content: "";
   display: block;
   height: 100%;
@@ -79,15 +79,15 @@ body{
   position: absolute;
   top: 0;
   left: -12px;
-  @apply bg-primary
+  @apply bg-primary;
 }
 
 .jobDetails_container::-webkit-scrollbar {
   width: 11px;
 }
 
-.jobDetails_container::-webkit-scrollbar-track{
-  @apply bg-green-100
+.jobDetails_container::-webkit-scrollbar-track {
+  @apply bg-green-100;
 }
 
 .jobDetails_container::-webkit-scrollbar-thumb {
@@ -95,7 +95,7 @@ body{
 }
 
 .jobDetails a {
-  @apply text-sky-600
+  @apply text-sky-600;
 }
 
 .jobDetails h3 {
@@ -104,9 +104,9 @@ body{
 }
 
 .jobDetails ul {
-  @apply list-disc ml-10
+  @apply list-disc ml-10;
 }
 
 .jobDetails p {
-  @apply pb-2
+  @apply pb-2;
 }
