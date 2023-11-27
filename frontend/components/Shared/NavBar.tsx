@@ -49,24 +49,19 @@ const NavBar: React.FC = () => {
         <FaAngleLeft />
       </li>
       <li className="p-2 border-y md:border-0 md:p-0">
-        {" "}
-        <Link href="/">Home</Link>{" "}
+        <Link href="/">Home</Link>
       </li>
       <li className="p-2 border-y md:border-0 md:p-0">
-        {" "}
-        <Link href="/jobs">Jobs</Link>{" "}
+        <Link href="/jobs">Jobs</Link>
       </li>
       <li className="p-2 border-y md:border-0 md:p-0">
-        {" "}
-        <Link href="/candidate">Candidate</Link>{" "}
+        <Link href="/candidate">Candidate</Link>
       </li>
       <li className="p-2 border-y md:border-0 md:p-0">
-        {" "}
-        <Link href="/projects">Projects</Link>{" "}
+        <Link href="/projects">Projects</Link>
       </li>
       <li className="p-2 border-y md:border-0 md:p-0">
-        {" "}
-        <Link href="/blogs">Blogs</Link>{" "}
+        <Link href="/blogs">Blogs</Link>
       </li>
     </>
   );
@@ -102,7 +97,6 @@ const NavBar: React.FC = () => {
                 onClick={handleRegister}
                 className="web-btn2 tracking-widest"
               >
-                {" "}
                 <AiOutlinePlus className="font-bold mr-2" /> Join
               </button>
             )}

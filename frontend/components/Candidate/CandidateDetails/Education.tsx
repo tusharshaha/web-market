@@ -30,7 +30,7 @@ const Education: React.FC = () => {
               <h4 className="text-primary text-base mt-2">{ele.institution}</h4>
             </div>
             <span className="text-base flex items-center gap-2 text-slate-500">
-              <FaCalendarAlt className="hidden sm:inline" /> {ele.startDate} -{" "}
+              <FaCalendarAlt className="hidden sm:inline" /> {ele.startDate} -
               {ele.endDate}
             </span>
           </div>

@@ -73,7 +73,7 @@ const Jobs: NextPage = () => {
         <SearchSection />
         {data?.total_count && (
           <p className="text-right mt-14">
-            Total <span className="font-semibold">{data?.total_count}</span>{" "}
+            Total <span className="font-semibold">{data?.total_count}</span>
             jobs available
           </p>
         )}

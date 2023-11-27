@@ -1,7 +1,12 @@
+import DashBoardLayout from "@/components/DashBoardLayout";
 import { NextPage } from "next";
 
 const DashboardHome: NextPage = () => {
-  return <div></div>;
+  return (
+    <DashBoardLayout>
+      
+    </DashBoardLayout>
+  );
 };
 
 export default DashboardHome;

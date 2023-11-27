@@ -10,7 +10,6 @@ const HeroSection = () => {
           </h2>
           <h2 className="font-bold my-5"> You can choose your dream job</h2>
           <h2 className="text-xl my-5">
-            {" "}
             Find great job for build your bright career. Have many job in this
             plactform.
           </h2>

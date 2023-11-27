@@ -126,10 +126,10 @@ const Footer = () => {
         </div>
         <div className="cus-container border-t border-slate-700 py-5">
           <div className="flex items-center justify-center text-slate-300 gap-1">
-            &#169; 2023 Web Market. Made with{" "}
+            &#169; 2023 Web Market. Made with
             <span className="text-primary">
               <AiTwotoneHeart />
-            </span>{" "}
+            </span>
             by Tushar.
           </div>
         </div>

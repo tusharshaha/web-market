@@ -54,7 +54,6 @@ const Layout: React.FC<props> = ({
                 Home
               </Link>
               <span className="capitalize text-green-600">
-                {" "}
                 &#47;&#47; {pathname?.pathName}
               </span>
             </div>
