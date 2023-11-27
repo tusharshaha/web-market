@@ -110,3 +110,7 @@ body {
 .jobDetails p {
   @apply pb-2;
 }
+
+.active_menu{
+  @apply bg-white text-slate-800
+}

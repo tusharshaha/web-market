@@ -89,7 +89,7 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
               <li
                 key={i}
                 className={`${
-                  pathName === menu.href ? "bg-white text-slate-800" : "hover:text-slate-300"
+                  pathName === menu.href ? "active_menu" : "hover:text-slate-300"
                 } flex items-center gap-6 py-2 px-4 rounded-l-full`}
               >
                 <span>{menu.icon}</span>
