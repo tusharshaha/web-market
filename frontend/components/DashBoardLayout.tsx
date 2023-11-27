@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FaRegEye, FaRegUserCircle } from "react-icons/fa";
 import {
   MdOutlineBookmarks,
@@ -9,12 +9,27 @@ import {
 import { IoDocumentTextOutline, IoSettingsOutline } from "react-icons/io5";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import useAuth from "@/hooks/useAuth";
 
 interface DashboardProps {
   children: React.ReactNode;
 }
 
 const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
+  const router = useRouter();
+  const pathName = router.pathname;
+  const { isLoading, userImage, name, email, getProfile, logout } = useAuth();
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
+  useEffect(() => {
+    if (!email && !isLoading) {
+      getProfile();
+    }
+    email && router.push("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [email]);
   const menus = [
     {
       icon: <MdOutlineSpaceDashboard />,
@@ -48,25 +63,41 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
       href: "/dashboard/setting",
     },
   ];
-  const pathName = useRouter().pathname;
   return (
     <div className="relative flex">
-      <div className="w-1/5">
-        <div className="bg-slate-900 text-white sticky top-0 h-screen text-xl">
-          <ul className="p-4">
+      <div className="w-[350px] h-screen sticky top-0 bg-slate-800">
+        <div className="bg-slate-900 text-white">
+          <div className="flex flex-col items-center justify-center text-center flex-wrap p-5">
+            <div className="avatar">
+              <div className="w-[50px] rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={userImage}
+                  height={100}
+                  width={100}
+                  alt="user image"
+                />
+              </div>
+            </div>
+            <p className="uppercase mt-4">Tushar Kumar Shaha</p>
+            <p className="text-slate-300 text-sm">tusharshaha128@gmail.com</p>
+          </div>
+        </div>
+        <div className="text-white text-xl">
+          <ul className="pl-5 mt-8">
             {menus.map((menu, i) => (
               <li
                 key={i}
                 className={`${
-                  pathName === menu.href ? "bg-primary" : "hover:text-primary"
-                } flex items-center gap-2 p-2`}
+                  pathName === menu.href ? "bg-white text-slate-800" : "hover:text-slate-300"
+                } flex items-center gap-6 py-2 px-4 rounded-l-full`}
               >
                 <span>{menu.icon}</span>
                 <Link href={menu.href}>{menu.title}</Link>
               </li>
             ))}
-            <li className="p-2 hover:text-primary">
-              <button className="flex items-center gap-2">
+            <li className="py-2 px-4 hover:text-slate-200">
+              <button onClick={logout} className="flex items-center gap-6">
                 <MdLogout />
                 Log Out
               </button>
@@ -74,7 +105,7 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
           </ul>
         </div>
       </div>
-      <div className="w-4/5">{children}</div>
+      <div className="w-full p-6">{children}</div>
     </div>
   );
 };
