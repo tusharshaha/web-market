@@ -10,6 +10,7 @@ import { IoDocumentTextOutline, IoSettingsOutline } from "react-icons/io5";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useAuth from "@/hooks/useAuth";
+import Image from "next/image";
 
 interface DashboardProps {
   children: React.ReactNode;
@@ -23,13 +24,13 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
     logout();
     router.push("/");
   };
-  useEffect(() => {
-    if (!email && !isLoading) {
-      getProfile();
-    }
-    email && router.push("/");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email]);
+  // useEffect(() => {
+  //   if (!email && !isLoading) {
+  //     getProfile();
+  //   }
+  //   email && router.push("/");
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [email]);
   const menus = [
     {
       icon: <MdOutlineSpaceDashboard />,
@@ -65,44 +66,53 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
   ];
   return (
     <div className="relative flex">
-      <div className="w-[350px] h-screen sticky top-0 bg-slate-800">
-        <div className="bg-slate-900 text-white">
-          <div className="flex flex-col items-center justify-center text-center flex-wrap p-5">
-            <div className="avatar">
-              <div className="w-[50px] rounded-full ring ring-primary ring-offset-base-100 ring-offset-2">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={userImage}
-                  height={100}
-                  width={100}
-                  alt="user image"
-                />
-              </div>
-            </div>
-            <p className="uppercase mt-4">Tushar Kumar Shaha</p>
-            <p className="text-slate-300 text-sm">tusharshaha128@gmail.com</p>
+      <div className="w-[350px] min-h-screen sticky top-0 bg-slate-800">
+        <div className="bg-slate-900 text-white border-b">
+          <div className="flex items-center gap-6 pl-3 py-2">
+            <span>Image</span>
+            <h4>Logo</h4>
           </div>
         </div>
         <div className="text-white text-xl">
-          <ul className="pl-5 mt-8">
+          <ul className="pl-3 mt-8 space-y-2">
             {menus.map((menu, i) => (
               <li
                 key={i}
                 className={`${
-                  pathName === menu.href ? "active_menu" : "hover:text-slate-300"
-                } flex items-center gap-6 py-2 px-4 rounded-l-full`}
+                  pathName === menu.href
+                    ? "active_menu"
+                    : "hover:text-slate-300"
+                } py-2 px-3  rounded-l-full`}
               >
-                <span>{menu.icon}</span>
-                <Link href={menu.href}>{menu.title}</Link>
+                <Link
+                  className="flex items-center gap-6"
+                  title={menu.title}
+                  href={menu.href}
+                >
+                  <div className="icon">{menu.icon}</div>
+                  <span>{menu.title}</span>
+                </Link>
               </li>
             ))}
-            <li className="py-2 px-4 hover:text-slate-200">
-              <button onClick={logout} className="flex items-center gap-6">
-                <MdLogout />
-                Log Out
-              </button>
-            </li>
           </ul>
+          <div className="py-3 pl-6 absolute bottom-0 hover:text-slate-200">
+            <div className="flex items-center gap-4 ml-[-10px]">
+              <Image
+                src="/candidate/1.webp"
+                height={50}
+                width={50}
+                className="w-[40px] h-[40px] rounded-full"
+                alt="user image"
+              />
+              <p className="uppercase">Tushar Kumar Shaha</p>
+            </div>
+            <button onClick={logout} className="flex items-center gap-6 mt-4">
+              <div className="flex items-center justify-center">
+                <MdLogout />
+              </div>
+              <span>Log Out</span>
+            </button>
+          </div>
         </div>
       </div>
       <div className="w-full p-6">{children}</div>
