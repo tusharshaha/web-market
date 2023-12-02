@@ -2,7 +2,7 @@ import { NextPage } from "next";
 import { useState, useEffect } from "react";
 import Layout from "@/components/Layout";
 import { QueryClient, useQuery, dehydrate } from "react-query";
-import { publicApi } from "@/api/axios.service";
+import { publicApi } from "@/lib/api/axios.service";
 import SearchSection from "@/components/Job/SearchSection";
 import JobCard from "@/components/Job/JobCard";
 import JobDetails from "@/components/Job/JobDetails";

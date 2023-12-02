@@ -16,12 +16,12 @@ const NavBar: React.FC = () => {
   const [menu, setMenu] = useState(false);
   const { email, userImage, isLoading, getProfile, logout } = useAuth();
   const router = useRouter();
-  useEffect(() => {
-    if (!email && !isLoading) {
-      getProfile();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   if (!email && !isLoading) {
+  //     getProfile();
+  //   }
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   const handleToggle = () => {
     setIsOpen(!isOpen);

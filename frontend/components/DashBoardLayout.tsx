@@ -24,13 +24,13 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
     logout();
     router.push("/");
   };
-  // useEffect(() => {
-  //   if (!email && !isLoading) {
-  //     getProfile();
-  //   }
-  //   email && router.push("/");
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [email]);
+  useEffect(() => {
+    if (!email && !isLoading) {
+      getProfile();
+    }
+    !email && router.push("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [email]);
   const menus = [
     {
       icon: <MdOutlineSpaceDashboard />,
@@ -97,16 +97,17 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
           </ul>
           <div className="py-3 pl-6 absolute bottom-0 hover:text-slate-200">
             <div className="flex items-center gap-4 ml-[-10px]">
-              <Image
-                src="/candidate/1.webp"
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={userImage}
                 height={50}
                 width={50}
                 className="w-[40px] h-[40px] rounded-full"
                 alt="user image"
               />
-              <p className="uppercase">Tushar Kumar Shaha</p>
+              <p className="uppercase">{name}</p>
             </div>
-            <button onClick={logout} className="flex items-center gap-6 mt-4">
+            <button onClick={handleLogout} className="flex items-center gap-6 mt-4">
               <div className="flex items-center justify-center">
                 <MdLogout />
               </div>

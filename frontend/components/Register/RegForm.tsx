@@ -3,7 +3,7 @@ import { RegFormData, regFormSchema } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { FaEye, FaEyeSlash } from "react-icons/fa6";
-import { publicApi } from "@/api/axios.service";
+import { publicApi } from "@/lib/api/axios.service";
 import toast from "react-hot-toast";
 import { useRouter } from "next/router";
 

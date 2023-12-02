@@ -1,4 +1,4 @@
-import { privateApi, publicApi } from "@/api/axios.service";
+import { privateApi, publicApi } from "@/lib/api/axios.service";
 import { addUser, removeUser } from "@/redux/features/user.reducer";
 import { AppDispatch, RootState } from "@/redux/store";
 import { User } from "@/types";
@@ -18,10 +18,10 @@ const useAuth = (): Auth => {
 
   const getProfile = () => {
     setIsloading(true);
-    privateApi
-      .get<any, User>("/auth/profile")
-      .then((data) => dispatch(addUser(data)))
-      .finally(() => setIsloading(false));
+    privateApi.get<any, User>("/auth/profile").then((data) => {
+      dispatch(addUser(data));
+      setIsloading(false);
+    });
   };
 
   const logout = async () => {
