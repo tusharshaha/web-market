@@ -1,6 +1,6 @@
 import { privateApi, publicApi } from "@/lib/api/axios.service";
-import { addUser, removeUser } from "@/redux/features/user.reducer";
-import { AppDispatch, RootState } from "@/redux/store";
+import { addUser, removeUser } from "@/lib/redux/features/user.reducer";
+import { AppDispatch, RootState } from "@/lib/redux/store";
 import { User } from "@/types";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

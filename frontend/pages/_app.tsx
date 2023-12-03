@@ -8,7 +8,7 @@ import type { AppProps } from "next/app";
 import { QueryClient, QueryClientProvider, Hydrate } from "react-query";
 import { Toaster } from "react-hot-toast";
 import { Provider } from "react-redux";
-import { store } from "@/redux/store";
+import { store } from "@/lib/redux/store";
 
 export default function App({ Component, pageProps }: AppProps) {
   const queryClient = React.useRef(new QueryClient());
