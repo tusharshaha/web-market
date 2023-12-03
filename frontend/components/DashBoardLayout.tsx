@@ -66,8 +66,8 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
   ];
   return (
     <div className="relative flex">
-      <div className="w-[350px] min-h-screen sticky top-0 bg-slate-800">
-        <div className="bg-slate-900 text-white border-b">
+      <div className="w-[350px] min-h-screen sticky top-0 bg-slate-900">
+        <div className="text-white border-b border-slate-500">
           <div className="flex items-center gap-6 pl-3 py-2">
             <span>Image</span>
             <h4>Logo</h4>
