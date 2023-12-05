@@ -116,7 +116,7 @@ body {
 }
 
 .active_menu{
-  @apply element-highlight before:left-0 relative bg-green-100 text-primary
+  @apply element-highlight before:left-0 relative bg-green-50 text-primary
 }
 
 .active_menu .icon{

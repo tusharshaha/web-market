@@ -1,16 +1,16 @@
 import React, { useEffect } from "react";
-import { FaRegEye, FaRegUserCircle } from "react-icons/fa";
+import { FaRegUserCircle } from "react-icons/fa";
 import {
   MdOutlineBookmarks,
   MdOutlineBusinessCenter,
   MdOutlineSpaceDashboard,
+  MdOutlineMailOutline,
   MdLogout,
 } from "react-icons/md";
 import { IoDocumentTextOutline, IoSettingsOutline } from "react-icons/io5";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useAuth from "@/hooks/useAuth";
-import Image from "next/image";
 
 interface DashboardProps {
   children: React.ReactNode;
@@ -42,7 +42,11 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
       title: "My Profile",
       href: "/dashboard/profile",
     },
-    { icon: <FaRegEye />, title: "Messages", href: "/dashboard/Messages" },
+    {
+      icon: <MdOutlineMailOutline />,
+      title: "Messages",
+      href: "/dashboard/Messages",
+    },
     {
       icon: <MdOutlineBusinessCenter />,
       title: "Applied Jobs",
@@ -55,8 +59,8 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
     },
     {
       icon: <IoDocumentTextOutline />,
-      title: "Edit Resume",
-      href: "/dashboard/edit_resume",
+      title: "Resume",
+      href: "/dashboard/resume",
     },
     {
       icon: <IoSettingsOutline />,
@@ -66,11 +70,10 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
   ];
   return (
     <div className="relative flex">
-      <div className="w-[350px] min-h-screen sticky top-0 bg-white text-black border-r text-lg">
+      <div className="w-[350px] max-h-screen overflow-y-auto sticky top-0 bg-white text-black border-r text-lg">
         <div className="border-b">
-          <div className="flex items-center gap-6 pl-3 py-2">
-            <span>Image</span>
-            <h4>Logo</h4>
+          <div className="pl-5 py-2">
+            <Link href="/">Logo</Link>
           </div>
         </div>
         <ul className="mt-8 space-y-1">
@@ -82,7 +85,7 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
               } py-2 px-5 group trans`}
             >
               <Link
-                className="flex items-center gap-6"
+                className="flex items-center gap-5"
                 title={menu.title}
                 href={menu.href}
               >
@@ -94,7 +97,7 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
           <li className="py-2 px-5 hover:text-primary trans">
             <button
               onClick={handleLogout}
-              className="flex items-center gap-6 group"
+              className="flex items-center gap-5 group"
             >
               <div className="icon trans">
                 <MdLogout />
