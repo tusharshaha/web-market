@@ -111,43 +111,15 @@ body {
   @apply pb-2;
 }
 
+.icon{
+  @apply bg-green-100 text-primary group-hover:text-white group-hover:bg-primary rounded-full w-[40px] h-[40px] flex items-center justify-center
+}
+
 .active_menu{
-  @apply bg-white text-slate-800 relative;
+  @apply element-highlight before:left-0 relative bg-green-100 text-primary
 }
 
-.active_menu::before,
-.active_menu::after{
-  content: "";
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  background-color: transparent;
-}
-
-.active_menu::before{
-  top: -20px;
-  right: 0;
-  border-bottom-right-radius: 20px;
-  box-shadow: 5px 5px 0 5px white;
-}
-
-.active_menu::after{
-  bottom: -20px;
-  right: 0;
-  border-top-right-radius: 20px;
-  box-shadow: 5px -5px 0 5px white;
-}
-
-.active_menu a .icon{
-  @apply relative flex items-center justify-center text-white;
-  z-index: 5;
-}
-
-.active_menu a .icon::before{
-  @apply absolute bg-primary rounded-full;
-  content: "";
-  width: 40px;
-  inset: -9px;
-  z-index: -1;
+.active_menu .icon{
+  @apply bg-primary text-white
 }
 

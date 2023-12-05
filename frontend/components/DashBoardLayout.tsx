@@ -24,13 +24,13 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
     logout();
     router.push("/");
   };
-  useEffect(() => {
-    if (!email && !isLoading) {
-      getProfile();
-    }
-    !email && router.push("/");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email]);
+  // useEffect(() => {
+  //   if (!email && !isLoading) {
+  //     getProfile();
+  //   }
+  //   !email && router.push("/");
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [email]);
   const menus = [
     {
       icon: <MdOutlineSpaceDashboard />,
@@ -42,6 +42,7 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
       title: "My Profile",
       href: "/dashboard/profile",
     },
+    { icon: <FaRegEye />, title: "Messages", href: "/dashboard/Messages" },
     {
       icon: <MdOutlineBusinessCenter />,
       title: "Applied Jobs",
@@ -57,7 +58,6 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
       title: "Edit Resume",
       href: "/dashboard/edit_resume",
     },
-    { icon: <FaRegEye />, title: "View Resume", href: "/dashboard/resume" },
     {
       icon: <IoSettingsOutline />,
       title: "Settings",
@@ -66,57 +66,45 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
   ];
   return (
     <div className="relative flex">
-      <div className="w-[350px] min-h-screen sticky top-0 bg-slate-900">
-        <div className="text-white border-b border-slate-500">
+      <div className="w-[350px] min-h-screen sticky top-0 bg-white text-black border-r text-lg">
+        <div className="border-b">
           <div className="flex items-center gap-6 pl-3 py-2">
             <span>Image</span>
             <h4>Logo</h4>
           </div>
         </div>
-        <div className="text-white text-xl">
-          <ul className="pl-3 mt-8 space-y-2">
-            {menus.map((menu, i) => (
-              <li
-                key={i}
-                className={`${
-                  pathName === menu.href
-                    ? "active_menu"
-                    : "hover:text-slate-300"
-                } py-2 px-3  rounded-l-full`}
+        <ul className="mt-8 space-y-1">
+          {menus.map((menu, i) => (
+            <li
+              key={i}
+              className={`${
+                pathName === menu.href ? "active_menu" : "hover:text-primary"
+              } py-2 px-5 group trans`}
+            >
+              <Link
+                className="flex items-center gap-6"
+                title={menu.title}
+                href={menu.href}
               >
-                <Link
-                  className="flex items-center gap-6"
-                  title={menu.title}
-                  href={menu.href}
-                >
-                  <div className="icon">{menu.icon}</div>
-                  <span>{menu.title}</span>
-                </Link>
-              </li>
-            ))}
-          </ul>
-          <div className="py-3 pl-6 absolute bottom-0 hover:text-slate-200">
-            <div className="flex items-center gap-4 ml-[-10px]">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={userImage}
-                height={50}
-                width={50}
-                className="w-[40px] h-[40px] rounded-full"
-                alt="user image"
-              />
-              <p className="uppercase">{name}</p>
-            </div>
-            <button onClick={handleLogout} className="flex items-center gap-6 mt-4">
-              <div className="flex items-center justify-center">
+                <div className="icon trans">{menu.icon}</div>
+                <span>{menu.title}</span>
+              </Link>
+            </li>
+          ))}
+          <li className="py-2 px-5 hover:text-primary trans">
+            <button
+              onClick={handleLogout}
+              className="flex items-center gap-6 group"
+            >
+              <div className="icon trans">
                 <MdLogout />
               </div>
               <span>Log Out</span>
             </button>
-          </div>
-        </div>
+          </li>
+        </ul>
       </div>
-      <div className="w-full p-6">{children}</div>
+      <div className="w-full bg-slate-50 min-h-screen p-6">{children}</div>
     </div>
   );
 };
