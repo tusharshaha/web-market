@@ -3,6 +3,7 @@ import { getUser } from "./utils/auth";
 import { ResponseCookie } from "next/dist/compiled/@edge-runtime/cookies";
 
 const cookieOption: Partial<ResponseCookie> = {
+  httpOnly: true,
   secure: true,
   sameSite: "none",
   path: "/",
