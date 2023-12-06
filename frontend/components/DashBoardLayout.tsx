@@ -24,13 +24,13 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
     logout();
     router.push("/");
   };
-  // useEffect(() => {
-  //   if (!email && !isLoading) {
-  //     getProfile();
-  //   }
-  //   !email && router.push("/");
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [email]);
+  useEffect(() => {
+    if (!email && !isLoading) {
+      getProfile();
+    }
+    !email && router.push("/");
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [email]);
   const menus = [
     {
       icon: <MdOutlineSpaceDashboard />,

@@ -96,7 +96,7 @@ export class AuthController {
       const token = await this.authService.refreshToken(userId, refreshToken);
       res.cookie("access_token", token.access_token, ATC_Option);
       res.cookie("refresh_token", token.refresh_token, RTC_Option);
-      res.json({ token, message: "Token refresh successfuly" });
+      res.json({ message: "Token refresh successfuly" });
     } catch (error) {
       return handleError(error);
     }
