@@ -19,6 +19,7 @@ import { Throttle } from "@nestjs/throttler";
 import { Public } from "../common/public.decorator";
 import { RTAuthGuard } from "./guards/refresh-auth.guard";
 import { ATC_Option, CC_Option, RTC_Option } from "../utils/cookieOption";
+import { ExtractJwt } from "passport-jwt";
 
 @Controller("auth")
 export class AuthController {
@@ -89,11 +90,13 @@ export class AuthController {
   async refreshToken(@Req() req: any, @Res() res: Response) {
     try {
       const { userId } = req.user;
-      const refreshToken = req.cookies.refresh_token || null;
+      const refreshToken =
+        req.cookies.refresh_token ||
+        ExtractJwt.fromAuthHeaderAsBearerToken()(req);
       const token = await this.authService.refreshToken(userId, refreshToken);
       res.cookie("access_token", token.access_token, ATC_Option);
       res.cookie("refresh_token", token.refresh_token, RTC_Option);
-      res.json({ message: "Token refresh successfuly" });
+      res.json({ token, message: "Token refresh successfuly" });
     } catch (error) {
       return handleError(error);
     }

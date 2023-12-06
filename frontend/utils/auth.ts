@@ -1,4 +1,4 @@
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 const commonOptions: RequestInit = {
   mode: "cors",
@@ -36,14 +36,14 @@ export async function getUser(req: NextRequest) {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${access_token}`,
+          Authorization: `Bearer ${refreshData.token.access_token}`,
         },
       });
-      return refreshedProfileData;
+      return { ...refreshedProfileData, ...refreshData };
     } else {
       return {};
     }
-  }else{
-    return profileData
+  } else {
+    return profileData;
   }
 }

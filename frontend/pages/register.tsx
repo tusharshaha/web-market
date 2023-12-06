@@ -1,28 +1,18 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaBackwardStep } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import RegForm from "@/components/Register/RegForm";
 import LoginForm from "@/components/Register/LoginForm";
-import useAuth from "@/hooks/useAuth";
 
 const Register: NextPage = () => {
   const [regPage, setRegPage] = useState(false);
   const router = useRouter();
-  const { getProfile, email, isLoading } = useAuth();
 
   const handleBack = () => router.back();
   const handleGoogleLogin = () =>
     router.push(`${process.env.NEXT_PUBLIC_API}/auth/login/google`);
-
-  useEffect(() => {
-    if (!email && !isLoading) {
-      getProfile();
-    }
-    email && router.push("/");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email]);
 
   return (
     <div className="register flex items-start justify-center px-10">
