@@ -36,7 +36,9 @@ export async function getUser(req: NextRequest) {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${refreshData.token.access_token}`,
+          Authorization: `Bearer ${
+            access_token || refreshData?.token?.access_token
+          }`,
         },
       });
       return { ...refreshedProfileData, ...refreshData };

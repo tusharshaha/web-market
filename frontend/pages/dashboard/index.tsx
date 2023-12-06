@@ -4,7 +4,7 @@ import { NextPage } from "next";
 const DashboardHome: NextPage = () => {
   return (
     <DashBoardLayout>
-      hello
+      
     </DashBoardLayout>
   );
 };
