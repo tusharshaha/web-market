@@ -13,10 +13,10 @@ export default async function middleware(req: NextRequest) {
   const user = await getUser(req);
   const pathname = req.nextUrl.pathname;
 
-  if (pathname.startsWith("/register") && user?.email) {
+  if (pathname.startsWith("/register") && !user?.email) {
     return NextResponse.redirect(new URL("/", req.url));
   }
-  if (pathname.startsWith("/dashboard") && !user.email) {
+  if (pathname.startsWith("/dashboard") && user.email) {
     return NextResponse.redirect(new URL("/", req.url));
   }
   // set token to the browser 
