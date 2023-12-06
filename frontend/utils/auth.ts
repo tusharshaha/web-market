@@ -1,15 +1,17 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextRequest } from "next/server";
 
 const commonOptions: RequestInit = {
+  mode: "cors",
   credentials: "include",
 };
 
-const makeRequest = (url: string, options: RequestInit) =>
-  fetch(`${process.env.NEXT_PUBLIC_API}${url}`, {
+const makeRequest = async (url: string, options: RequestInit) => {
+  const req = fetch(`${process.env.NEXT_PUBLIC_API}${url}`, {
     ...commonOptions,
     ...options,
-  }).then((res) => res.json());
-
+  });
+  return (await req).json();
+};
 export async function getUser(req: NextRequest) {
   const access_token = req.cookies.get("access_token")?.value || "";
   const refresh_token = req.cookies.get("refresh_token")?.value || "";
