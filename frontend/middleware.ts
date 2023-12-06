@@ -13,25 +13,29 @@ export default async function middleware(req: NextRequest) {
   const response = NextResponse.next();
   const user = await getUser(req);
   const pathname = req.nextUrl.pathname;
-
-  if (pathname.startsWith("/register") && user.email) {
-    return NextResponse.redirect(new URL("/", req.url));
-  }
-  if (pathname.startsWith("/dashboard") && !user.email) {
-    return NextResponse.redirect(new URL("/", req.url));
-  }
-  // set token to the browser 
-  if (user?.token?.access_token) {
-    response.cookies.set("access_token", user.token.access_token, {
-      ...cookieOption,
-      maxAge: 60 * 60 * 1000,
-    });
-    response.cookies.set("refresh_token", user.token.refresh_token, {
-      ...cookieOption,
-      maxAge: 60 * 60 * 24 * 7 * 1000,
-    });
-    return response;
-  }
+  response.cookies.set("user", user.email, {
+    ...cookieOption,
+    maxAge: 60 * 60 * 1000,
+  });
+  return response;
+  // if (pathname.startsWith("/register") && user.email) {
+  //   return NextResponse.redirect(new URL("/", req.url));
+  // }
+  // if (pathname.startsWith("/dashboard") && !user.email) {
+  //   return NextResponse.redirect(new URL("/", req.url));
+  // }
+  // // set token to the browser
+  // if (user?.token?.access_token) {
+  //   response.cookies.set("access_token", user.token.access_token, {
+  //     ...cookieOption,
+  //     maxAge: 60 * 60 * 1000,
+  //   });
+  //   response.cookies.set("refresh_token", user.token.refresh_token, {
+  //     ...cookieOption,
+  //     maxAge: 60 * 60 * 24 * 7 * 1000,
+  //   });
+  //   return response;
+  // }
 }
 
 export const config = {
