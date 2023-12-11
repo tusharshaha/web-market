@@ -132,7 +132,7 @@ const NavBar: React.FC = () => {
               <div className="relative">
                 <div className="w-[10px] h-[10px] bg-white absolute top-[-9px] right-[15px] rotate-45"></div>
               </div>
-              <div className="p-3 flex gap-3 items-center flex-wrap">
+              <div className="p-3 flex gap-3 items-center">
                 <div className="w-[40px] rounded-full object-cover overflow-hidden">
                   <img
                     src={userImage}
@@ -141,9 +141,9 @@ const NavBar: React.FC = () => {
                     alt="user image"
                   />
                 </div>
-                <div>
-                  <p className="font-semibold">{name}</p>
-                  <p className="text-slate-500 text-sm">{email}</p>
+                <div className="w-3/4">
+                  <p className="font-semibold truncate">{name}</p>
+                  <p className="text-slate-500 text-sm truncate">{email}</p>
                 </div>
               </div>
               <ul className="border-y px-3 py-2 space-y-3">
