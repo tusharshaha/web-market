@@ -15,7 +15,7 @@ const DashboardHome: NextPage = () => {
     { icon: <TfiEmail />, title: "Messages", records: "12", color: "bg-[#28d5a6]" },
     {
       icon: <MdOutlineBookmarks />,
-      title: "Saved Jobs",
+      title: "Bookmarked Jobs",
       records: "40",
       color: "bg-[#f6b851]",
     },
@@ -32,12 +32,12 @@ const DashboardHome: NextPage = () => {
         {candidateData.map((ele, i) => (
           <div
             key={i}
-            className={`${ele.color} flex flex-col items-center justify-center py-6 gap-2 text-white font-semibold rounded-md`}
+            className={`${ele.color} flex flex-col items-center justify-center py-8 gap-2 text-white font-semibold rounded-md group`}
           >
-            <div className="w-[50px] h-[50px] flex items-center justify-center rounded-full shadow-lg text-xl">
+            <div className="w-[60px] h-[60px] flex items-center justify-center rounded-full shadow-full text-2xl group-hover:bg-white group-hover:text-black trans mb-2">
               {ele.icon}
             </div>
-            <p className="text-3xl">{ele.records}</p>
+            <p className="text-4xl">{ele.records}</p>
             <h5>{ele.title}</h5>
           </div>
         ))}
