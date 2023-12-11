@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { FiMenu } from "react-icons/fi";
 import { FaAngleLeft, FaRegEye } from "react-icons/fa";
 import { AiOutlinePlus } from "react-icons/ai";
@@ -14,8 +14,10 @@ import useAuth from "@/hooks/useAuth";
 const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [menu, setMenu] = useState(false);
-  const { email, userImage, isLoading, getProfile, logout } = useAuth();
+  const { email, name, userImage, isLoading, getProfile, logout } = useAuth();
   const router = useRouter();
+  const menuRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
     if (!email && !isLoading) {
       getProfile();
@@ -26,7 +28,6 @@ const NavBar: React.FC = () => {
   const handleToggle = () => {
     setIsOpen(!isOpen);
   };
-
   const handleMenu = () => {
     setMenu(!menu);
   };
@@ -39,6 +40,15 @@ const NavBar: React.FC = () => {
     logout();
     setMenu(false);
   };
+  useEffect(() => {
+    const handler = (e: any) => {
+      if (!menuRef.current?.contains(e.target)) {
+        setMenu(false);
+      }
+    };
+    document.body.addEventListener("mousedown", handler);
+    return () => document.body.removeEventListener("mousedown", handler);
+  });
   const navItem = (
     <>
       <li
@@ -72,10 +82,10 @@ const NavBar: React.FC = () => {
       path: "/dashboard",
       title: "Dashboard",
     },
-    { icon: <FaRegEye />, path: "/resume", title: "View Resume" },
+    { icon: <FaRegEye />, path: "/dashboard/resume", title: "View Resume" },
     {
       icon: <MdOutlineBookmarks />,
-      path: "/dashboard",
+      path: "/dashboard/bookmark",
       title: "Bookmark Jobs",
     },
   ];
@@ -91,7 +101,7 @@ const NavBar: React.FC = () => {
               {navItem}
             </ul>
           </div>
-          <div className="flex justify-center items-center">
+          <div ref={menuRef} className="flex justify-center items-center">
             {!email && (
               <button
                 onClick={handleRegister}
@@ -117,35 +127,49 @@ const NavBar: React.FC = () => {
             <div
               className={`${
                 menu ? "" : "hidden"
-              } absolute top-[70px] right-[11px] bg-white text-black rounded-md py-1`}
+              } absolute top-[70px] right-[11px] bg-white text-black rounded-md py-1 w-[250px]`}
             >
               <div className="relative">
                 <div className="w-[10px] h-[10px] bg-white absolute top-[-9px] right-[15px] rotate-45"></div>
               </div>
-              <ul className="w-[170px]">
+              <div className="p-3 flex gap-3 items-center flex-wrap">
+                <div className="w-[40px] rounded-full object-cover overflow-hidden">
+                  <img
+                    src={userImage}
+                    height={100}
+                    width={100}
+                    alt="user image"
+                  />
+                </div>
+                <div>
+                  <p className="font-semibold">{name}</p>
+                  <p className="text-slate-500 text-sm">{email}</p>
+                </div>
+              </div>
+              <ul className="border-y px-3 py-2 space-y-3">
                 {menuItems.map((ele, i) => (
-                  <li
-                    key={i}
-                    className="border-b py-1 px-2 flex items-center gap-2"
-                  >
-                    <span className="text-primary">{ele.icon}</span>
-                    <Link href={ele.path} className="hover:text-primary">
-                      {ele.title}
+                  <li key={i} className="">
+                    <Link
+                      href={ele.path}
+                      className="hover:text-primary flex items-center gap-3"
+                    >
+                      <span className="">{ele.icon}</span>
+                      <span>{ele.title}</span>
                     </Link>
                   </li>
                 ))}
-                <li className="py-1 px-2">
-                  <button
-                    onClick={handleLogout}
-                    className="flex items-center gap-2 hover:text-primary"
-                  >
-                    <span className="text-primary">
-                      <MdLogout />
-                    </span>
-                    Log Out
-                  </button>
-                </li>
               </ul>
+              <div className="p-3">
+                <button
+                  onClick={handleLogout}
+                  className="flex items-center gap-3 hover:text-primary"
+                >
+                  <span className="">
+                    <MdLogout />
+                  </span>
+                  Log Out
+                </button>
+              </div>
             </div>
             <button
               onClick={handleToggle}
