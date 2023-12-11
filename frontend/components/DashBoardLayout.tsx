@@ -38,14 +38,9 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
       href: "/dashboard",
     },
     {
-      icon: <FaRegUserCircle />,
-      title: "My Profile",
-      href: "/dashboard/profile",
-    },
-    {
       icon: <MdOutlineMailOutline />,
       title: "Messages",
-      href: "/dashboard/Messages",
+      href: "/dashboard/messages",
     },
     {
       icon: <MdOutlineBusinessCenter />,

@@ -2,7 +2,7 @@ import DashBoardLayout from "@/components/DashBoardLayout";
 import { NextPage } from "next";
 
 
-const Profile: NextPage = () => {
+const Messages: NextPage = () => {
   return (
     <DashBoardLayout>
       
@@ -10,4 +10,4 @@ const Profile: NextPage = () => {
   );
 };
 
-export default Profile;
+export default Messages;
