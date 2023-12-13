@@ -1,4 +1,6 @@
 import DashBoardLayout from "@/components/DashBoardLayout";
+import Chart from "@/components/Dashboard/Home/Chart";
+import Message from "@/components/Dashboard/Home/Message";
 import { NextPage } from "next";
 import { FaRegEye } from "react-icons/fa";
 import { MdOutlineBusinessCenter, MdOutlineBookmarks } from "react-icons/md";
@@ -28,6 +30,7 @@ const DashboardHome: NextPage = () => {
   ];
   return (
     <DashBoardLayout>
+      {/* record section  */}
       <div className="grid grid-cols-4 gap-8">
         {candidateData.map((ele, i) => (
           <div
@@ -42,9 +45,11 @@ const DashboardHome: NextPage = () => {
           </div>
         ))}
       </div>
-      Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum, repellat
-      vero! Sint id a, alias corrupti temporibus facilis perferendis deserunt!
-      Eaque, reprehenderit at cum sit nemo voluptatem architecto! Neque, minus?
+      {/* chart and message section  */}
+      <div className="flex items-start justify-between gap-8 mt-8">
+        <div className="w-3/5"><Chart/></div>
+        <div className="w-2/5"><Message/></div>
+      </div>
     </DashBoardLayout>
   );
 };

@@ -86,16 +86,16 @@ body {
   @apply bg-primary;
 }
 
-.jobDetails_container::-webkit-scrollbar {
-  width: 11px;
+.scrollbar::-webkit-scrollbar {
+  width: 8px;
 }
 
-.jobDetails_container::-webkit-scrollbar-track {
-  @apply bg-green-100;
+.scrollbar::-webkit-scrollbar-track {
+  @apply bg-gray-100;
 }
 
-.jobDetails_container::-webkit-scrollbar-thumb {
-  @apply bg-primary rounded-full;
+.scrollbar::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 rounded-full;
 }
 
 .jobDetails a {
