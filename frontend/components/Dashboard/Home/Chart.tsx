@@ -12,6 +12,7 @@ import {
 } from "chart.js";
 
 import { Line } from "react-chartjs-2";
+import { FaChartBar } from "react-icons/fa";
 
 ChartJs.register(
   LineElement,
@@ -24,11 +25,11 @@ ChartJs.register(
 );
 
 const Chart: React.FC = () => {
-  const data: ChartData = {
+  const data: ChartData<'line', number[], unknown> = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May"],
     datasets: [
       {
-        label: "Weekly Sales",
+        label: "Profile Views",
         data: [40, 90, 210, 160, 230],
         backgroundColor: "#0bb15324",
         fill: true,
@@ -42,7 +43,19 @@ const Chart: React.FC = () => {
   };
   const option = {};
   return (
-    <div className="bg-white shadow-md">
+    <div className="bg-white shadow-md rounded-md p-4 h-full">
+      <div className="flex items-center justify-between mb-6">
+        <p className="font-bold flex items-center gap-2 text-lg">
+          <FaChartBar />
+          Profile Views
+        </p>
+        <select className="border p-2" name="" id="">
+          <option>This Week</option>
+          <option>This Month</option>
+          <option>Last 6 Months</option>
+          <option>This Year</option>
+        </select>
+      </div>
       <Line data={data} options={option}></Line>
     </div>
   );
