@@ -47,7 +47,7 @@ const DashboardHome: NextPage = () => {
       </div>
       {/* chart and message section  */}
       <div className="flex items-start justify-between gap-8 mt-8">
-        <div className="w-3/5 h-full"><Chart/></div>
+        <div className="w-3/5"><Chart/></div>
         <div className="w-2/5"><Message/></div>
       </div>
     </DashBoardLayout>

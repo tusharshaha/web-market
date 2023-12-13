@@ -25,7 +25,7 @@ ChartJs.register(
 );
 
 const Chart: React.FC = () => {
-  const data: ChartData<'line', number[], unknown> = {
+  const data: ChartData<"line", number[], unknown> = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May"],
     datasets: [
       {
@@ -41,9 +41,15 @@ const Chart: React.FC = () => {
       },
     ],
   };
-  const option = {};
+  const options = {
+    plugins: {
+      legend: {
+        display: false
+      }
+    }
+  };
   return (
-    <div className="bg-white shadow-md rounded-md p-4 h-full">
+    <div className="bg-white shadow-md rounded-md p-4 h-[449px]">
       <div className="flex items-center justify-between mb-6">
         <p className="font-bold flex items-center gap-2 text-lg">
           <FaChartBar />
@@ -56,7 +62,7 @@ const Chart: React.FC = () => {
           <option>This Year</option>
         </select>
       </div>
-      <Line data={data} options={option}></Line>
+      <Line data={data} options={options}></Line>
     </div>
   );
 };
