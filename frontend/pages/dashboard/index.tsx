@@ -36,7 +36,7 @@ const DashboardHome: NextPage = () => {
   ];
   return (
     <DashBoardLayout>
-      <BreadCrumb pathName="Dashboard"/>
+      <BreadCrumb />
       {/* record section  */}
       <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {candidateData.map((ele, i) => (

@@ -3,17 +3,14 @@ import useAuth from "@/hooks/useAuth";
 import Link from "next/link";
 import { FaAngleRight } from "react-icons/fa6";
 
-interface Props {
-  title?: string;
-  pathName: string;
-}
-
-const BreadCrumb: React.FC<Props> = ({ title, pathName }) => {
+const BreadCrumb: React.FC<{
+  pathName?: string;
+}> = ({ pathName }) => {
   const { name } = useAuth();
   return (
     <div className="flex items-center justify-between flex-wrap gap-4 mb-10">
-      {title ? (
-        <h1 className="text-xl md:text-3xl font-bold">{title}</h1>
+      {pathName ? (
+        <h1 className="text-xl md:text-3xl font-bold">{pathName}</h1>
       ) : (
         <h1 className="text-xl md:text-3xl font-bold flex items-center">
           Hi
@@ -39,7 +36,7 @@ const BreadCrumb: React.FC<Props> = ({ title, pathName }) => {
               <FaAngleRight />
             </span>
           </li>
-          <li>{pathName}</li>
+          <li>{pathName || "Dashboard"}</li>
         </ul>
       </div>
     </div>
