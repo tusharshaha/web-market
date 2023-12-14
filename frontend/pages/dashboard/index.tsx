@@ -1,6 +1,7 @@
 import DashBoardLayout from "@/components/DashBoardLayout";
 import Chart from "@/components/Dashboard/Home/Chart";
 import Message from "@/components/Dashboard/Home/Message";
+import BreadCrumb from "@/components/common/BreadCrumb";
 import { NextPage } from "next";
 import { FaRegEye } from "react-icons/fa";
 import { MdOutlineBusinessCenter, MdOutlineBookmarks } from "react-icons/md";
@@ -14,7 +15,12 @@ const DashboardHome: NextPage = () => {
       records: "50",
       color: "bg-[#8c43ff]",
     },
-    { icon: <TfiEmail />, title: "Messages", records: "12", color: "bg-[#28d5a6]" },
+    {
+      icon: <TfiEmail />,
+      title: "Messages",
+      records: "12",
+      color: "bg-[#28d5a6]",
+    },
     {
       icon: <MdOutlineBookmarks />,
       title: "Bookmarked Jobs",
@@ -30,8 +36,9 @@ const DashboardHome: NextPage = () => {
   ];
   return (
     <DashBoardLayout>
+      <BreadCrumb pathName="Dashboard"/>
       {/* record section  */}
-      <div className="grid grid-cols-4 gap-8">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
         {candidateData.map((ele, i) => (
           <div
             key={i}
@@ -46,9 +53,13 @@ const DashboardHome: NextPage = () => {
         ))}
       </div>
       {/* chart and message section  */}
-      <div className="grid grid-cols-5 gap-8 mt-8">
-        <div className="col-span-3"><Chart/></div>
-        <div className="col-span-2"><Message/></div>
+      <div className="grid lg:grid-cols-5 gap-8 mt-8">
+        <div className="col-span-1 lg:col-span-3 overflow-hidden shadow-md">
+          <Chart />
+        </div>
+        <div className="col-span-1 lg:col-span-2 overflow-hidden shadow-md">
+          <Message />
+        </div>
       </div>
     </DashBoardLayout>
   );
