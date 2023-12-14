@@ -102,8 +102,7 @@ const NavBar: React.FC = () => {
             </ul>
           </div>
           <div ref={menuRef} className="flex justify-center items-center">
-            {isLoading && <div className="w-[40px] h-[40px] animate-pulse bg-slate-300 rounded-full"></div>}
-            {!email && !isLoading && (
+            {!email && (
               <button
                 onClick={handleRegister}
                 className="web-btn2 tracking-widest"

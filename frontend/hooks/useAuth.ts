@@ -18,10 +18,12 @@ const useAuth = (): Auth => {
 
   const getProfile = () => {
     setIsloading(true);
-    privateApi.get<any, User>("/auth/profile").then((data) => {
-      dispatch(addUser(data));
-      setIsloading(false);
-    });
+    privateApi
+      .get<any, User>("/auth/profile")
+      .then((data) => {
+        dispatch(addUser(data));
+      })
+      .finally(() => setIsloading(false));
   };
 
   const logout = async () => {
