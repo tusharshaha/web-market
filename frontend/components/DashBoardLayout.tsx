@@ -65,7 +65,7 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
   ];
   return (
     <div className="relative flex">
-      <div className="w-[350px] max-h-screen overflow-y-auto sticky top-0 bg-white text-black border-r text-lg">
+      <div className="w-[350px] max-h-screen overflow-y-auto scrollbar sticky top-0 bg-white text-black border-r text-lg">
         <div className="border-b">
           <div className="pl-5 py-2">
             <Link href="/">Logo</Link>

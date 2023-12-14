@@ -49,7 +49,7 @@ const Chart: React.FC = () => {
     }
   };
   return (
-    <div className="bg-white shadow-md rounded-md p-4 h-[449px]">
+    <div className="bg-white shadow-md rounded-md p-4 h-full">
       <div className="flex items-center justify-between mb-6">
         <p className="font-bold flex items-center gap-2 text-lg">
           <FaChartBar />
