@@ -31,7 +31,7 @@ const Chart: React.FC = () => {
       {
         label: "Profile Views",
         data: [40, 90, 210, 160, 230],
-        backgroundColor: "#0bb15324",
+        backgroundColor: "#0bb15317",
         fill: true,
         borderColor: "#03a84e",
         tension: 0.4,
