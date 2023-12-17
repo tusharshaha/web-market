@@ -12,10 +12,12 @@ const Bookmarks: NextPage = () => {
       <div className="max-h-screen overflow-auto scrollbar">
         <table className="w-full border-collapse border-primary rounded-md text-base shadow-md">
           <thead className="text-white bg-primary tracking-widest">
-            <th className="p-4 text-left">Job Title</th>
-            <th className="p-4">Deadline</th>
-            <th className="p-4">Company</th>
-            <th className="p-4">Action</th>
+            <tr>
+              <th className="p-4 text-left">Job Title</th>
+              <th className="p-4">Deadline</th>
+              <th className="p-4">Company</th>
+              <th className="p-4">Action</th>
+            </tr>
           </thead>
           <tbody className="bg-white">
             {jobs.map((ele, i) => (
