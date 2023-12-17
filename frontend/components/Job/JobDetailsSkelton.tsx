@@ -2,7 +2,7 @@ import React from "react";
 
 const JobDetailsSkelton = () => {
   return (
-    <div className="border border-slate-500 shadow rounded-md p-4 w-full h-screen overflow-y-auto">
+    <div className="border border-slate-500 shadow rounded-md p-4 w-full h-screen overflow-y-auto scrollbar">
       <div className="animate-pulse">
         <div className="rounded-full bg-slate-200 h-10 w-10"></div>
         <div className="flex-1 space-y-6 py-1">

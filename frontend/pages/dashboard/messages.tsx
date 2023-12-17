@@ -46,7 +46,7 @@ const Messages: NextPage = () => {
                 <p className="text-primary text-sm">Online Now</p>
               </div>
             </div>
-            <button className="icon">
+            <button className="tooltip icon" data-tip="Delete conversation">
               <FaRegTrashAlt />
             </button>
           </div>

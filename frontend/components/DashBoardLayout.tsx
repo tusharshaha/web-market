@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import { FaRegUserCircle } from "react-icons/fa";
 import {
   MdOutlineBookmarks,
   MdOutlineBusinessCenter,
@@ -19,7 +18,7 @@ interface DashboardProps {
 const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
   const router = useRouter();
   const pathName = router.pathname;
-  const { isLoading, userImage, name, email, getProfile, logout } = useAuth();
+  const { isLoading, email, getProfile, logout } = useAuth();
   const handleLogout = () => {
     logout();
     router.push("/");
@@ -43,14 +42,14 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
       href: "/dashboard/messages",
     },
     {
-      icon: <MdOutlineBusinessCenter />,
-      title: "Applied Jobs",
-      href: "/dashboard/applications",
-    },
-    {
       icon: <MdOutlineBookmarks />,
       title: "Bookmark Jobs",
       href: "/dashboard/bookmarks",
+    },
+    {
+      icon: <MdOutlineBusinessCenter />,
+      title: "Create Projects",
+      href: "/dashboard/projects",
     },
     {
       icon: <IoDocumentTextOutline />,
@@ -60,7 +59,7 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
     {
       icon: <IoSettingsOutline />,
       title: "Settings",
-      href: "/dashboard/setting",
+      href: "/dashboard/settings",
     },
   ];
   return (
@@ -81,7 +80,6 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
             >
               <Link
                 className="flex items-center gap-5"
-                title={menu.title}
                 href={menu.href}
               >
                 <div className="icon trans">{menu.icon}</div>
@@ -102,7 +100,9 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
           </li>
         </ul>
       </div>
-      <div className="w-full bg-slate-50 min-h-screen px-6 py-10">{children}</div>
+      <div className="w-full bg-slate-50 min-h-screen px-6 py-10">
+        {children}
+      </div>
     </div>
   );
 };
