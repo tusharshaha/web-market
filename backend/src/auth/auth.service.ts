@@ -119,7 +119,7 @@ export class AuthService {
     const user = await this.userModel
       .findById(userId)
       .select(
-        "-password -__v -updatedAt -passwordChangedAt -provider -providerId -refreshToken",
+        "-password -__v -provider -providerId -refreshToken -passwordResetToken -confirmationToken",
       );
     return user;
   }
