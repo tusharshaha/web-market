@@ -11,6 +11,7 @@ import { z } from "zod";
 
 const Settings: NextPage = () => {
   const [loading, setLoading] = useState(false);
+  const [toggle, setToggle] = useState(false);
   const { name, email, userImage, role, contactNumber } = useAuth();
   const user = {
     name,
@@ -49,7 +50,7 @@ const Settings: NextPage = () => {
   return (
     <DashBoardLayout>
       <BreadCrumb pathName="Settings" />
-      <div className="bg-white shadow-md p-6 rounded-md">
+      <div className="bg-white shadow-md p-6 rounded-md relative">
         <div className="flex items-center justify-center">
           <img
             src={userImage}
@@ -58,6 +59,26 @@ const Settings: NextPage = () => {
             className="w-[120px] h-[120px] rounded-full"
             alt="user image"
           />
+        </div>
+        <div className="bg-white border  p-1 rounded-full flex items-center gap-2 absolute top-5 right-5">
+          <button
+            disabled={!toggle}
+            onClick={() => setToggle(!toggle)}
+            className={`${
+              !toggle ? "bg-slate-200" : "hover:bg-slate-100"
+            } p-1 px-2 rounded-full trans`}
+          >
+            Candidate
+          </button>
+          <button
+            disabled={toggle}
+            onClick={() => setToggle(!toggle)}
+            className={`${
+              toggle ? "bg-slate-200" : "hover:bg-slate-100"
+            } p-1 px-2 rounded-full trans`}
+          >
+            Recruiter
+          </button>
         </div>
         <form
           onSubmit={onSubmit}

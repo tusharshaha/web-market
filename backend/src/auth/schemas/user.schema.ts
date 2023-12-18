@@ -4,7 +4,7 @@ import { Document } from "mongoose";
 
 export enum Role {
   DEVELOPER = "developer",
-  CLIENT = "client",
+  RECRUITER = "recruiter",
   ADMIN = "admin",
 }
 
@@ -53,7 +53,7 @@ export class User extends Document {
   userImage: string;
 
   @Prop({
-    enum: ["candidate", "recuiter", "admin"],
+    enum: ["candidate", "recruiter", "admin"],
     default: "candidate",
   })
   role: Role;
