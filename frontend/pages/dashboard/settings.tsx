@@ -22,7 +22,7 @@ const Settings: NextPage = () => {
     register,
     handleSubmit,
     setError,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm<userSettingData>({
     resolver: zodResolver(userSettingSchema),
     defaultValues: user,
@@ -140,7 +140,7 @@ const Settings: NextPage = () => {
 
           <button
             type="submit"
-            disabled={loading}
+            disabled={!isDirty || loading}
             className="btn btn-primary text-white px-8 py-2 rounded-full mt-2 flex items-center"
           >
             {loading && (
