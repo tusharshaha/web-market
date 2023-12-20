@@ -91,7 +91,7 @@ const Settings: NextPage = () => {
             <input
               type="text"
               className="input input-primary w-full"
-              placeholder="type your name"
+              placeholder="Type your name"
               {...register("name")}
             />
             {errors.name?.message && (
@@ -107,7 +107,7 @@ const Settings: NextPage = () => {
             <input
               type="email"
               className="input input-primary w-full"
-              placeholder="type your email"
+              placeholder="Type your email"
               {...register("email")}
             />
             {errors.email?.message && (
@@ -121,7 +121,7 @@ const Settings: NextPage = () => {
             <input
               type="text"
               className="input input-primary w-full"
-              placeholder="type your number"
+              placeholder="Type your number"
               {...register("contactNumber")}
             />
             {errors.contactNumber?.message && (
@@ -135,7 +135,7 @@ const Settings: NextPage = () => {
             <input
               type="password"
               className="input input-primary w-full"
-              placeholder="type your password"
+              placeholder="Type your password"
               {...register("password")}
             />
             {errors.password?.message && (
@@ -149,7 +149,7 @@ const Settings: NextPage = () => {
             <input
               type="password"
               className="input input-primary w-full"
-              placeholder="type your password"
+              placeholder="Type your password"
               {...register("confirmPass")}
             />
             {errors.confirmPass?.message && (
