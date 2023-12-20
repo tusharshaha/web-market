@@ -59,8 +59,8 @@ body {
   @apply btn btn-primary btn-sm md:btn-md text-white;
 }
 
-table,
-td {
+.cus_table,
+.cus_table td {
   @apply border;
 }
 

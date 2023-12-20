@@ -10,7 +10,7 @@ const Bookmarks: NextPage = () => {
     <DashBoardLayout>
       <BreadCrumb pathName="Bookmarks" />
       <div className="max-h-screen overflow-auto scrollbar">
-        <table className="w-full border-collapse border-primary rounded-md text-base shadow-md">
+        <table className="w-full border-collapse border-primary rounded-md text-base shadow-md cus_table">
           <thead className="text-white bg-primary tracking-widest">
             <tr>
               <th className="p-4 text-left">Job Title</th>
