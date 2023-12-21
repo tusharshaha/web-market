@@ -1,9 +1,11 @@
 import React from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
+import { Editor } from "react-draft-wysiwyg";
+import "react-draft-wysiwyg/dist/react-draft-wysiwyg.css";
 
 interface Props {
   register: UseFormRegister<FieldValues>;
-  errors: FieldErrors<FieldValues>
+  errors: FieldErrors<FieldValues>;
 }
 
 const ProjectForm: React.FC<Props> = ({ register, errors }) => {
@@ -82,6 +84,23 @@ const ProjectForm: React.FC<Props> = ({ register, errors }) => {
             placeholder="Type your project features"
             required
             {...register("features3")}
+          />
+        </div>
+      </div>
+      <div className="w-full flex items-start gap-2 justify-between">
+        <p className="label after:content-['*'] after:ml-0.5 after:text-red-500 block w-2/12">
+          Description
+        </p>
+        <div className="w-full rounded-md border border-primary">
+          <Editor
+            toolbar={{
+              options: ["inline", "blockType", "list", "history"],
+              inline: {
+                options: ["bold", "italic", "underline"],
+              },
+            }}
+            toolbarStyle={{ borderRadius: "0.375rem" }}
+            editorStyle={{minHeight: "200px"}}
           />
         </div>
       </div>
