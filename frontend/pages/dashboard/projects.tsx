@@ -1,8 +1,14 @@
 import DashBoardLayout from "@/components/DashBoardLayout";
-import ProjectForm from "@/components/Dashboard/Project/ProjectForm";
+const ProjectForm = dynamic(
+  () => {
+    return import("@/components/Dashboard/Project/ProjectForm");
+  },
+  { ssr: false }
+);
 import ProjectMedia from "@/components/Dashboard/Project/ProjectMedia";
 import BreadCrumb from "@/components/common/BreadCrumb";
 import { NextPage } from "next";
+import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 

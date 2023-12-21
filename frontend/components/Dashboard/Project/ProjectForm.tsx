@@ -92,18 +92,16 @@ const ProjectForm: React.FC<Props> = ({ register, errors }) => {
           Description
         </p>
         <div className="w-full rounded-md border border-primary">
-          {typeof window !== undefined && (
-            <Editor
-              toolbar={{
-                options: ["inline", "blockType", "list", "history"],
-                inline: {
-                  options: ["bold", "italic", "underline"],
-                },
-              }}
-              toolbarStyle={{ borderRadius: "0.375rem" }}
-              editorStyle={{ minHeight: "200px" }}
-            />
-          )}
+          <Editor
+            toolbar={{
+              options: ["inline", "blockType", "list", "history"],
+              inline: {
+                options: ["bold", "italic", "underline"],
+              },
+            }}
+            toolbarStyle={{ borderRadius: "0.375rem" }}
+            editorStyle={{minHeight: "200px"}}
+          />
         </div>
       </div>
     </>
