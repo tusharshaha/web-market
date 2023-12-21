@@ -86,7 +86,7 @@ const NavBar: React.FC = () => {
     { icon: <FaRegEye />, path: "/dashboard/resume", title: "View Resume" },
     {
       icon: <MdOutlineBookmarks />,
-      path: "/dashboard/bookmark",
+      path: "/dashboard/bookmarks",
       title: "Bookmark Jobs",
     },
   ];
