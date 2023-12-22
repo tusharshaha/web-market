@@ -8,6 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { NextPage } from "next";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
 import { FaCamera } from "react-icons/fa";
 import { z } from "zod";
 
@@ -21,6 +22,11 @@ const Settings: NextPage = () => {
 
   const handleImageChange = (e: any) => {
     const file = e.target.files[0];
+    if (file?.size > 1000000) {
+      return toast.error("Image should be less than 1MB", {
+        id: "file_error",
+      });
+    }
     if (file) {
       const reader = new FileReader();
       reader.onloadend = () => {
@@ -69,7 +75,7 @@ const Settings: NextPage = () => {
       <div className="bg-white shadow-md p-6 rounded-md relative">
         <div className="flex items-center justify-center sm:w-[120px] sm:h-[120px] sm:mt-0 mt-16 w-[100px] h-[100px] mx-auto relative group">
           <img
-            src={imagePreview as string || userImage}
+            src={(imagePreview as string) || userImage}
             height={100}
             width={100}
             className="sm:w-[120px] sm:h-[120px] w-[100px] h-[100px] rounded-full"
