@@ -30,7 +30,7 @@ const Projects: NextPage = () => {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const onSubmit = handleSubmit((data) => {});
+  const onSubmit = handleSubmit((data) => {console.log(data)});
   return (
     <DashBoardLayout>
       <BreadCrumb pathName="Projects" />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { FieldErrors, FieldValues, UseFormRegister } from "react-hook-form";
 
 interface Props {
@@ -32,14 +32,16 @@ const ProjectForm: React.FC<Props> = ({ register, errors }) => {
         </p>
         <div className="w-full">
           <select
-            className="select select-primary w-full"
+            className="select select-primary w-full font-normal"
+            defaultValue=""
             required
             {...register("category")}
           >
-            <option value="">E-Commerce</option>
-            <option value="">Management</option>
-            <option value="">Portfolio</option>
-            <option value="">Blog</option>
+            <option className="" value="" disabled>Select project category</option>
+            <option value="E-Commerce">E-Commerce</option>
+            <option value="Management">Management</option>
+            <option value="Portfolio">Portfolio</option>
+            <option value="Blog">Blog</option>
           </select>
         </div>
       </div>
