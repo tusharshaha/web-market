@@ -1,7 +1,8 @@
 import DashBoardLayout from "@/components/DashBoardLayout";
-const ProjectForm = dynamic(
+import ProjectForm from "@/components/Dashboard/Project/ProjectForm";
+const TextEditor = dynamic(
   () => {
-    return import("@/components/Dashboard/Project/ProjectForm");
+    return import("@/components/common/TextEditor");
   },
   { ssr: false }
 );
@@ -11,9 +12,19 @@ import { NextPage } from "next";
 import dynamic from "next/dynamic";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import { EditorState, convertToRaw } from "draft-js";
+import convertToHTML from "draftjs-to-html";
 
 const Projects: NextPage = () => {
   const [loading, setLoading] = useState(false);
+  const [editorState, setEditorState] = useState(EditorState.createEmpty());
+
+  const onEditorStateChange = (newEditorState: EditorState) => {
+    setEditorState(newEditorState);
+    const rawContentState = convertToRaw(editorState.getCurrentContent());
+    const html = convertToHTML(rawContentState);
+    console.log(html);
+  };
   const {
     register,
     handleSubmit,
@@ -30,6 +41,17 @@ const Projects: NextPage = () => {
         >
           <ProjectMedia register={register} />
           <ProjectForm register={register} errors={errors} />
+          <div className="w-full flex items-start gap-2 justify-between">
+            <p className="label after:content-['*'] after:ml-0.5 after:text-red-500 block w-2/12">
+              Description
+            </p>
+            <div className="w-full rounded-md border border-primary">
+              <TextEditor
+                editorState={editorState}
+                onEditorStateChange={onEditorStateChange}
+              />
+            </div>
+          </div>
           <button
             type="submit"
             disabled={loading}
