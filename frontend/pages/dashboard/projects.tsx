@@ -23,7 +23,6 @@ const Projects: NextPage = () => {
     setEditorState(newEditorState);
     const rawContentState = convertToRaw(editorState.getCurrentContent());
     const html = convertToHTML(rawContentState);
-    console.log(html);
   };
   const {
     register,
