@@ -16,11 +16,9 @@ const Settings: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [toggle, setToggle] = useState(false);
   const { name, email, userImage, role, contactNumber } = useAuth();
-  const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(
-    null
-  );
+  const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(null);
 
-  const handleImageChange = (e: any) => {
+  const handleImageChange = async (e: any) => {
     const file = e.target.files[0];
     if (file?.size > 1000000) {
       return toast.error("Image should be less than 1MB", {
@@ -35,12 +33,7 @@ const Settings: NextPage = () => {
       reader.readAsDataURL(file);
     }
   };
-  const user = {
-    name,
-    email,
-    userImage,
-    contactNumber,
-  };
+  const user = { name, email, contactNumber };
   const {
     register,
     handleSubmit,

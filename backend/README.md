@@ -11,5 +11,6 @@
 * **User** /api/auth/signup &rarr; "sign up user".
 * **User** /api/auth/login &rarr; "log in user".
 ### PATCH
+* **User** /api/auth/userImage &rarr; "Update user image".
 
 ### DELETE

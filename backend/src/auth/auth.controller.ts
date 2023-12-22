@@ -2,11 +2,14 @@ import {
   Body,
   Controller,
   Get,
+  Patch,
   Post,
   Query,
   Req,
   Res,
+  UploadedFile,
   UseGuards,
+  UseInterceptors,
 } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { SignUpDto } from "./dto/signup.dto";
@@ -20,6 +23,7 @@ import { Public } from "../common/public.decorator";
 import { RTAuthGuard } from "./guards/refresh-auth.guard";
 import { ATC_Option, CC_Option, RTC_Option } from "../utils/cookieOption";
 import { ExtractJwt } from "passport-jwt";
+import { FileInterceptor } from "@nestjs/platform-express";
 
 @Controller("auth")
 export class AuthController {
@@ -125,6 +129,21 @@ export class AuthController {
     try {
       const { userId } = req.user;
       return await this.authService.getProfile(userId);
+    } catch (error) {
+      return handleError(error);
+    }
+  }
+
+  @Patch("userImage")
+  @UseInterceptors(FileInterceptor("userImage"))
+  @Throttle(3, 60)
+  async UploadImage(
+    @UploadedFile() userImage: Express.Multer.File,
+    @Req() req: AuthenticatedRequest,
+  ) {
+    try {
+      const { userId } = req.user;
+      console.log({ userImage });
     } catch (error) {
       return handleError(error);
     }
