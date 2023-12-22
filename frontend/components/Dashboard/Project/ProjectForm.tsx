@@ -12,27 +12,27 @@ const ProjectForm: React.FC<Props> = ({ register, errors }) => {
       <h3 className="uppercase font-semibold underline underline-offset-8 text-primary">
         Basic Info
       </h3>
-      <div className="w-full flex items-start gap-2 justify-between">
-        <p className="label after:content-['*'] after:ml-0.5 after:text-red-500 block w-2/12">
+      <div className="w-full">
+        <p className="label after:content-['*'] after:ml-0.5 after:text-red-500 block">
           Name
         </p>
         <div className="w-full">
           <input
             type="text"
-            className="input input-primary w-full"
+            className="input input-primary input-sm md:input-md w-full"
             placeholder="Type your project name"
             required
             {...register("title")}
           />
         </div>
       </div>
-      <div className="w-full flex items-start gap-2 justify-between">
-        <p className="label after:content-['*'] after:ml-0.5 after:text-red-500 block w-2/12">
+      <div className="w-full">
+        <p className="label after:content-['*'] after:ml-0.5 after:text-red-500 block">
           Category
         </p>
         <div className="w-full">
           <select
-            className="select select-primary w-full font-normal"
+            className="select select-primary select-sm md:select-md w-full font-normal"
             defaultValue=""
             required
             {...register("category")}
@@ -45,42 +45,42 @@ const ProjectForm: React.FC<Props> = ({ register, errors }) => {
           </select>
         </div>
       </div>
-      <div className="w-full flex items-start gap-2 justify-between">
-        <p className="label after:content-['*'] after:ml-0.5 after:text-red-500 block w-2/12">
+      <div className="w-full">
+        <p className="label after:content-['*'] after:ml-0.5 after:text-red-500 block">
           Live URL
         </p>
         <div className="w-full">
           <input
             type="text"
-            className="input input-primary w-full"
+            className="input input-primary w-full input-sm md:input-md"
             placeholder="Type your project name"
             required
             {...register("project_link")}
           />
         </div>
       </div>
-      <div className="w-full flex items-start gap-2 justify-between">
-        <p className="label after:content-['*'] after:ml-0.5 after:text-red-500 block w-2/12">
+      <div className="w-full">
+        <p className="label after:content-['*'] after:ml-0.5 after:text-red-500 block">
           Key Features
         </p>
         <div className="w-full space-y-2">
           <input
             type="text"
-            className="input input-primary w-full"
+            className="input input-primary input-sm md:input-md w-full"
             placeholder="Type your project features"
             required
             {...register("features1")}
           />
           <input
             type="text"
-            className="input input-primary w-full"
+            className="input input-primary input-sm md:input-md w-full"
             placeholder="Type your project features"
             required
             {...register("features2")}
           />
           <input
             type="text"
-            className="input input-primary w-full"
+            className="input input-primary input-sm md:input-md w-full"
             placeholder="Type your project features"
             required
             {...register("features3")}

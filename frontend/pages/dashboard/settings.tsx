@@ -67,12 +67,12 @@ const Settings: NextPage = () => {
     <DashBoardLayout>
       <BreadCrumb pathName="Settings" />
       <div className="bg-white shadow-md p-6 rounded-md relative">
-        <div className="flex items-center justify-center w-[120px] h-[120px] mx-auto relative group">
+        <div className="flex items-center justify-center sm:w-[120px] sm:h-[120px] sm:mt-0 mt-16 w-[100px] h-[100px] mx-auto relative group">
           <img
             src={imagePreview as string || userImage}
             height={100}
             width={100}
-            className="w-[120px] h-[120px] rounded-full"
+            className="sm:w-[120px] sm:h-[120px] w-[100px] h-[100px] rounded-full"
             alt="user image"
           />
           <label
