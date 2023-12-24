@@ -69,12 +69,12 @@ const Skills: React.FC = () => {
               </div>
               <div className="flex flex-wrap items-center gap-2 w-3/4">
                 {ele.langs.map((lang, i) => (
-                  <button
+                  <span
                     key={i}
-                    className="btn btn-xs btn-primary btn-outline normal-case"
+                    className="rounded-md border border-primary text-primary font-semibold py-1 px-2 text-xs normal-case"
                   >
                     {lang}
-                  </button>
+                  </span>
                 ))}
               </div>
             </div>

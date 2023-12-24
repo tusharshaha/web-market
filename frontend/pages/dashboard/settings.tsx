@@ -65,7 +65,7 @@ const Settings: NextPage = () => {
   return (
     <DashBoardLayout>
       <BreadCrumb pathName="Settings" />
-      <div className="bg-white shadow-md p-6 rounded-md relative">
+      <div className="bg-white shadow-md p-3 md:p-6 rounded-md relative">
         <div className="flex items-center justify-center sm:w-[120px] sm:h-[120px] sm:mt-0 mt-16 w-[100px] h-[100px] mx-auto relative group">
           <img
             src={(imagePreview as string) || userImage}

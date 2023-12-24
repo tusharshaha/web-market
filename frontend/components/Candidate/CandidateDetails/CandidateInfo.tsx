@@ -8,7 +8,6 @@ const CandidateInfo: React.FC = () => {
     { title: "Language", value: "English, Bangla, Hindi" },
     { title: "Age", value: "25-30 Years" },
     { title: "Gender", value: "Male" },
-    { title: "Qualification", value: "BSC, MSC" },
     { title: "Level", value: "Medium" },
   ];
   return (
