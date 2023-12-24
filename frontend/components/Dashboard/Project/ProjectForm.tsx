@@ -8,9 +8,9 @@ interface Props {
 
 const ProjectForm: React.FC<Props> = ({ register, errors }) => {
   return (
-    <>
-      <h3 className="uppercase font-semibold underline underline-offset-8 text-primary">
-        Basic Info
+    <div className="w-full p-4 border">
+      <h3 className="font-semibold underline underline-offset-8 mb-4">
+        Project Information
       </h3>
       <div className="w-full">
         <p className="label after:content-['*'] after:ml-0.5 after:text-red-500 block">
@@ -19,7 +19,7 @@ const ProjectForm: React.FC<Props> = ({ register, errors }) => {
         <div className="w-full">
           <input
             type="text"
-            className="input input-primary input-sm md:input-md w-full"
+            className="input input-bordered input-sm md:input-md w-full"
             placeholder="Type your project name"
             required
             {...register("title")}
@@ -32,7 +32,7 @@ const ProjectForm: React.FC<Props> = ({ register, errors }) => {
         </p>
         <div className="w-full">
           <select
-            className="select select-primary select-sm md:select-md w-full font-normal"
+            className="select select-bordered select-sm md:select-md w-full font-normal"
             defaultValue=""
             required
             {...register("category")}
@@ -52,7 +52,7 @@ const ProjectForm: React.FC<Props> = ({ register, errors }) => {
         <div className="w-full">
           <input
             type="text"
-            className="input input-primary w-full input-sm md:input-md"
+            className="input input-bordered w-full input-sm md:input-md"
             placeholder="Type your project name"
             required
             {...register("project_link")}
@@ -66,28 +66,28 @@ const ProjectForm: React.FC<Props> = ({ register, errors }) => {
         <div className="w-full space-y-2">
           <input
             type="text"
-            className="input input-primary input-sm md:input-md w-full"
+            className="input input-bordered input-sm md:input-md w-full"
             placeholder="Type your project features"
             required
             {...register("features1")}
           />
           <input
             type="text"
-            className="input input-primary input-sm md:input-md w-full"
+            className="input input-bordered input-sm md:input-md w-full"
             placeholder="Type your project features"
             required
             {...register("features2")}
           />
           <input
             type="text"
-            className="input input-primary input-sm md:input-md w-full"
+            className="input input-bordered input-sm md:input-md w-full"
             placeholder="Type your project features"
             required
             {...register("features3")}
           />
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

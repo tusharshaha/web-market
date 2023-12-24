@@ -7,8 +7,8 @@ interface Props {
 
 const ProjectMedia: React.FC<Props> = ({ register }) => {
   return (
-    <div className="mb-8 flex flex-col justify-center md:space-y-4 items-center">
-      <h3 className="uppercase font-semibold underline underline-offset-8 text-primary mb-2 md:mb-0">
+    <div className="mb-8 w-full p-4 border">
+      <h3 className="font-semibold underline underline-offset-8 mb-4">
         Media
       </h3>
       <div className="w-full">
@@ -18,7 +18,7 @@ const ProjectMedia: React.FC<Props> = ({ register }) => {
         <div className="w-full">
           <input
             type="file"
-            className="file-input file-input-primary file-input-bordered file-input-xs md:file-input-sm w-full"
+            className="file-input file-input-bordered file-input-xs md:file-input-sm w-full"
             required
             accept="image/png, image/jpeg, image/webp"
             {...register("thumbnail")}
@@ -32,21 +32,21 @@ const ProjectMedia: React.FC<Props> = ({ register }) => {
         <div className="w-full space-y-2">
           <input
             type="file"
-            className="file-input file-input-primary file-input-bordered file-input-xs md:file-input-sm w-full"
+            className="file-input file-input-bordered file-input-xs md:file-input-sm w-full"
             required
             accept="image/png, image/jpeg, image/webp"
             {...register("preview1")}
           />
           <input
             type="file"
-            className="file-input file-input-primary file-input-bordered file-input-xs md:file-input-sm w-full"
+            className="file-input file-input-bordered file-input-xs md:file-input-sm w-full"
             required
             accept="image/png, image/jpeg, image/webp"
             {...register("preview2")}
           />
           <input
             type="file"
-            className="file-input file-input-primary file-input-bordered file-input-xs md:file-input-sm w-full"
+            className="file-input file-input-bordered file-input-xs md:file-input-sm w-full"
             required
             accept="image/png, image/jpeg, image/webp"
             {...register("preview3")}

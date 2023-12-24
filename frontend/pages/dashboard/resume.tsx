@@ -1,5 +1,5 @@
 import DashBoardLayout from "@/components/DashBoardLayout";
-import ResumeForm from "@/components/Dashboard/Resume/ResumeForm";
+import PIForm from "@/components/Dashboard/Resume/PIForm";
 import BreadCrumb from "@/components/common/BreadCrumb";
 import { NextPage } from "next";
 import React from "react";
@@ -29,7 +29,7 @@ const Resume: NextPage = () => {
             onSubmit={onSubmit}
             className="flex flex-col items-center justify-start gap-2 w-full px-4 sm:px-0 lg:max-w-2xl mx-auto"
           >
-            <ResumeForm register={register} errors={errors} />
+            <PIForm register={register} errors={errors} />
           </form>
         </div>
       </div>

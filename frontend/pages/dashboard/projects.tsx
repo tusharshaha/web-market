@@ -36,7 +36,7 @@ const Projects: NextPage = () => {
       <div className="bg-white shadow-md p-3 md:p-6 rounded-md">
         <form
           onSubmit={onSubmit}
-          className="flex flex-col items-center justify-start gap-2 mt-5 w-full px-4 sm:px-0 lg:w-2/4 mx-auto md:space-y-4 pb-4"
+          className="flex flex-col items-center justify-start gap-2 mt-5 w-full px-4 sm:px-0 lg:max-w-2xl mx-auto md:space-y-2 pb-4"
         >
           <ProjectMedia register={register} />
           <ProjectForm register={register} errors={errors} />
@@ -44,7 +44,7 @@ const Projects: NextPage = () => {
             <p className="label after:content-['*'] after:ml-0.5 after:text-red-500 block">
               Description
             </p>
-            <div className="w-full rounded-md border border-primary">
+            <div className="w-full border">
               <TextEditor
                 editorState={editorState}
                 onEditorStateChange={onEditorStateChange}
