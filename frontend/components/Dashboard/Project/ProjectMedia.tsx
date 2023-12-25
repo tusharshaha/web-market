@@ -9,7 +9,7 @@ const ProjectMedia: React.FC<Props> = ({ register }) => {
   return (
     <div className="mb-8 w-full p-4 border">
       <h3 className="font-semibold underline underline-offset-8 mb-4">
-        Media
+        Project Media
       </h3>
       <div className="w-full">
         <p className="label after:content-['*'] after:ml-0.5 after:text-red-500 block">

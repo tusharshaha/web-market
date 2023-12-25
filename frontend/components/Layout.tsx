@@ -49,7 +49,7 @@ const Layout: React.FC<props> = ({
             <div className="mt-3 text-lg">
               <Link
                 href="/"
-                className="transition duration-500 hover:text-green-600"
+                className="transition duration-500 hover:text-green-600 mr-2"
               >
                 Home
               </Link>
