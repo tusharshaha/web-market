@@ -1,7 +1,7 @@
-/* eslint-disable @next/next/no-img-element */
 import DashBoardLayout from "@/components/DashBoardLayout";
 import SettingForm from "@/components/Dashboard/Setting/SettingForm";
 import BreadCrumb from "@/components/common/BreadCrumb";
+import ImagePreview from "@/components/common/ImagePreview";
 import useAuth from "@/hooks/useAuth";
 import { userSettingData, userSettingSchema } from "@/types";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -9,14 +9,15 @@ import { NextPage } from "next";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-import { FaCamera } from "react-icons/fa";
 import { z } from "zod";
 
 const Settings: NextPage = () => {
   const [loading, setLoading] = useState(false);
   const [toggle, setToggle] = useState(false);
   const { name, email, userImage, role, contactNumber } = useAuth();
-  const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(null);
+  const [imagePreview, setImagePreview] = useState<string | ArrayBuffer | null>(
+    null
+  );
 
   const handleImageChange = async (e: any) => {
     const file = e.target.files[0];
@@ -66,28 +67,12 @@ const Settings: NextPage = () => {
     <DashBoardLayout>
       <BreadCrumb pathName="Settings" />
       <div className="bg-white shadow-md p-3 md:p-6 rounded-md relative">
-        <div className="flex items-center justify-center sm:w-[120px] sm:h-[120px] sm:mt-0 mt-16 w-[100px] h-[100px] mx-auto relative group">
-          <img
-            src={(imagePreview as string) || userImage}
-            height={100}
-            width={100}
-            className="sm:w-[120px] sm:h-[120px] w-[100px] h-[100px] rounded-full"
-            alt="user image"
-          />
-          <label
-            htmlFor="image"
-            className="absolute top-0 left-0 flex items-center justify-center w-full h-full group-hover:bg-slate-100 rounded-full opacity-80 cursor-pointer"
-          >
-            <FaCamera className="text-4xl text-slate-400 hidden group-hover:block" />
-          </label>
-          <input
-            type="file"
-            className="hidden"
-            onChange={handleImageChange}
-            accept="image/png, image/jpeg, image/webp"
-            id="image"
-          />
-        </div>
+        <ImagePreview
+          className="sm:w-[120px] sm:h-[120px] w-[100px] h-[100px] rounded-full"
+          userImage={userImage}
+          imagePreview={imagePreview}
+          handleImageChange={handleImageChange}
+        />
         <div className="bg-white border  p-1 rounded-full flex items-center gap-2 absolute top-5 right-5">
           <button
             disabled={!toggle}
