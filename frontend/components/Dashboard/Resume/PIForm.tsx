@@ -147,9 +147,11 @@ const PIForm: React.FC<Props> = ({ register, userImage, control }) => {
               styles={{
                 menu: (provided) => ({
                   ...provided,
-                  maxWidth: '250px',
+                  maxWidth: "250px",
+                }),
+                menuList: (provided) => ({
+                  ...provided,
                   maxHeight: "200px",
-                  
                 }),
                 control: (provided, state) => ({
                   ...provided,
@@ -160,6 +162,7 @@ const PIForm: React.FC<Props> = ({ register, userImage, control }) => {
                   minHeight: "3rem",
                   ":hover": {
                     border: "1px solid lightgray",
+                    boxShadow: "lightgray 0px 0px 0px 1px"
                   },
                   boxShadow: state.isFocused
                     ? "lightgray 0px 0px 0px 1px"
