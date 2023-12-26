@@ -1,5 +1,6 @@
 import DashBoardLayout from "@/components/DashBoardLayout";
 import PIForm from "@/components/Dashboard/Resume/PIForm";
+import WEForm from "@/components/Dashboard/Resume/WEForm";
 import BreadCrumb from "@/components/common/BreadCrumb";
 import useAuth from "@/hooks/useAuth";
 import { NextPage } from "next";
@@ -24,7 +25,7 @@ const Resume: NextPage = () => {
         <div className="max-w-2xl mx-auto">
           <form
             onSubmit={onSubmit}
-            className="flex flex-col items-center justify-start gap-2 w-full px-4 sm:px-0 lg:max-w-2xl mx-auto space-y-2"
+            className="flex flex-col items-center justify-start gap-2 w-full px-4 sm:px-0 lg:max-w-2xl mx-auto space-y-3"
           >
             <PIForm
               register={register}
@@ -32,6 +33,7 @@ const Resume: NextPage = () => {
               userImage={userImage}
               control={control}
             />
+            <WEForm/>
           </form>
         </div>
       </div>

@@ -13,5 +13,4 @@ export const languageOptions = [
   { value: 'ru', label: 'Russian' },
   { value: 'ur', label: 'Urdu' },
   { value: 'id', label: 'Indonesian' },
-  { value: 'sw', label: 'Swahili' },
 ]
