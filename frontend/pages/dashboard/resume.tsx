@@ -26,7 +26,12 @@ const Resume: NextPage = () => {
             onSubmit={onSubmit}
             className="flex flex-col items-center justify-start gap-2 w-full px-4 sm:px-0 lg:max-w-2xl mx-auto space-y-2"
           >
-            <PIForm register={register} errors={errors} userImage={userImage} control={control} />
+            <PIForm
+              register={register}
+              errors={errors}
+              userImage={userImage}
+              control={control}
+            />
           </form>
         </div>
       </div>

@@ -42,12 +42,14 @@ const PIForm: React.FC<Props> = ({ register, userImage, control }) => {
     <div className="border p-4 w-full">
       <h3 className="font-semibold mb-4">Basic Information</h3>
       <div className="flex items-end flex-col md:flex-row gap-3">
-        <ImagePreview
-          className="w-[100px] h-[100px]"
-          userImage={userImage}
-          imagePreview={imagePreview}
-          handleImageChange={handleImageChange}
-        />
+        <div className="w-[100px] mx-auto">
+          <ImagePreview
+            className="w-[100px] h-[100px]"
+            userImage={userImage}
+            imagePreview={imagePreview}
+            handleImageChange={handleImageChange}
+          />
+        </div>
         <div className="grid sm:grid-cols-2 gap-2 w-full md:flex-grow">
           <input
             type="text"
@@ -103,7 +105,10 @@ const PIForm: React.FC<Props> = ({ register, userImage, control }) => {
               &#36;
             </span>
           </div>
-          <select className="select select-md select-bordered font-normal">
+          <select
+            className="select select-md select-bordered font-normal"
+            {...register("payment")}
+          >
             <option value="Hourly">Hourly</option>
             <option value="Monthly">Monthly</option>
             <option value="Annual">Annual</option>
@@ -144,6 +149,7 @@ const PIForm: React.FC<Props> = ({ register, userImage, control }) => {
               onChange={(value) => {
                 field.onChange(value);
               }}
+              isOptionDisabled={() => field.value.length >= 3}
               styles={{
                 menu: (provided) => ({
                   ...provided,
@@ -162,7 +168,7 @@ const PIForm: React.FC<Props> = ({ register, userImage, control }) => {
                   minHeight: "3rem",
                   ":hover": {
                     border: "1px solid lightgray",
-                    boxShadow: "lightgray 0px 0px 0px 1px"
+                    boxShadow: "lightgray 0px 0px 0px 1px",
                   },
                   boxShadow: state.isFocused
                     ? "lightgray 0px 0px 0px 1px"
