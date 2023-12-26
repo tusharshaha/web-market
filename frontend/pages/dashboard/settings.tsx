@@ -67,12 +67,14 @@ const Settings: NextPage = () => {
     <DashBoardLayout>
       <BreadCrumb pathName="Settings" />
       <div className="bg-white shadow-md p-3 md:p-6 rounded-md relative">
+        <div className="sm:mt-0 mt-16 ">
         <ImagePreview
           className="sm:w-[120px] sm:h-[120px] w-[100px] h-[100px] rounded-full"
           userImage={userImage}
           imagePreview={imagePreview}
           handleImageChange={handleImageChange}
         />
+        </div>
         <div className="bg-white border  p-1 rounded-full flex items-center gap-2 absolute top-5 right-5">
           <button
             disabled={!toggle}

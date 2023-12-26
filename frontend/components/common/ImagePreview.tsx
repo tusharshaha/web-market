@@ -16,7 +16,7 @@ const ImagePreview: React.FC<Props> = ({
   handleImageChange,
 }) => {
   return (
-    <div className={`${className} flex items-center justify-center sm:mt-0 mt-16 mx-auto relative group`}>
+    <div className={`${className} flex items-center justify-center mx-auto relative group`}>
       <img
         src={(imagePreview as string) || userImage}
         height={100}

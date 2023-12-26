@@ -11,6 +11,7 @@ const Resume: NextPage = () => {
   const {
     register,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm();
   const onSubmit = handleSubmit((data) => {
@@ -25,7 +26,8 @@ const Resume: NextPage = () => {
             onSubmit={onSubmit}
             className="flex flex-col items-center justify-start gap-2 w-full px-4 sm:px-0 lg:max-w-2xl mx-auto"
           >
-            <PIForm register={register} errors={errors} userImage={userImage} />
+            <PIForm register={register} errors={errors} userImage={userImage} control={control} />
+            <button>Click</button>
           </form>
         </div>
       </div>
