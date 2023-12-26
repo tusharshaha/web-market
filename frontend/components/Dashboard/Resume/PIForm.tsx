@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import ImagePreview from "@/components/common/ImagePreview";
+import { languageOptions } from "@/utils/selectOptions";
 import React, { useState } from "react";
 import {
   Control,
@@ -47,7 +48,7 @@ const PIForm: React.FC<Props> = ({ register, userImage, control }) => {
           imagePreview={imagePreview}
           handleImageChange={handleImageChange}
         />
-        <div className="grid grid-cols-2 gap-2 w-full md:flex-grow">
+        <div className="grid sm:grid-cols-2 gap-2 w-full md:flex-grow">
           <input
             type="text"
             className="input input-bordered"
@@ -78,7 +79,7 @@ const PIForm: React.FC<Props> = ({ register, userImage, control }) => {
           />
         </div>
       </div>
-      <div className="grid grid-cols-2 gap-2 mt-2">
+      <div className="grid sm:grid-cols-2 gap-2 mt-2">
         <input
           type="number"
           className="input input-bordered"
@@ -139,19 +140,21 @@ const PIForm: React.FC<Props> = ({ register, userImage, control }) => {
               isMulti
               placeholder="Select language..."
               {...field}
+              options={languageOptions}
               onChange={(value) => {
                 field.onChange(value);
               }}
               styles={{
-                container: (provided) => ({
+                menu: (provided) => ({
                   ...provided,
-                  maxWidth: '100%', // Set the maximum width to 100% for responsiveness
+                  maxWidth: '250px',
+                  maxHeight: "200px",
+                  
                 }),
                 control: (provided, state) => ({
                   ...provided,
                   border: "1px solid lightgray",
                   borderRadius: "0.375rem",
-                  height: "3rem",
                   paddingLeft: "5px",
                   textTransform: "capitalize",
                   minHeight: "3rem",

@@ -24,10 +24,12 @@ const Resume: NextPage = () => {
         <div className="max-w-2xl mx-auto">
           <form
             onSubmit={onSubmit}
-            className="flex flex-col items-center justify-start gap-2 w-full px-4 sm:px-0 lg:max-w-2xl mx-auto"
+            className="flex flex-col items-center justify-start gap-2 w-full px-4 sm:px-0 lg:max-w-2xl mx-auto space-y-2"
           >
             <PIForm register={register} errors={errors} userImage={userImage} control={control} />
-            <button>Click</button>
+            <div className="border h-[500px] w-full">
+
+            </div>
           </form>
         </div>
       </div>
