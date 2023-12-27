@@ -104,7 +104,7 @@ const Settings: NextPage = () => {
           <button
             type="submit"
             disabled={!isDirty || loading}
-            className="btn btn-primary text-white px-8 py-2 rounded-full mt-2 flex items-center"
+            className="btn btn-neutral text-white px-8 py-2 rounded-full mt-2 flex items-center"
           >
             {loading && (
               <span className="w-[20px] h-[20px] border-4 border-slate-200 border-b-white rounded-full mr-2 animate-spin" />

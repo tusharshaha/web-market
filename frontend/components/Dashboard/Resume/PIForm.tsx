@@ -10,7 +10,7 @@ import {
   UseFormRegister,
 } from "react-hook-form";
 import toast from "react-hot-toast";
-import CreatableSelect from "react-select/creatable";
+import Select from "react-select";
 
 interface Props {
   register: UseFormRegister<FieldValues>;
@@ -141,7 +141,7 @@ const PIForm: React.FC<Props> = ({ register, userImage, control }) => {
               value.length <= 3 || "Maximum of 3 options allowed",
           }}
           render={({ field }) => (
-            <CreatableSelect
+            <Select
               isMulti
               placeholder="Select language..."
               {...field}

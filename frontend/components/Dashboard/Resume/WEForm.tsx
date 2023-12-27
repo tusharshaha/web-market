@@ -1,12 +1,62 @@
-import React from 'react';
+import React from "react";
+import { FieldValues, UseFormRegister } from "react-hook-form";
 
-const WEForm:React.FC = () => {
+interface Props {
+  register: UseFormRegister<FieldValues>;
+}
+
+const WEForm: React.FC<Props> = ({ register }) => {
   return (
     <div className="border p-4 w-full">
-      <h3 className="font-semibold mb-4">Work Experience</h3>
-      <div className="grid sm:grid-cols-2 gap-2">
-      
+      <div className="flex items-center justify-between gap-2 mb-4">
+        <h3 className="font-semibold">Work Experience</h3>
+        <span className="font-semibold">+ Add more</span>
       </div>
+      <div className="grid sm:grid-cols-2 gap-2">
+        <input
+          type="text"
+          className="input input-bordered"
+          placeholder="Company name"
+          required
+          {...register("companyName")}
+        />
+        <input
+          type="text"
+          className="input input-bordered"
+          placeholder="Your position"
+          required
+          {...register("position")}
+        />
+        <div>
+          <p>From</p>
+          <input
+            type="date"
+            className="input input-bordered w-full"
+            required
+            {...register("from")}
+          />
+        </div>
+        <div>
+          <div className="flex items-center justify-between gap-2">
+            <p>To</p>
+            <label className="cursor-pointer flex items-center gap-2">
+              <input type="checkbox" {...register("current")} />
+              <span className="label-text">Currently working</span>
+            </label>
+          </div>
+          <input
+            type="date"
+            className="input input-bordered w-full"
+            required
+            {...register("to")}
+          />
+        </div>
+      </div>
+      <textarea
+        className="textarea textarea-bordered resize-none h-[100px] w-full mt-2"
+        placeholder="description"
+        {...register("description")}
+      ></textarea>
     </div>
   );
 };

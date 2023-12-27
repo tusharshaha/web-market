@@ -16,7 +16,7 @@ const SettingForm:React.FC<Props> = ({errors, register}) => {
             </p>
             <input
               type="text"
-              className="input input-primary w-full"
+              className="input input-bordered w-full"
               placeholder="Type your name"
               {...register("name")}
             />
@@ -32,7 +32,7 @@ const SettingForm:React.FC<Props> = ({errors, register}) => {
             </p>
             <input
               type="email"
-              className="input input-primary w-full"
+              className="input input-bordered w-full"
               placeholder="Type your email"
               {...register("email")}
             />
@@ -46,7 +46,7 @@ const SettingForm:React.FC<Props> = ({errors, register}) => {
             <p className="label">Your number</p>
             <input
               type="text"
-              className="input input-primary w-full"
+              className="input input-bordered w-full"
               placeholder="Type your number"
               {...register("contactNumber")}
             />
@@ -60,7 +60,7 @@ const SettingForm:React.FC<Props> = ({errors, register}) => {
             <p className="label">Your password</p>
             <input
               type="password"
-              className="input input-primary w-full"
+              className="input input-bordered w-full"
               placeholder="Type your password"
               {...register("password")}
             />
@@ -74,7 +74,7 @@ const SettingForm:React.FC<Props> = ({errors, register}) => {
             <p className="label">Confirm password</p>
             <input
               type="password"
-              className="input input-primary w-full"
+              className="input input-bordered w-full"
               placeholder="Type your password"
               {...register("confirmPass")}
             />

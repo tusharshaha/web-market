@@ -4,16 +4,17 @@ import WEForm from "@/components/Dashboard/Resume/WEForm";
 import BreadCrumb from "@/components/common/BreadCrumb";
 import useAuth from "@/hooks/useAuth";
 import { NextPage } from "next";
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 
 const Resume: NextPage = () => {
+  const [loading, setLoading] = useState(false);
   const { name, email, userImage, role, contactNumber } = useAuth();
   const {
     register,
     handleSubmit,
     control,
-    formState: { errors },
+    formState: { errors, isDirty },
   } = useForm();
   const onSubmit = handleSubmit((data) => {
     console.log(data);
@@ -33,7 +34,14 @@ const Resume: NextPage = () => {
               userImage={userImage}
               control={control}
             />
-            <WEForm/>
+            <WEForm register={register} />
+            <button
+              type="submit"
+              disabled={!isDirty || loading}
+              className="btn btn-neutral text-white px-8 py-2 rounded-full mt-2 flex items-center"
+            >
+              Update
+            </button>
           </form>
         </div>
       </div>
