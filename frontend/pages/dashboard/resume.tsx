@@ -1,4 +1,5 @@
 import DashBoardLayout from "@/components/DashBoardLayout";
+import EducationForm from "@/components/Dashboard/Resume/EducationForm";
 import PIForm from "@/components/Dashboard/Resume/PIForm";
 import WEForm from "@/components/Dashboard/Resume/WEForm";
 import BreadCrumb from "@/components/common/BreadCrumb";
@@ -35,6 +36,7 @@ const Resume: NextPage = () => {
               control={control}
             />
             <WEForm register={register} />
+            <EducationForm register={register} />
             <button
               type="submit"
               disabled={!isDirty || loading}

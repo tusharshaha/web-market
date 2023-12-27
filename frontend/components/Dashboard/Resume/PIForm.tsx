@@ -40,7 +40,7 @@ const PIForm: React.FC<Props> = ({ register, userImage, control }) => {
   };
   return (
     <div className="border p-4 w-full">
-      <h3 className="font-semibold mb-4">Basic Information</h3>
+      <h3 className="font-semibold mb-4">Personal Information</h3>
       <div className="flex items-end flex-col md:flex-row gap-3">
         <div className="w-[100px] mx-auto">
           <ImagePreview
