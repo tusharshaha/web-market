@@ -12,9 +12,6 @@ const Skills: React.FC = () => {
             "CSS",
             "Javascript",
             "Typescript",
-            "CSS",
-            "Javascript",
-            "Typescript",
           ],
         },
         {

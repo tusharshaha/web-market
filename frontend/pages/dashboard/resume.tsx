@@ -7,6 +7,8 @@ import useAuth from "@/hooks/useAuth";
 import { NextPage } from "next";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import ObjectiveForm from "@/components/Dashboard/Resume/ObjectiveForm";
+import SkillsForm from "@/components/Dashboard/Resume/SkillsForm";
 
 const Resume: NextPage = () => {
   const [loading, setLoading] = useState(false);
@@ -35,6 +37,8 @@ const Resume: NextPage = () => {
               userImage={userImage}
               control={control}
             />
+            <ObjectiveForm register={register} />
+            <SkillsForm register={register} control={control} />
             <WEForm register={register} />
             <EducationForm register={register} />
             <button

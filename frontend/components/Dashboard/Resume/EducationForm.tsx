@@ -54,7 +54,7 @@ const EducationForm: React.FC<Props> = ({ register }) => {
       </div>
       <textarea
         className="textarea textarea-bordered resize-none h-[100px] w-full mt-2"
-        placeholder="description"
+        placeholder="description..."
         {...register("e_description")}
       ></textarea>
     </div>

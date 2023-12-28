@@ -54,7 +54,8 @@ const WEForm: React.FC<Props> = ({ register }) => {
       </div>
       <textarea
         className="textarea textarea-bordered resize-none h-[100px] w-full mt-2"
-        placeholder="description"
+        placeholder="description..."
+        required
         {...register("w_description")}
       ></textarea>
     </div>

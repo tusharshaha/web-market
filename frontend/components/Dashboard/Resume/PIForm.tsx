@@ -137,12 +137,11 @@ const PIForm: React.FC<Props> = ({ register, userImage, control }) => {
           defaultValue={[]} // Set a default value if needed
           rules={{
             required: "This field is required",
-            validate: (value) =>
-              value.length <= 3 || "Maximum of 3 options allowed",
           }}
           render={({ field }) => (
             <Select
               isMulti
+              required
               placeholder="Select language..."
               {...field}
               options={languageOptions}
