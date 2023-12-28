@@ -1,11 +1,17 @@
-import React from "react";
-import { FieldValues, UseFormRegister } from "react-hook-form";
+import React, { useState } from "react";
+import { FieldValues, UseFormRegister, UseFormSetValue } from "react-hook-form";
 
 interface Props {
   register: UseFormRegister<FieldValues>;
+  setValue: UseFormSetValue<FieldValues>;
 }
 
-const WEForm: React.FC<Props> = ({ register }) => {
+const WEForm: React.FC<Props> = ({ register, setValue }) => {
+  const [checked, setChecked] = useState(false);
+  const handleChecked = (e: any) => {
+    setChecked(e.target.checked);
+    setValue("w_current", e.target.checked);
+  };
   return (
     <div className="border p-4 w-full">
       <div className="flex items-center justify-between gap-2 mb-4">
@@ -40,13 +46,18 @@ const WEForm: React.FC<Props> = ({ register }) => {
           <div className="flex items-center justify-between gap-2">
             <p>To</p>
             <label className="cursor-pointer flex items-center gap-2">
-              <input type="checkbox" {...register("w_current")} />
+              <input
+                type="checkbox"
+                checked={checked}
+                onChange={handleChecked}
+              />
               <span className="label-text">Currently working</span>
             </label>
           </div>
           <input
             type="date"
             className="input input-bordered w-full"
+            disabled={checked}
             required
             {...register("w_to")}
           />

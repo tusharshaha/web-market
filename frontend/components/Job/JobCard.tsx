@@ -48,7 +48,7 @@ const JobCard: React.FC<JobData> = ({ data, setJobId, id, selectedId }) => {
         <Image
           src={data.image}
           onLoad={handleLoad}
-          height={500}
+          height={0}
           width={500}
           alt="job image"
           className="h-full w-full"

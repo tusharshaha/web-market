@@ -5,6 +5,10 @@
     "dev": "concurrently \"npm run server\" \"npm run client\""
   },
   "dependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "react-datepicker": "^4.25.0"
+  },
+  "devDependencies": {
+    "@types/react-datepicker": "^4.19.4"
   }
 }

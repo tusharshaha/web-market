@@ -16,6 +16,7 @@ const Resume: NextPage = () => {
   const {
     register,
     handleSubmit,
+    setValue,
     control,
     formState: { errors, isDirty },
   } = useForm();
@@ -39,7 +40,7 @@ const Resume: NextPage = () => {
             />
             <ObjectiveForm register={register} />
             <SkillsForm register={register} control={control} />
-            <WEForm register={register} />
+            <WEForm register={register} setValue={setValue} />
             <EducationForm register={register} />
             <button
               type="submit"
