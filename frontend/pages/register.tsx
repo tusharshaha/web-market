@@ -1,20 +1,17 @@
 import { NextPage } from "next";
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { FaBackwardStep } from "react-icons/fa6";
 import { FcGoogle } from "react-icons/fc";
 import RegForm from "@/components/Register/RegForm";
 import LoginForm from "@/components/Register/LoginForm";
-import useAuth from "@/hooks/useAuth";
 import ProtectedRoute from "@/utils/ProtectedRoute";
 
 const Register: NextPage = () => {
   const [regPage, setRegPage] = useState(false);
   const router = useRouter();
-  const [isFetch, setIsFetch] = useState(true);
-  const { getProfile, email } = useAuth();
 
-  const handleBack = () => router.back();
+  const handleBack = () => router.push("/");
   const handleGoogleLogin = () =>
     router.push(`${process.env.NEXT_PUBLIC_API}/auth/login/google`);
 

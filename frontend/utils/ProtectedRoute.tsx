@@ -37,6 +37,7 @@ const ProtectedRoute = <P extends object>(
       router.replace("/register");
       return null;
     }
+    return null
   };
 
   return Protected;
