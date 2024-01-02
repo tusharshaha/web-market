@@ -40,7 +40,7 @@ export async function getUser(req: NextRequest) {
           Authorization: `Bearer ${refreshData?.token?.access_token}`,
         },
       });
-      return { ...refreshedProfileData, ...refreshData };
+      return refreshedProfileData;
     } else {
       return {};
     }
