@@ -11,6 +11,8 @@ const Home: NextPage = (props) => {
   console.log(props)
   return (
     <Layout>
+      <p>access: {props.token.access_token}</p>
+      <p>refresh: {props.token.refresh_token}</p>
       <Category></Category>
       <JobCirculars></JobCirculars>
       <HowItWork></HowItWork>
