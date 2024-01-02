@@ -7,7 +7,7 @@ import DownloadApp from "@/components/Home/DownloadApp";
 import BestCandidate from "@/components/Home/BestCandiate";
 import Subscribe from "@/components/Home/Subscribe";
 
-const Home: NextPage = (props) => {
+const Home: NextPage = (props:any) => {
   console.log(props)
   return (
     <Layout>
