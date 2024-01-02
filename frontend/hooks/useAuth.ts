@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 interface Auth extends User {
   isLoading: boolean;
   logout: () => void;
-  getProfile: () => void;
+  getProfile: (setIsFetch?: React.Dispatch<React.SetStateAction<boolean>>) => void;
 }
 
 const useAuth = (): Auth => {
@@ -16,14 +16,19 @@ const useAuth = (): Auth => {
   const user = useSelector((state: RootState) => state.auth.user);
   const dispatch = useDispatch<AppDispatch>();
 
-  const getProfile = () => {
+  const getProfile = (
+    setIsFetch: React.Dispatch<React.SetStateAction<boolean>>
+  ) => {
     setIsloading(true);
     privateApi
       .get<any, User>("/auth/profile")
       .then((data) => {
         dispatch(addUser(data));
       })
-      .finally(() => setIsloading(false));
+      .finally(() => {
+        setIsloading(false);
+        typeof setIsFetch === "function" && setIsFetch(false)
+      });
   };
 
   const logout = async () => {

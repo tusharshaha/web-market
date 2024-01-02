@@ -6,23 +6,18 @@ import { FcGoogle } from "react-icons/fc";
 import RegForm from "@/components/Register/RegForm";
 import LoginForm from "@/components/Register/LoginForm";
 import useAuth from "@/hooks/useAuth";
+import ProtectedRoute from "@/utils/ProtectedRoute";
 
 const Register: NextPage = () => {
   const [regPage, setRegPage] = useState(false);
   const router = useRouter();
-  const { getProfile, email, isLoading } = useAuth();
+  const [isFetch, setIsFetch] = useState(true);
+  const { getProfile, email } = useAuth();
 
   const handleBack = () => router.back();
   const handleGoogleLogin = () =>
     router.push(`${process.env.NEXT_PUBLIC_API}/auth/login/google`);
 
-  useEffect(() => {
-    if (!email && !isLoading) {
-      getProfile();
-    }
-    email && router.push("/");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email]);
   return (
     <div className="register flex items-start justify-center px-10">
       <div className="max-w-3xl">
@@ -86,4 +81,4 @@ const Register: NextPage = () => {
   );
 };
 
-export default Register;
+export default ProtectedRoute(Register);

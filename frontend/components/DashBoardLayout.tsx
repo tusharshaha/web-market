@@ -10,6 +10,7 @@ import { IoDocumentTextOutline, IoSettingsOutline } from "react-icons/io5";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useAuth from "@/hooks/useAuth";
+import ProtectedRoute from "@/utils/ProtectedRoute";
 
 interface DashboardProps {
   children: React.ReactNode;
@@ -18,18 +19,12 @@ interface DashboardProps {
 const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
   const router = useRouter();
   const pathName = router.pathname;
-  const { isLoading, email, getProfile, logout } = useAuth();
+  const { logout } = useAuth();
   const handleLogout = () => {
     logout();
     router.push("/");
   };
-  useEffect(() => {
-    if (!email && !isLoading) {
-      getProfile();
-    }
-    !email && router.push("/");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [email]);
+  
   const menus = [
     {
       icon: <MdOutlineSpaceDashboard />,
@@ -107,4 +102,4 @@ const DashBoardLayout: React.FC<DashboardProps> = ({ children }) => {
   );
 };
 
-export default DashBoardLayout;
+export default ProtectedRoute(DashBoardLayout);
