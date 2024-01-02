@@ -4,7 +4,6 @@ export const CC_Option: CookieOptions = {
   secure: true,
   sameSite: "none",
   path: "/",
-  domain: "web-market-nu.vercel.app",
 };
 
 export const ATC_Option: CookieOptions = {
