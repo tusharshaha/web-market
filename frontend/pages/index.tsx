@@ -7,8 +7,7 @@ import DownloadApp from "@/components/Home/DownloadApp";
 import BestCandidate from "@/components/Home/BestCandiate";
 import Subscribe from "@/components/Home/Subscribe";
 
-const Home: NextPage = (props:any) => {
-  console.log(props)
+const Home: NextPage = () => {
   return (
     <Layout>
       <Category></Category>
@@ -22,7 +21,3 @@ const Home: NextPage = (props:any) => {
 };
 
 export default Home;
-
-export const getServerSideProps = (context:any) => {
-  return { props: { token: context.req.cookies } };
-};

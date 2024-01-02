@@ -20,7 +20,7 @@ async function bootstrap() {
   });
   app.setGlobalPrefix("api");
   app.use(helmet());
-  const cookie: CookieOptions = { maxAge: 60 * 1000 }; //cookie max age is 1 minute
+  const cookie: CookieOptions = { maxAge: 60 * 1000 * 2 }; //cookie max age is 2 minute
 
   // set cookie security on  production
   if (process.env.NODE_ENV === "production") {
