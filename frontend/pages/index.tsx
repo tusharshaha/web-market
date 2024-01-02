@@ -25,6 +25,6 @@ const Home: NextPage = (props) => {
 
 export default Home;
 
-export const getServerSideProps = (context) => {
+export const getServerSideProps = (context:any) => {
   return { props: { token: context.req.cookies } };
 };
